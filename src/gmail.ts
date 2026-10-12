@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): persist rotated OAuth credentials through the account configuration callback.
 // The only file that speaks the Gmail API. Labels are folders; "ARCHIVE" is a
 // virtual folder meaning "no system folder label". Sync is history.list from a
 // stored historyId; push is polling until Pub/Sub is configured.
@@ -71,7 +72,7 @@ export class GmailAdapter implements Adapter {
   private pollTimer: NodeJS.Timeout | null = null;
   private labelNames = new Map<string, string>(); // id -> name
 
-  constructor(private cfg: GmailAccountConfig) {
+  constructor(private cfg: GmailAccountConfig, onConfigChanged?: () => void) {
     const g = cfg.gmail;
     this.base = (g.base_url ?? "https://gmail.googleapis.com").replace(/\/$/, "") + "/gmail/v1/users/me";
     this.oauth = new OAuthClient({
@@ -79,7 +80,7 @@ export class GmailAdapter implements Adapter {
       client_id: g.client_id,
       client_secret: g.client_secret,
       refresh_token: g.refresh_token,
-    });
+    }, token => { g.refresh_token = token; onConfigChanged?.(); });
   }
 
   private api<T = any>(path: string, init: RequestInit = {}, allow404 = false) {

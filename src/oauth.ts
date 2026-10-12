@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): coalesce refresh requests and persist rotated refresh tokens.
 // OAuth 2.0 refresh-token client shared by the Gmail and Graph adapters.
 // Holds one refresh token, caches the access token, retries a 401 once.
 export interface OAuthConfig {
@@ -10,10 +11,26 @@ export interface OAuthConfig {
 
 export class OAuthClient {
   private access: { token: string; expires: number } | null = null;
+  private refreshing: Promise<string> | null = null;
+  private rotationPending = false;
 
-  constructor(private cfg: OAuthConfig) {}
+  constructor(private cfg: OAuthConfig, private onRefreshToken?: (token: string) => void | Promise<void>) {}
 
   async token(force = false): Promise<string> {
+    if (this.refreshing) return this.refreshing;
+    this.refreshing = this.refresh(force).finally(() => { this.refreshing = null; });
+    return this.refreshing;
+  }
+
+  private async saveRotation() {
+    if (!this.rotationPending) return;
+    await this.onRefreshToken?.(this.cfg.refresh_token);
+    this.rotationPending = false;
+  }
+
+  private async refresh(force: boolean): Promise<string> {
+    // Retry a failed persistence before using the credential or contacting the provider again.
+    await this.saveRotation();
     if (!force && this.access && this.access.expires > Date.now() + 60_000) return this.access.token;
     const body = new URLSearchParams({
       grant_type: "refresh_token",
@@ -28,6 +45,11 @@ export class OAuthClient {
       const e: any = new Error(`token refresh failed: ${r.status} ${j.error ?? ""} ${j.error_description ?? ""}`.trim());
       e.authenticationFailed = r.status === 400 || r.status === 401; // invalid_grant: the refresh token is dead
       throw e;
+    }
+    if (typeof j.refresh_token === "string" && j.refresh_token && j.refresh_token !== this.cfg.refresh_token) {
+      this.cfg.refresh_token = j.refresh_token;
+      this.rotationPending = true;
+      await this.saveRotation();
     }
     this.access = { token: j.access_token, expires: Date.now() + (Number(j.expires_in) || 3600) * 1000 };
     return this.access.token;

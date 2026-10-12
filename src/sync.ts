@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): persist rotated credentials and authorize idempotent action replay.
 // The engine: one runner per account turns a mailbox into events in the log,
 // and the action API turns requests into journaled, reversible changes.
 // Runners are protocol-neutral; adapters report through the SyncSink.
@@ -24,18 +25,18 @@ export class ScopeError extends Error {}
 
 type Folder = ReturnType<Store["upsertFolder"]>;
 
-export function makeAdapter(config: AccountConfig, ctx: { dataDir: string }): Adapter {
+export function makeAdapter(config: AccountConfig, ctx: { dataDir: string; onConfigChanged?: () => void }): Adapter {
   switch (config.provider) {
     case "imap":
-      return new ImapAdapter(config);
+      return new ImapAdapter(config, ctx.onConfigChanged);
     case "jmap":
       return new JmapAdapter(config);
     case "inbound":
       return new InboundAdapter(config, ctx.dataDir);
     case "gmail":
-      return new GmailAdapter(config);
+      return new GmailAdapter(config, ctx.onConfigChanged);
     case "graph":
-      return new GraphAdapter(config);
+      return new GraphAdapter(config, ctx.onConfigChanged);
   }
 }
 
@@ -63,7 +64,14 @@ class AccountRunner implements SyncSink {
     public config: AccountConfig,
     private engine: Engine,
   ) {
-    this.adapter = makeAdapter(config, { dataDir: engine.opts.dataDir });
+    let persisted = structuredClone(config);
+    this.adapter = makeAdapter(config, {
+      dataDir: engine.opts.dataDir,
+      onConfigChanged: () => {
+        this.store.replaceAccountConfig(this.id, persisted, config);
+        persisted = structuredClone(config);
+      },
+    });
   }
 
   get store() {
@@ -553,7 +561,10 @@ export class Engine {
 
   async submitAction(req: ActionRequest, requestedBy: string, mode: "direct" | "propose", allowedAccounts: string[] = []) {
     const existing = this.store.actionByKey(req.client_key);
-    if (existing) return existing; // idempotent: same key, same answer
+    if (existing) {
+      if (allowedAccounts.length && !allowedAccounts.includes(existing.account)) throw new ScopeError("account not in token scope");
+      return existing; // Only return an idempotent result after authorizing its account.
+    }
     const params = ActionParams[req.type].parse(req.params);
     const account = this.accountFor(req.type, params);
     if (allowedAccounts.length && !allowedAccounts.includes(account)) throw new ScopeError("account not in token scope");

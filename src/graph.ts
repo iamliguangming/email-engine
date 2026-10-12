@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): persist rotated OAuth credentials through the account configuration callback.
 // The only file that speaks Microsoft Graph mail. Folders are folders; sync is
 // a delta query per folder; ids are immutable across moves (Prefer IdType).
 // Push is polling until change notifications (webhooks) are configured.
@@ -60,7 +61,7 @@ export class GraphAdapter implements Adapter {
   private pollTimer: NodeJS.Timeout | null = null;
   private roles = new Map<string, FolderRole>(); // folder id -> role from well-known lookups
 
-  constructor(private cfg: GraphAccountConfig) {
+  constructor(private cfg: GraphAccountConfig, onConfigChanged?: () => void) {
     const g = cfg.graph;
     this.base = (g.base_url ?? "https://graph.microsoft.com").replace(/\/$/, "") + "/v1.0/me";
     this.oauth = new OAuthClient({
@@ -69,7 +70,7 @@ export class GraphAdapter implements Adapter {
       client_secret: g.client_secret,
       refresh_token: g.refresh_token,
       scope: "https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access",
-    });
+    }, token => { g.refresh_token = token; onConfigChanged?.(); });
   }
 
   private api<T = any>(pathOrUrl: string, init: RequestInit = {}, allow404 = false) {

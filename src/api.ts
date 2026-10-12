@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): scope health metadata, filter searches before limiting, and scope tag counts.
 // HTTP surface: the event log by cursor, a live SSE stream, reads from the
 // local index, tokens, and the action API. Every route runs under a scope:
 // the admin token sees everything, a scoped token sees only what it names.
@@ -38,13 +39,15 @@ export function createApi(engine: Engine, adminToken: string) {
   });
   const adminOnly = async (c: any, next: any) => (c.get("scope") === ADMIN ? next() : forbidden(c, "admin only"));
 
-  app.get("/health", (c) =>
-    c.json({
+  app.get("/health", (c) => {
+    const scope = resolveScope(store, c.req.header("authorization"), adminToken);
+    if (!scope) return c.json({ ok: true });
+    return c.json({
       ok: true,
       cursor: store.lastCursor(),
-      accounts: store.accounts().map((a) => ({ id: a.id, address: a.address, status: a.status, last_sync: a.last_sync })),
-    }),
-  );
+      accounts: store.accounts().filter((a) => allowsAccount(scope, a.id)).map((a) => ({ id: a.id, address: a.address, status: a.status, last_sync: a.last_sync })),
+    });
+  });
 
   // ----- event log -----
   app.get("/events", (c) => {
@@ -101,13 +104,14 @@ export function createApi(engine: Engine, adminToken: string) {
     const q = (c.req.query("q") ?? "").trim();
     const tag = (c.req.query("tag") ?? "").trim();
     const limit = Number(c.req.query("limit") ?? 50);
+    if (!Number.isInteger(limit) || limit < 1 || limit > 200) return c.json({ error: "limit must be an integer between 1 and 200" }, 400);
     if (!q && !tag) return c.json({ results: [] });
-    const rows = q && tag ? store.searchWithTag(q, tag, limit) : q ? store.search(q, limit) : store.messagesByTag(tag, limit);
-    return c.json({ results: rows.filter((m) => messageVisible(s, m)).map((m) => present(s, m)) });
+    const rows = store.searchVisible(q, tag, limit, s);
+    return c.json({ results: rows.map((m) => present(s, m)) });
   });
   app.get("/tags", (c) => {
     const s = c.get("scope");
-    const counts = s.accounts.length === 1 ? store.tagCounts(s.accounts[0]) : store.tagCounts();
+    const counts = store.tagCountsVisible(s);
     return c.json({ tags: counts });
   });
   app.get("/messages/:id", (c) => {

@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): persist rotated OAuth credentials through the account configuration callback.
 // The only file that speaks IMAP and SMTP. Two connections per account: one
 // parked in IDLE on the inbox, one working connection for syncs and actions.
 // Everything above this file sees folders, messages, flags and refs only.
@@ -145,8 +146,8 @@ export class ImapAdapter implements Adapter {
 
   private oauth: OAuthClient | null;
 
-  constructor(private cfg: ImapAccountConfig) {
-    this.oauth = cfg.imap.oauth ? new OAuthClient(cfg.imap.oauth) : null;
+  constructor(private cfg: ImapAccountConfig, onConfigChanged?: () => void) {
+    this.oauth = cfg.imap.oauth ? new OAuthClient(cfg.imap.oauth, () => onConfigChanged?.()) : null;
   }
 
   /** Password, or a current access token when the account holds a refresh token (imapflow picks OAUTHBEARER or XOAUTH2). */

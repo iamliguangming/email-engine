@@ -1,5 +1,19 @@
 # email-engine
 
+## Fork baseline
+
+This fork retains the Apache-2.0 upstream baseline at `f2f4bac6e86d39aed105f21486da37e589537d12`.
+The `codex/mail-sync-foundation` branch adds scoped-query and credential-rotation fixes;
+`main` remains the upstream baseline. This is an experimental foundation, not a production release.
+
+Run `npm test`, `node test/mcp-isolation.mjs`, and
+`node test/conformance.mjs gmail-mock graph-mock` for the local regression suites.
+These use synthetic mail and mock providers. Live-provider validation, Gmail attachment indicators,
+account lifecycle APIs, message pagination, body caching, and application-level project authorization
+remain unfinished. No PinTalent integration is included in this branch.
+
+## Upstream overview
+
 A self-hosted engine that turns any mailbox into one ordered event stream, with safe, reversible actions. Plug in IMAP today, JMAP and the Gmail and Microsoft APIs next, and every app or AI agent on the other side sees the same seven events and the same twelve actions. Think of it as USB for email.
 
 **Status: 0.1.0 beta.** IMAP, JMAP and inbound SMTP adapters (Gmail API and Graph experimental, mock-tested only), a replayable event log, actions with a journal, undo and an approval queue, scoped tokens, engine-owned tags, attachments, and an MCP server. The same scenarios pass on every target in the [conformance report](conformance/REPORT.md), including sending through Stalwart's submission service and receiving at another mailbox. It has not yet run against a commercial provider or for longer than an hour; see [SECURITY.md](SECURITY.md) before exposing it.
@@ -69,7 +83,7 @@ All routes except `/health` need `Authorization: Bearer <token>`: either the adm
 
 | Route | Purpose |
 | --- | --- |
-| `GET /health` | Cursor and account status |
+| `GET /health` | Minimal liveness without a token; cursor and scoped account status with a token |
 | `GET /events?after=N&limit=500` | The log from a cursor, filtered to the token's scope |
 | `GET /stream?after=N` | Server-Sent Events: replay from a cursor, then live |
 | `POST /events` | Publish a derived event (tokens with `publish: true`) |

@@ -1,3 +1,4 @@
+// Fork modification (2026-10-12): add scoped SQL queries and encrypted compare-and-swap credential persistence.
 // One SQLite file holds everything: accounts, folders, messages, threads, the
 // append-only event log, the action journal, tokens and timers. The log is the
 // truth; every delivery channel is a reader of it.
@@ -117,6 +118,23 @@ CREATE VIRTUAL TABLE IF NOT EXISTS messages_fts USING fts5(
 `;
 
 export type Store = ReturnType<typeof openStore>;
+
+/** Apply visibility in SQL, before pagination or aggregation. Empty scopes mean all. */
+function messageScope(scope: { accounts: string[]; folders: string[] }) {
+  const terms: string[] = [];
+  const values: string[] = [];
+  if (scope.accounts.length) {
+    terms.push(`m.account IN (${scope.accounts.map(() => "?").join(",")})`);
+    values.push(...scope.accounts);
+  }
+  if (scope.folders.length) {
+    terms.push(`(NOT EXISTS (SELECT 1 FROM message_folders mf WHERE mf.message_id = m.id)
+      OR EXISTS (SELECT 1 FROM message_folders mf JOIN folders fo ON fo.id = mf.folder_id
+        WHERE mf.message_id = m.id AND fo.role IN (${scope.folders.map(() => "?").join(",")})))`);
+    values.push(...scope.folders);
+  }
+  return { sql: terms.length ? terms.join(" AND ") : "1 = 1", values };
+}
 
 export interface MessageRow {
   id: string;
@@ -371,6 +389,13 @@ export function openStore(path: string, secret?: string) {
       q.upsertAccount.run(id, config.address, cipher.encrypt(JSON.stringify(config)));
       return id as string;
     },
+    replaceAccountConfig(id: string, previous: AccountConfig, next: AccountConfig) {
+      const row = db.prepare("SELECT config FROM accounts WHERE id = ?").get(id) as { config: string } | undefined;
+      if (!row || cipher.decrypt(row.config) !== JSON.stringify(previous)) throw new Error("account configuration changed; reconnect required");
+      const result = db.prepare("UPDATE accounts SET config = ? WHERE id = ? AND config = ?")
+        .run(cipher.encrypt(JSON.stringify(next)), id, row.config);
+      if (result.changes !== 1) throw new Error("account configuration changed; reconnect required");
+    },
     accounts() {
       return (q.accounts.all() as any[]).map((a) => ({
         ...a,
@@ -461,6 +486,25 @@ export function openStore(path: string, secret?: string) {
     },
     search(query: string, limit = 50): MessageRow[] {
       return (q.search.all(query, limit) as any[]).map(rowToMessage);
+    },
+
+    searchVisible(query: string, tag: string, limit: number, scope: { accounts: string[]; folders: string[] }): MessageRow[] {
+      const visibility = messageScope(scope);
+      const terms = [visibility.sql];
+      const values: (string | number)[] = [...visibility.values];
+      if (query) { terms.push("messages_fts MATCH ?"); values.push(query); }
+      if (tag) { terms.push("EXISTS (SELECT 1 FROM tags t WHERE t.message_id = m.id AND t.tag = ?)"); values.push(tag); }
+      values.push(limit);
+      return (db.prepare(`SELECT m.* FROM messages m
+        ${query ? "JOIN messages_fts ON messages_fts.id = m.id" : ""}
+        WHERE ${terms.join(" AND ")}
+        ORDER BY ${query ? "rank" : "m.date DESC"}, m.id LIMIT ?`).all(...values) as any[]).map(rowToMessage);
+    },
+
+    tagCountsVisible(scope: { accounts: string[]; folders: string[] }): { tag: string; count: number }[] {
+      const visibility = messageScope(scope);
+      return db.prepare(`SELECT t.tag, COUNT(*) AS count FROM tags t JOIN messages m ON m.id = t.message_id
+        WHERE ${visibility.sql} GROUP BY t.tag ORDER BY count DESC, t.tag`).all(...visibility.values) as { tag: string; count: number }[];
     },
 
     setSnippet(id: string, snippet: string) {
