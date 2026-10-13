@@ -1,3 +1,4 @@
+import { readLimited } from "./mail/limits.js";
 // Fork modification (2026-10-12): coalesce refresh requests and persist rotated refresh tokens.
 // OAuth 2.0 refresh-token client shared by the Gmail and Graph adapters.
 // Holds one refresh token, caches the access token, retries a 401 once.
@@ -39,7 +40,7 @@ export class OAuthClient {
       ...(this.cfg.client_secret ? { client_secret: this.cfg.client_secret } : {}),
       ...(this.cfg.scope ? { scope: this.cfg.scope } : {}),
     });
-    const r = await fetch(this.cfg.token_url, { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body });
+    const r = await fetch(this.cfg.token_url, { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, signal: AbortSignal.timeout(30000), body });
     const j: any = await r.json().catch(() => ({}));
     if (!r.ok || !j.access_token) {
       const e: any = new Error(`token refresh failed: ${r.status} ${j.error ?? ""} ${j.error_description ?? ""}`.trim());
@@ -58,7 +59,7 @@ export class OAuthClient {
   /** Authenticated fetch. Refreshes and retries once on 401. Throws with authenticationFailed when auth is gone. */
   async fetch(url: string, init: RequestInit = {}, retry = true): Promise<Response> {
     const token = await this.token();
-    const r = await fetch(url, { ...init, headers: { ...(init.headers ?? {}), authorization: `Bearer ${token}` } });
+    const r = await fetch(url, { ...init, redirect: "error", signal: init.signal ?? AbortSignal.timeout(30000), headers: { ...(init.headers ?? {}), authorization: `Bearer ${token}` } });
     if (r.status === 401 && retry) {
       await this.token(true);
       return this.fetch(url, init, false);
@@ -76,7 +77,7 @@ export class OAuthClient {
     const r = await this.fetch(url, init);
     if (r.status === 404 && allow404) return null;
     if (r.status === 204) return null;
-    const text = await r.text();
+    const text = (await readLimited(r, 24 * 1024 * 1024)).toString("utf8");
     if (!r.ok) {
       const e: any = new Error(`${init.method ?? "GET"} ${url.replace(/\?.*/, "")} -> ${r.status} ${text.slice(0, 200)}`);
       e.status = r.status;

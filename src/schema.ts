@@ -320,6 +320,7 @@ export const GraphAccountConfig = z.object({
   provider: z.literal("graph"),
   address: z.string().email(),
   graph: z.object({
+    scope: z.string().optional(),
     tenant: z.string().default("common"), // "common", "consumers", or a tenant id
     client_id: z.string(),
     client_secret: z.string().optional(), // absent for a public client

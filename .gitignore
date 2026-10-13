@@ -7,3 +7,5 @@ data/
 .env
 test/targets.local.json
 *.secret
+
+.env.mail

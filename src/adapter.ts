@@ -66,6 +66,7 @@ export function roleFromName(name: string): FolderRole | null {
 }
 
 export interface Adapter {
+  scanRange?(range: MailRange, cursor: string | null): Promise<RangePage>;
   readonly capabilities: Capabilities | null;
   connect(): Promise<Capabilities>;
   listFolders(): Promise<RemoteFolder[]>;
@@ -92,3 +93,7 @@ export interface Adapter {
   send(raw: Buffer): Promise<void>;
   close(): Promise<void>;
 }
+
+/** Recruitment intake scans use provider receipt time, UTC [from, to), without marking read. */
+export interface MailRange { from: string; to: string; folders: string[] }
+export interface RangePage { messages: RemoteMessage[]; next: string | null }

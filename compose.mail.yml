@@ -1,0 +1,57 @@
+name: pintalent-mail
+x-mail-environment: &mail-environment
+  DATABASE_URL: postgres://mail:${MAIL_PG_PASSWORD:?Set MAIL_PG_PASSWORD}@postgres:5432/mail
+  MAIL_SECRET: ${MAIL_SECRET:?Set MAIL_SECRET to a random string of at least 32 characters}
+  MAIL_ADMIN_TOKEN: ${MAIL_ADMIN_TOKEN:?Set MAIL_ADMIN_TOKEN to a random string of at least 32 characters}
+  MAIL_PUBLIC_URL: ${MAIL_PUBLIC_URL:-http://localhost:8095}
+  MAIL_HOST_GATEWAY_URL: ${MAIL_HOST_GATEWAY_URL:-}
+  MAIL_HOST_GATEWAY_SECRET: ${MAIL_HOST_GATEWAY_SECRET:-}
+  MAIL_GOOGLE_CLIENT_ID: ${MAIL_GOOGLE_CLIENT_ID:-}
+  MAIL_GOOGLE_CLIENT_SECRET: ${MAIL_GOOGLE_CLIENT_SECRET:-}
+  MAIL_MICROSOFT_CLIENT_ID: ${MAIL_MICROSOFT_CLIENT_ID:-}
+  MAIL_MICROSOFT_CLIENT_SECRET: ${MAIL_MICROSOFT_CLIENT_SECRET:-}
+  MAIL_MICROSOFT_TENANT: ${MAIL_MICROSOFT_TENANT:-common}
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: mail
+      POSTGRES_DB: mail
+      POSTGRES_PASSWORD: ${MAIL_PG_PASSWORD:?Set MAIL_PG_PASSWORD}
+    volumes:
+      - mail-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U mail -d mail']
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+  api:
+    image: pintalent-mail:local
+    build:
+      context: .
+      dockerfile: Dockerfile.mail
+    environment:
+      <<: *mail-environment
+      MAIL_ROLE: api
+    ports:
+      - '127.0.0.1:${MAIL_PORT:-8095}:8095'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8095/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      retries: 10
+    restart: unless-stopped
+  worker:
+    image: pintalent-mail:local
+    pull_policy: never
+    environment:
+      <<: *mail-environment
+      MAIL_ROLE: worker
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  mail-pg:

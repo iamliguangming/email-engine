@@ -5,7 +5,7 @@
 import { ImapFlow, type FetchMessageObject, type FetchQueryObject, type MessageStructureObject } from "imapflow";
 import { OAuthClient } from "./oauth.js";
 import nodemailer from "nodemailer";
-import { roleFromName, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
+import { roleFromName, type MailRange, type RangePage, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
 import type { Address, Capabilities, Flags, FolderRole, ImapAccountConfig } from "./schema.js";
 
 interface FolderState {
@@ -146,7 +146,7 @@ export class ImapAdapter implements Adapter {
 
   private oauth: OAuthClient | null;
 
-  constructor(private cfg: ImapAccountConfig, onConfigChanged?: () => void) {
+  constructor(private cfg: ImapAccountConfig, onConfigChanged?: () => void | Promise<void>, private connectionHost?: string) {
     this.oauth = cfg.imap.oauth ? new OAuthClient(cfg.imap.oauth, () => onConfigChanged?.()) : null;
   }
 
@@ -169,14 +169,15 @@ export class ImapAdapter implements Adapter {
   private async makeClient() {
     const c = this.cfg.imap;
     return new ImapFlow({
-      host: c.host,
+      host: this.connectionHost ?? c.host,
       port: c.port,
       secure: c.secure,
       auth: await this.auth(),
       qresync: true,
       autoIdleDelay: 1000, // enter IDLE a second after the last command, so pushes arrive fast
       logger: false,
-      tls: c.insecure_tls ? { rejectUnauthorized: false } : undefined,
+      connectionTimeout: 20000, greetingTimeout: 15000, socketTimeout: 30000,
+      tls: { servername: c.host, ...(c.insecure_tls ? { rejectUnauthorized: false } : {}) },
       clientInfo: { name: "email-engine", version: "0.1.0-beta.0" },
     });
   }
@@ -213,6 +214,35 @@ export class ImapAdapter implements Adapter {
       permanent_delete: true,
       sent_copy: gmail ? "server" : "client", // Gmail files sent mail itself; everyone else needs an APPEND
     };
+  }
+
+  async scanRange(range: MailRange, cursor: string | null): Promise<RangePage> {
+    const paths = range.folders.length ? range.folders : (await this.listFolders()).map(f => f.path);
+    const at = cursor ? JSON.parse(cursor) as { folder: number; last: number; validity?: string; ceiling?: number } : { folder: 0, last: 0 };
+    const path = paths[at.folder];
+    if (!path) return { messages: [], next: null };
+    const c = await this.client();
+    const lock = await c.getMailboxLock(path);
+    try {
+      const box = c.mailbox;
+      if (!box) throw new Error("mailbox unavailable");
+      if (at.validity && at.validity !== String(box.uidValidity)) throw new Error("range_uidvalidity_changed");
+      const ceiling = at.ceiling ?? box.uidNext - 1;
+      const uids = ceiling > at.last ? await c.search({ uid: `${at.last + 1}:${ceiling}`,
+        since: new Date(Date.parse(range.from) - 86400000), before: new Date(Date.parse(range.to) + 86400000) }, { uid: true }) : [];
+      const chosen = (uids || []).filter(uid => uid > at.last && uid <= ceiling).sort((a,b) => a-b).slice(0, 50);
+      const messages: RemoteMessage[] = [];
+      if (chosen.length) for await (const raw of c.fetch(chosen, { ...QUERY, internalDate: true }, { uid: true })) {
+        const m = toRemoteMessage(raw, path);
+        m.date = new Date(raw.internalDate || m.date).toISOString();
+        // Include UIDVALIDITY so reuse of a UID cannot overwrite a different message.
+        m.ref = `${box.uidValidity}:${m.ref}`;
+        if (m.date >= range.from && m.date < range.to) messages.push(m);
+      }
+      const more = (uids || []).length > chosen.length;
+      return { messages, next: more ? JSON.stringify({ folder: at.folder, last: chosen.at(-1), ceiling, validity: String(box.uidValidity) })
+        : at.folder + 1 < paths.length ? JSON.stringify({ folder: at.folder + 1, last: 0 }) : null };
+    } finally { lock.release(); }
   }
 
   async connect() {
@@ -426,7 +456,9 @@ export class ImapAdapter implements Adapter {
 
   async source(path: string, ref: string): Promise<Buffer | null> {
     return this.withFolder(path, async (c) => {
-      const m = await c.fetchOne(ref, { source: true }, { uid: true });
+      const parts = ref.split(":");
+      if (parts.length === 2 && (!c.mailbox || String(c.mailbox.uidValidity) !== parts[0])) throw new Error("range_uidvalidity_changed");
+      const m = await c.fetchOne(parts.length === 2 ? parts[1]! : ref, { source: parts.length === 2 ? { start: 0, maxLength: 15 * 1024 * 1024 + 1 } : true }, { uid: true });
       return m ? (m.source ?? null) : null;
     });
   }

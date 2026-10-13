@@ -3,7 +3,7 @@
 // virtual folder meaning "no system folder label". Sync is history.list from a
 // stored historyId; push is polling until Pub/Sub is configured.
 import { OAuthClient } from "./oauth.js";
-import { roleFromName, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
+import { roleFromName, type MailRange, type RangePage, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
 import type { Address, Capabilities, Flags, FolderRole, GmailAccountConfig } from "./schema.js";
 
 const SYSTEM: Record<string, FolderRole> = { INBOX: "inbox", SENT: "sent", DRAFT: "drafts", TRASH: "trash", SPAM: "spam" };
@@ -38,6 +38,10 @@ const parseAddrs = (s: string | null): Address[] =>
 const b64url = (buf: Buffer) => buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const fromB64url = (s: string) => Buffer.from(s.replace(/-/g, "+").replace(/_/g, "/"), "base64");
 
+function hasMimeAttachment(part: any): boolean {
+  return !!part?.filename || (part?.parts ?? []).some(hasMimeAttachment);
+}
+
 export function toRemoteMessage(m: any): RemoteMessage {
   const labels: string[] = m.labelIds ?? [];
   const folders = labels.filter((l) => !NOT_FOLDERS.has(l) && !l.startsWith("CATEGORY_"));
@@ -59,7 +63,7 @@ export function toRemoteMessage(m: any): RemoteMessage {
     date: Number.isFinite(ms) && ms > 0 ? new Date(ms).toISOString() : new Date().toISOString(),
     size: m.sizeEstimate ?? 0,
     // ponytail: format=metadata carries no MIME structure; attachments are known once a body is fetched.
-    hasAttachments: false,
+    hasAttachments: hasMimeAttachment(m.payload),
     snippet: (m.snippet ?? "").replace(/\s+/g, " ").trim().slice(0, 300),
     threadHint: m.threadId ?? null,
   };
@@ -72,7 +76,7 @@ export class GmailAdapter implements Adapter {
   private pollTimer: NodeJS.Timeout | null = null;
   private labelNames = new Map<string, string>(); // id -> name
 
-  constructor(private cfg: GmailAccountConfig, onConfigChanged?: () => void) {
+  constructor(private cfg: GmailAccountConfig, onConfigChanged?: () => void | Promise<void>) {
     const g = cfg.gmail;
     this.base = (g.base_url ?? "https://gmail.googleapis.com").replace(/\/$/, "") + "/gmail/v1/users/me";
     this.oauth = new OAuthClient({
@@ -80,7 +84,7 @@ export class GmailAdapter implements Adapter {
       client_id: g.client_id,
       client_secret: g.client_secret,
       refresh_token: g.refresh_token,
-    }, token => { g.refresh_token = token; onConfigChanged?.(); });
+    }, token => { g.refresh_token = token; return onConfigChanged?.(); });
   }
 
   private api<T = any>(path: string, init: RequestInit = {}, allow404 = false) {
@@ -116,6 +120,22 @@ export class GmailAdapter implements Adapter {
     }
     out.push({ path: ARCHIVE, name: "Archive", role: "archive" });
     return out;
+  }
+
+  async scanRange(range: MailRange, cursor: string | null): Promise<RangePage> {
+    // Gmail date strings use Pacific time; seconds avoid that timezone ambiguity.
+    const q = new URLSearchParams({ maxResults: "50", includeSpamTrash: "true",
+      q: `after:${Math.floor(Date.parse(range.from) / 1000) - 1} before:${Math.ceil(Date.parse(range.to) / 1000)}` });
+    if (cursor) q.set("pageToken", cursor);
+    const page = await this.api<any>(`/messages?${q}`);
+    const messages: RemoteMessage[] = [];
+    for (const item of page?.messages ?? []) {
+      const raw = await this.api<any>(`/messages/${encodeURIComponent(item.id)}?format=full`, {}, true);
+      if (!raw) continue;
+      const m = toRemoteMessage(raw);
+      if (m.date >= range.from && m.date < range.to && (!range.folders.length || m.folderPaths.some(f => range.folders.includes(f)))) messages.push(m);
+    }
+    return { messages, next: page?.nextPageToken ?? null };
   }
 
   // ---------- sync ----------

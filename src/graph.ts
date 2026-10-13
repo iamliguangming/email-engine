@@ -1,9 +1,10 @@
+import { readLimited } from "./mail/limits.js";
 // Fork modification (2026-10-12): persist rotated OAuth credentials through the account configuration callback.
 // The only file that speaks Microsoft Graph mail. Folders are folders; sync is
 // a delta query per folder; ids are immutable across moves (Prefer IdType).
 // Push is polling until change notifications (webhooks) are configured.
 import { OAuthClient } from "./oauth.js";
-import { roleFromName, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
+import { roleFromName, type MailRange, type RangePage, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
 import type { Address, Capabilities, Flags, FolderRole, GraphAccountConfig } from "./schema.js";
 
 const WELL_KNOWN: Record<string, FolderRole> = {
@@ -61,7 +62,7 @@ export class GraphAdapter implements Adapter {
   private pollTimer: NodeJS.Timeout | null = null;
   private roles = new Map<string, FolderRole>(); // folder id -> role from well-known lookups
 
-  constructor(private cfg: GraphAccountConfig, onConfigChanged?: () => void) {
+  constructor(private cfg: GraphAccountConfig, onConfigChanged?: () => void | Promise<void>) {
     const g = cfg.graph;
     this.base = (g.base_url ?? "https://graph.microsoft.com").replace(/\/$/, "") + "/v1.0/me";
     this.oauth = new OAuthClient({
@@ -69,8 +70,8 @@ export class GraphAdapter implements Adapter {
       client_id: g.client_id,
       client_secret: g.client_secret,
       refresh_token: g.refresh_token,
-      scope: "https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access",
-    }, token => { g.refresh_token = token; onConfigChanged?.(); });
+      scope: g.scope ?? "https://graph.microsoft.com/Mail.ReadWrite https://graph.microsoft.com/Mail.Send offline_access",
+    }, token => { g.refresh_token = token; return onConfigChanged?.(); });
   }
 
   private api<T = any>(pathOrUrl: string, init: RequestInit = {}, allow404 = false) {
@@ -113,6 +114,18 @@ export class GraphAdapter implements Adapter {
       url = page?.["@odata.nextLink"] ?? null;
     }
     return out;
+  }
+
+  async scanRange(range: MailRange, cursor: string | null): Promise<RangePage> {
+    const q = new URLSearchParams({ "$top": "50", "$select": SELECT,
+      "$filter": `receivedDateTime ge ${range.from} and receivedDateTime lt ${range.to}` });
+    const url = cursor ?? `${this.base}/messages?${q}`;
+    // Provider pagination cannot redirect our bearer token to another origin.
+    if (new URL(url).origin !== new URL(this.base).origin || !new URL(url).pathname.startsWith("/v1.0/me/")) throw new Error("invalid Graph pagination URL");
+    const page = await this.api<any>(url);
+    const messages = (page?.value ?? []).map((raw: any) => ({ ...toRemoteMessage(raw, raw.parentFolderId), date: new Date(raw.receivedDateTime).toISOString() }))
+      .filter((m: RemoteMessage) => m.date >= range.from && m.date < range.to && (!range.folders.length || m.folderPaths.some(f => range.folders.includes(f))));
+    return { messages, next: page?.["@odata.nextLink"] ?? null };
   }
 
   // ---------- sync: one delta query per folder ----------
@@ -195,7 +208,7 @@ export class GraphAdapter implements Adapter {
     const r = await this.oauth.fetch(`${this.base}/messages/${ref}/$value`, { headers: { prefer: PREFER } });
     if (r.status === 404) return null;
     if (!r.ok) throw new Error(`GET $value -> ${r.status}`);
-    return Buffer.from(await r.arrayBuffer());
+    return readLimited(r, 15 * 1024 * 1024);
   }
 
   async send(raw: Buffer) {
