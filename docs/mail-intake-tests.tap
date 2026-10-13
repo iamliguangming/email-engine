@@ -1,0 +1,249 @@
+
+> email-engine@0.1.0-beta.0 test
+> tsc && node --test "dist/**/*.test.js"
+
+TAP version 13
+# Subtest: health reveals no mailbox metadata without authentication and scopes authenticated results
+ok 1 - health reveals no mailbox metadata without authentication and scopes authenticated results
+  ---
+  duration_ms: 34.097083
+  type: 'test'
+  ...
+# Subtest: search applies account and folder scopes before limiting, for text, tags and combined queries
+ok 2 - search applies account and folder scopes before limiting, for text, tags and combined queries
+  ---
+  duration_ms: 23.44125
+  type: 'test'
+  ...
+# Subtest: tag counts exclude both unauthorized accounts and folders
+ok 3 - tag counts exclude both unauthorized accounts and folders
+  ---
+  duration_ms: 22.295958
+  type: 'test'
+  ...
+# Subtest: replaying another account's client key cannot expose its action
+ok 4 - replaying another account's client key cannot expose its action
+  ---
+  duration_ms: 22.970166
+  type: 'test'
+  ...
+# Subtest: host gateway signs exact bytes and keeps the caller idempotency key
+ok 5 - host gateway signs exact bytes and keeps the caller idempotency key
+  ---
+  duration_ms: 10.100458
+  type: 'test'
+  ...
+# Subtest: gateway credit exhaustion is not automatically retried, but overload is
+ok 6 - gateway credit exhaustion is not automatically retried, but overload is
+  ---
+  duration_ms: 0.672334
+  type: 'test'
+  ...
+# Subtest: provider body reader enforces actual streamed bytes, not only content-length
+ok 7 - provider body reader enforces actual streamed bytes, not only content-length
+  ---
+  duration_ms: 1.702083
+  type: 'test'
+  ...
+# Subtest: Gmail range uses receipt-time epoch queries, page tokens, folder filters and MIME attachments
+ok 8 - Gmail range uses receipt-time epoch queries, page tokens, folder filters and MIME attachments
+  ---
+  duration_ms: 8.802334
+  type: 'test'
+  ...
+# Subtest: Graph range uses receivedDateTime, honors folders, and rejects foreign pagination URLs
+ok 9 - Graph range uses receivedDateTime, honors folders, and rejects foreign pagination URLs
+  ---
+  duration_ms: 1.234416
+  type: 'test'
+  ...
+# Subtest: IMAP range respects UTC internal date, excludes end boundary and detects UIDVALIDITY changes
+ok 10 - IMAP range respects UTC internal date, excludes end boundary and detects UIDVALIDITY changes
+  ---
+  duration_ms: 0.820584
+  type: 'test'
+  ...
+# Subtest: mailbox configuration forbids arbitrary token endpoints, insecure TLS and unsupported transports
+ok 11 - mailbox configuration forbids arbitrary token endpoints, insecure TLS and unsupported transports
+  ---
+  duration_ms: 0.829167
+  type: 'test'
+  ...
+# Subtest: rule matching handles Chinese normalization, any/all, attachments and strict inputs
+ok 12 - rule matching handles Chinese normalization, any/all, attachments and strict inputs
+  ---
+  duration_ms: 1.469708
+  type: 'test'
+  ...
+# Subtest: PostgreSQL service: four-step intake, durable queues, isolation, billing and MCP
+    # Subtest: no admin authority through the business API; token revocation and restricted administration
+    ok 1 - no admin authority through the business API; token revocation and restricted administration
+      ---
+      duration_ms: 6.38225
+      type: 'test'
+      ...
+    # Subtest: mailbox create is asynchronous, encrypted and idempotent; restart preserves queued work
+    ok 2 - mailbox create is asynchronous, encrypted and idempotent; restart preserves queued work
+      ---
+      duration_ms: 220.571083
+      type: 'test'
+      ...
+    # Subtest: bind project, range import, per-message matching; no automatic resume import
+    ok 3 - bind project, range import, per-message matching; no automatic resume import
+      ---
+      duration_ms: 3992.971917
+      type: 'test'
+      ...
+    # Subtest: only human confirmation delivers selected content; replay does not duplicate import
+    ok 4 - only human confirmation delivers selected content; replay does not duplicate import
+      ---
+      duration_ms: 2965.913459
+      type: 'test'
+      ...
+    # Subtest: AI runs on the matching queue and uses one credit receipt despite lost acknowledgements
+    ok 5 - AI runs on the matching queue and uses one credit receipt despite lost acknowledgements
+      ---
+      duration_ms: 6941.303542
+      type: 'test'
+      ...
+    # Subtest: transaction rollback removes both the operation and its pg-boss job
+    ok 6 - transaction rollback removes both the operation and its pg-boss job
+      ---
+      duration_ms: 5.231875
+      type: 'test'
+      ...
+    # Subtest: failed range resumes from its committed page without duplicates; cancel is terminal and retryable
+    ok 7 - failed range resumes from its committed page without duplicates; cancel is terminal and retryable
+      ---
+      duration_ms: 18147.516083
+      type: 'test'
+      ...
+    # Subtest: continuous background discovery is permission-aware and does not bill flags changes twice
+    ok 8 - continuous background discovery is permission-aware and does not bill flags changes twice
+      ---
+      duration_ms: 2878.460416
+      type: 'test'
+      ...
+    # Subtest: version conflicts, revoked project access, owner disabled and no writable role
+    ok 9 - version conflicts, revoked project access, owner disabled and no writable role
+      ---
+      duration_ms: 17.775541
+      type: 'test'
+      ...
+    # Subtest: OAuth authorization is scoped, PKCE-protected, single-use, and checks mailbox identity
+    ok 10 - OAuth authorization is scoped, PKCE-protected, single-use, and checks mailbox identity
+      ---
+      duration_ms: 14.042667
+      type: 'test'
+      ...
+    # Subtest: lost or expired queue jobs become visible failed operations
+    ok 11 - lost or expired queue jobs become visible failed operations
+      ---
+      duration_ms: 9.955958
+      type: 'test'
+      ...
+    # Subtest: actual MCP discovery, read parity, draft-only selection and denied direct calls
+    ok 12 - actual MCP discovery, read parity, draft-only selection and denied direct calls
+      ---
+      duration_ms: 169.435666
+      type: 'test'
+      ...
+    1..12
+ok 13 - PostgreSQL service: four-step intake, durable queues, isolation, billing and MCP
+  ---
+  duration_ms: 35535.232542
+  type: 'test'
+  ...
+# Subtest: rotated refresh tokens are saved and reused; concurrent refreshes share one request
+ok 14 - rotated refresh tokens are saved and reused; concurrent refreshes share one request
+  ---
+  duration_ms: 1.983333
+  type: 'test'
+  ...
+# Subtest: missing refresh token preserves the old token and a failed save is retried before a provider request
+ok 15 - missing refresh token preserves the old token and a failed save is retried before a provider request
+  ---
+  duration_ms: 0.627875
+  type: 'test'
+  ...
+# Subtest: Gmail and Graph persist rotated credentials encrypted across reopen and reject stale overwrites
+ok 16 - Gmail and Graph persist rotated credentials encrypted across reopen and reject stale overwrites
+  ---
+  duration_ms: 93.247583
+  type: 'test'
+  ...
+# Subtest: fingerprint ignores case, whitespace, recipient order, names and sub-second time
+ok 17 - fingerprint ignores case, whitespace, recipient order, names and sub-second time
+  ---
+  duration_ms: 2.424958
+  type: 'test'
+  ...
+# Subtest: fingerprint separates messages that differ in any travelling header
+ok 18 - fingerprint separates messages that differ in any travelling header
+  ---
+  duration_ms: 0.136
+  type: 'test'
+  ...
+# Subtest: id from Message-ID is stable and ignores the fingerprint; without one the fingerprint decides
+ok 19 - id from Message-ID is stable and ignores the fingerprint; without one the fingerprint decides
+  ---
+  duration_ms: 0.28
+  type: 'test'
+  ...
+# Subtest: a reused Message-ID with a different fingerprint mints a distinct id
+ok 20 - a reused Message-ID with a different fingerprint mints a distinct id
+  ---
+  duration_ms: 0.137667
+  type: 'test'
+  ...
+# Subtest: reply chain groups into one thread keyed by the oldest message
+ok 21 - reply chain groups into one thread keyed by the oldest message
+  ---
+  duration_ms: 5.430209
+  type: 'test'
+  ...
+# Subtest: missing parent still joins siblings
+ok 22 - missing parent still joins siblings
+  ---
+  duration_ms: 0.291125
+  type: 'test'
+  ...
+# Subtest: unrelated subjects stay apart
+ok 23 - unrelated subjects stay apart
+  ---
+  duration_ms: 0.483959
+  type: 'test'
+  ...
+# Subtest: reply with dropped references joins by subject
+ok 24 - reply with dropped references joins by subject
+  ---
+  duration_ms: 0.257541
+  type: 'test'
+  ...
+# Subtest: reference loops do not hang or crash
+ok 25 - reference loops do not hang or crash
+  ---
+  duration_ms: 0.079791
+  type: 'test'
+  ...
+# Subtest: duplicate Message-ID copies both survive
+ok 26 - duplicate Message-ID copies both survive
+  ---
+  duration_ms: 0.201834
+  type: 'test'
+  ...
+# Subtest: subject normalisation strips prefixes and list tags
+ok 27 - subject normalisation strips prefixes and list tags
+  ---
+  duration_ms: 0.597208
+  type: 'test'
+  ...
+1..27
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35778.723875

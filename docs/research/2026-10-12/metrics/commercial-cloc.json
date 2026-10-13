@@ -1,0 +1,5700 @@
+{
+  "header": {
+    "cloc_url": "github.com/AlDanial/cloc",
+    "cloc_version": "2.06",
+    "elapsed_seconds": 1.14489006996155,
+    "n_files": 947,
+    "n_lines": 298615,
+    "files_per_second": 827.153649810069,
+    "lines_per_second": 260824.168044386,
+    "report_file": "commercial-cloc.json"
+  },
+  "./test/fixtures/openapi-golden.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 23743,
+    "language": "JSON"
+  },
+  "./package-lock.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 7536,
+    "language": "JSON"
+  },
+  "./static/licenses.html": {
+    "blank": 1127,
+    "comment": 0,
+    "code": 7344,
+    "language": "HTML"
+  },
+  "./test/fixtures/mcp-tools-golden.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 5674,
+    "language": "JSON"
+  },
+  "./lib/email-client/outlook-client.js": {
+    "blank": 627,
+    "comment": 928,
+    "code": 3456,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/fixtures/mimetorture.js": {
+    "blank": 2,
+    "comment": 3,
+    "code": 2735,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/base-client.js": {
+    "blank": 474,
+    "comment": 941,
+    "code": 2535,
+    "language": "JavaScript"
+  },
+  "./server.js": {
+    "blank": 506,
+    "comment": 711,
+    "code": 2528,
+    "language": "JavaScript"
+  },
+  "./workers/api.js": {
+    "blank": 435,
+    "comment": 569,
+    "code": 2418,
+    "language": "JavaScript"
+  },
+  "./examples/grafana-dashboard.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 2375,
+    "language": "JSON"
+  },
+  "./lib/tools.js": {
+    "blank": 411,
+    "comment": 501,
+    "code": 2307,
+    "language": "JavaScript"
+  },
+  "./lib/schemas.js": {
+    "blank": 299,
+    "comment": 176,
+    "code": 2276,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/gmail-client.js": {
+    "blank": 482,
+    "comment": 687,
+    "code": 2272,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/admin-entities-routes.js": {
+    "blank": 357,
+    "comment": 111,
+    "code": 2052,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/mailbox.js": {
+    "blank": 392,
+    "comment": 812,
+    "code": 2045,
+    "language": "JavaScript"
+  },
+  "./static/js/ee-client.js": {
+    "blank": 342,
+    "comment": 200,
+    "code": 2018,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap-client.js": {
+    "blank": 458,
+    "comment": 891,
+    "code": 2006,
+    "language": "JavaScript"
+  },
+  "./lib/account.js": {
+    "blank": 352,
+    "comment": 648,
+    "code": 1963,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/account-routes.js": {
+    "blank": 321,
+    "comment": 374,
+    "code": 1808,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/account-routes.js": {
+    "blank": 254,
+    "comment": 94,
+    "code": 1686,
+    "language": "JavaScript"
+  },
+  "./test/pubsub-recovery-test.js": {
+    "blank": 220,
+    "comment": 83,
+    "code": 1610,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-admin.spec.js": {
+    "blank": 373,
+    "comment": 373,
+    "code": 1595,
+    "language": "JavaScript"
+  },
+  "./CHANGELOG.md": {
+    "blank": 839,
+    "comment": 0,
+    "code": 1553,
+    "language": "Markdown"
+  },
+  "./lib/imapproxy/imap-core/test/protocol-test.js": {
+    "blank": 182,
+    "comment": 79,
+    "code": 1495,
+    "language": "JavaScript"
+  },
+  "./lib/oauth2-apps.js": {
+    "blank": 238,
+    "comment": 264,
+    "code": 1454,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/ace.css": {
+    "blank": 0,
+    "comment": 39,
+    "code": 1423,
+    "language": "CSS"
+  },
+  "./lib/imapproxy/imap-core/test/fixtures/mimetorture.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1411,
+    "language": "JSON"
+  },
+  "./lib/ui-routes/auth-routes.js": {
+    "blank": 203,
+    "comment": 139,
+    "code": 1319,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/search-test.js": {
+    "blank": 95,
+    "comment": 3,
+    "code": 1258,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/admin-config-routes.js": {
+    "blank": 198,
+    "comment": 95,
+    "code": 1237,
+    "language": "JavaScript"
+  },
+  "./views/accounts/account.hbs": {
+    "blank": 225,
+    "comment": 30,
+    "code": 1215,
+    "language": "Handlebars"
+  },
+  "./test/integration/api-test.js": {
+    "blank": 232,
+    "comment": 75,
+    "code": 1203,
+    "language": "JavaScript"
+  },
+  "./test/autodetect-imap-settings-test.js": {
+    "blank": 178,
+    "comment": 109,
+    "code": 1169,
+    "language": "JavaScript"
+  },
+  "./static/js/highlight.min.js": {
+    "blank": 0,
+    "comment": 5,
+    "code": 1168,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/message-routes.js": {
+    "blank": 160,
+    "comment": 60,
+    "code": 1165,
+    "language": "JavaScript"
+  },
+  "./static/js/ui.js": {
+    "blank": 161,
+    "comment": 356,
+    "code": 1008,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-listing-test.js": {
+    "blank": 192,
+    "comment": 161,
+    "code": 939,
+    "language": "JavaScript"
+  },
+  "./static/js/reference.js": {
+    "blank": 197,
+    "comment": 359,
+    "code": 911,
+    "language": "JavaScript"
+  },
+  "./workers/imap.js": {
+    "blank": 189,
+    "comment": 111,
+    "code": 872,
+    "language": "JavaScript"
+  },
+  "./lib/autodetect-imap-settings.js": {
+    "blank": 157,
+    "comment": 337,
+    "code": 856,
+    "language": "JavaScript"
+  },
+  "./test/export-test.js": {
+    "blank": 162,
+    "comment": 76,
+    "code": 830,
+    "language": "JavaScript"
+  },
+  "./views/partials/oauth_form.hbs": {
+    "blank": 103,
+    "comment": 25,
+    "code": 828,
+    "language": "Handlebars"
+  },
+  "./data/google-crawlers.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 821,
+    "language": "JSON"
+  },
+  "./lib/imapproxy/imap-core/test/imap-parser-test.js": {
+    "blank": 64,
+    "comment": 43,
+    "code": 815,
+    "language": "JavaScript"
+  },
+  "./test/change-event-retry-test.js": {
+    "blank": 157,
+    "comment": 24,
+    "code": 809,
+    "language": "JavaScript"
+  },
+  "./workers/export.js": {
+    "blank": 129,
+    "comment": 55,
+    "code": 791,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/oauth-config-routes.js": {
+    "blank": 168,
+    "comment": 38,
+    "code": 772,
+    "language": "JavaScript"
+  },
+  "./static/css/public.css": {
+    "blank": 162,
+    "comment": 195,
+    "code": 761,
+    "language": "CSS"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-connection.js": {
+    "blank": 149,
+    "comment": 152,
+    "code": 735,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/gmail.js": {
+    "blank": 147,
+    "comment": 89,
+    "code": 733,
+    "language": "JavaScript"
+  },
+  "./test/tools-test.js": {
+    "blank": 176,
+    "comment": 64,
+    "code": 733,
+    "language": "JavaScript"
+  },
+  "./test/http-proxy-test.js": {
+    "blank": 109,
+    "comment": 42,
+    "code": 708,
+    "language": "JavaScript"
+  },
+  "./test/api-token-scheme-test.js": {
+    "blank": 16,
+    "comment": 9,
+    "code": 684,
+    "language": "JavaScript"
+  },
+  "./test/e2e/reference.spec.js": {
+    "blank": 257,
+    "comment": 207,
+    "code": 675,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/indexer/indexer.js": {
+    "blank": 128,
+    "comment": 118,
+    "code": 660,
+    "language": "JavaScript"
+  },
+  "./views/tokens/new.hbs": {
+    "blank": 115,
+    "comment": 73,
+    "code": 660,
+    "language": "Handlebars"
+  },
+  "./bin/emailengine.js": {
+    "blank": 87,
+    "comment": 49,
+    "code": 657,
+    "language": "JavaScript"
+  },
+  "./test/account-reauth-reconnect-test.js": {
+    "blank": 109,
+    "comment": 104,
+    "code": 634,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/token-routes.js": {
+    "blank": 94,
+    "comment": 100,
+    "code": 631,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-tools.js": {
+    "blank": 85,
+    "comment": 83,
+    "code": 629,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/sync-operations.js": {
+    "blank": 104,
+    "comment": 218,
+    "code": 624,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/oauth2-app-routes.js": {
+    "blank": 95,
+    "comment": 7,
+    "code": 617,
+    "language": "JavaScript"
+  },
+  "./lib/export.js": {
+    "blank": 126,
+    "comment": 122,
+    "code": 613,
+    "language": "JavaScript"
+  },
+  "./test/api-reference-test.js": {
+    "blank": 121,
+    "comment": 114,
+    "code": 609,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/imap-compile-stream-test.js": {
+    "blank": 65,
+    "comment": 11,
+    "code": 595,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/outlook.js": {
+    "blank": 111,
+    "comment": 36,
+    "code": 583,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/submit-routes.js": {
+    "blank": 73,
+    "comment": 30,
+    "code": 579,
+    "language": "JavaScript"
+  },
+  "./lib/webhooks.js": {
+    "blank": 110,
+    "comment": 49,
+    "code": 574,
+    "language": "JavaScript"
+  },
+  "./test/mcp-tools-test.js": {
+    "blank": 96,
+    "comment": 120,
+    "code": 562,
+    "language": "JavaScript"
+  },
+  "./workers/webhooks.js": {
+    "blank": 73,
+    "comment": 52,
+    "code": 557,
+    "language": "JavaScript"
+  },
+  "./static/css/src/app.tailwind.css": {
+    "blank": 64,
+    "comment": 287,
+    "code": 556,
+    "language": "CSS"
+  },
+  "./test/message-port-stream-test.js": {
+    "blank": 125,
+    "comment": 81,
+    "code": 549,
+    "language": "JavaScript"
+  },
+  "./lib/bounce-detect.js": {
+    "blank": 113,
+    "comment": 370,
+    "code": 545,
+    "language": "JavaScript"
+  },
+  "./test/oauth-integration-test.js": {
+    "blank": 90,
+    "comment": 20,
+    "code": 527,
+    "language": "JavaScript"
+  },
+  "./test/tokens-test.js": {
+    "blank": 148,
+    "comment": 67,
+    "code": 527,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-sync-skip-test.js": {
+    "blank": 113,
+    "comment": 103,
+    "code": 520,
+    "language": "JavaScript"
+  },
+  "./test/route-helpers-test.js": {
+    "blank": 89,
+    "comment": 89,
+    "code": 520,
+    "language": "JavaScript"
+  },
+  "./views/config/tls.hbs": {
+    "blank": 34,
+    "comment": 37,
+    "code": 520,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/imap-parser.js": {
+    "blank": 111,
+    "comment": 60,
+    "code": 519,
+    "language": "JavaScript"
+  },
+  "./test/redis-operations-test.js": {
+    "blank": 105,
+    "comment": 12,
+    "code": 515,
+    "language": "JavaScript"
+  },
+  "./test/outlook-subscription-failure-test.js": {
+    "blank": 127,
+    "comment": 86,
+    "code": 503,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/test-server.js": {
+    "blank": 92,
+    "comment": 34,
+    "code": 497,
+    "language": "JavaScript"
+  },
+  "./test/passkeys-test.js": {
+    "blank": 77,
+    "comment": 26,
+    "code": 497,
+    "language": "JavaScript"
+  },
+  "./test/external-account-signer-test.js": {
+    "blank": 68,
+    "comment": 23,
+    "code": 477,
+    "language": "JavaScript"
+  },
+  "./test/ui-routes-handlers-test.js": {
+    "blank": 79,
+    "comment": 32,
+    "code": 476,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/template-routes.js": {
+    "blank": 63,
+    "comment": 6,
+    "code": 454,
+    "language": "JavaScript"
+  },
+  "./test/tls-status-test.js": {
+    "blank": 113,
+    "comment": 62,
+    "code": 449,
+    "language": "JavaScript"
+  },
+  "./test/account-data-layer-test.js": {
+    "blank": 47,
+    "comment": 32,
+    "code": 439,
+    "language": "JavaScript"
+  },
+  "./test/ensure-pubsub-test.js": {
+    "blank": 57,
+    "comment": 26,
+    "code": 437,
+    "language": "JavaScript"
+  },
+  "./test/openapi-test.js": {
+    "blank": 106,
+    "comment": 35,
+    "code": 437,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/gateway-routes.js": {
+    "blank": 66,
+    "comment": 5,
+    "code": 426,
+    "language": "JavaScript"
+  },
+  "./lib/get-raw-email.js": {
+    "blank": 71,
+    "comment": 37,
+    "code": 426,
+    "language": "JavaScript"
+  },
+  "./test/tls-provision-test.js": {
+    "blank": 116,
+    "comment": 79,
+    "code": 424,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/tls-config-routes.js": {
+    "blank": 78,
+    "comment": 128,
+    "code": 422,
+    "language": "JavaScript"
+  },
+  "./test/integration/api-routes-smoke-test.js": {
+    "blank": 96,
+    "comment": 132,
+    "code": 420,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-server.js": {
+    "blank": 66,
+    "comment": 88,
+    "code": 415,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-hardening-test.js": {
+    "blank": 45,
+    "comment": 44,
+    "code": 415,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/pubsub/google.js": {
+    "blank": 55,
+    "comment": 35,
+    "code": 412,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/verify-app.js": {
+    "blank": 42,
+    "comment": 52,
+    "code": 412,
+    "language": "JavaScript"
+  },
+  "./test/metadata-server-auth-test.js": {
+    "blank": 70,
+    "comment": 22,
+    "code": 406,
+    "language": "JavaScript"
+  },
+  "./test/network-utils-test.js": {
+    "blank": 94,
+    "comment": 67,
+    "code": 406,
+    "language": "JavaScript"
+  },
+  "./lib/payload-examples-documents.json": {
+    "blank": 2,
+    "comment": 0,
+    "code": 402,
+    "language": "JSON"
+  },
+  "./lib/mcp/tools.js": {
+    "blank": 75,
+    "comment": 288,
+    "code": 400,
+    "language": "JavaScript"
+  },
+  "./test/integration/mcp-test.js": {
+    "blank": 78,
+    "comment": 73,
+    "code": 397,
+    "language": "JavaScript"
+  },
+  "./test/outlook-client-behaviors-test.js": {
+    "blank": 72,
+    "comment": 24,
+    "code": 397,
+    "language": "JavaScript"
+  },
+  "./lib/api-reference/schema-tree.js": {
+    "blank": 99,
+    "comment": 176,
+    "code": 395,
+    "language": "JavaScript"
+  },
+  "./test/api-routes-table-test.js": {
+    "blank": 52,
+    "comment": 130,
+    "code": 395,
+    "language": "JavaScript"
+  },
+  "./workers/submit.js": {
+    "blank": 68,
+    "comment": 47,
+    "code": 395,
+    "language": "JavaScript"
+  },
+  "./views/config/oauth/app.hbs": {
+    "blank": 64,
+    "comment": 1,
+    "code": 394,
+    "language": "Handlebars"
+  },
+  "./lib/ui-routes/route-helpers.js": {
+    "blank": 64,
+    "comment": 159,
+    "code": 388,
+    "language": "JavaScript"
+  },
+  "./test/tls-context-test.js": {
+    "blank": 127,
+    "comment": 96,
+    "code": 383,
+    "language": "JavaScript"
+  },
+  "./test/security-headers-test.js": {
+    "blank": 63,
+    "comment": 22,
+    "code": 380,
+    "language": "JavaScript"
+  },
+  "./test/draft-submit-test.js": {
+    "blank": 93,
+    "comment": 26,
+    "code": 378,
+    "language": "JavaScript"
+  },
+  "./views/account/security.hbs": {
+    "blank": 47,
+    "comment": 32,
+    "code": 378,
+    "language": "Handlebars"
+  },
+  "./lib/tokens.js": {
+    "blank": 110,
+    "comment": 171,
+    "code": 376,
+    "language": "JavaScript"
+  },
+  "./test/set-error-state-test.js": {
+    "blank": 79,
+    "comment": 56,
+    "code": 373,
+    "language": "JavaScript"
+  },
+  "./test/imap-null-guard-test.js": {
+    "blank": 57,
+    "comment": 17,
+    "code": 369,
+    "language": "JavaScript"
+  },
+  "./test/token-permissions-test.js": {
+    "blank": 62,
+    "comment": 53,
+    "code": 368,
+    "language": "JavaScript"
+  },
+  "./views/accounts/register/imap-server.hbs": {
+    "blank": 70,
+    "comment": 21,
+    "code": 366,
+    "language": "Handlebars"
+  },
+  "./views/config/ai.hbs": {
+    "blank": 98,
+    "comment": 1,
+    "code": 365,
+    "language": "Handlebars"
+  },
+  "./DOCKER_DEPLOYMENT.md": {
+    "blank": 134,
+    "comment": 0,
+    "code": 363,
+    "language": "Markdown"
+  },
+  "./test/oauth2-auth-server-test.js": {
+    "blank": 91,
+    "comment": 46,
+    "code": 356,
+    "language": "JavaScript"
+  },
+  "./test/bounce-test.js": {
+    "blank": 72,
+    "comment": 20,
+    "code": 353,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-command.js": {
+    "blank": 54,
+    "comment": 60,
+    "code": 352,
+    "language": "JavaScript"
+  },
+  "./test/lost-index-recovery-test.js": {
+    "blank": 67,
+    "comment": 58,
+    "code": 351,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/settings-routes.js": {
+    "blank": 57,
+    "comment": 49,
+    "code": 349,
+    "language": "JavaScript"
+  },
+  "./lib/openapi/joi-schema.js": {
+    "blank": 116,
+    "comment": 148,
+    "code": 348,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/internals-routes.js": {
+    "blank": 61,
+    "comment": 49,
+    "code": 347,
+    "language": "JavaScript"
+  },
+  "./lib/tls/store.js": {
+    "blank": 79,
+    "comment": 256,
+    "code": 345,
+    "language": "JavaScript"
+  },
+  "./test/integration/hosted-form-test.js": {
+    "blank": 77,
+    "comment": 103,
+    "code": 344,
+    "language": "JavaScript"
+  },
+  "./test/web-safe-html-test.js": {
+    "blank": 61,
+    "comment": 29,
+    "code": 342,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/network-config-routes.js": {
+    "blank": 63,
+    "comment": 33,
+    "code": 341,
+    "language": "JavaScript"
+  },
+  "./test/get-raw-email-test.js": {
+    "blank": 49,
+    "comment": 35,
+    "code": 339,
+    "language": "JavaScript"
+  },
+  "./test/dovecot/dovecot-live-test.js": {
+    "blank": 55,
+    "comment": 35,
+    "code": 337,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/protocol.js": {
+    "blank": 66,
+    "comment": 132,
+    "code": 334,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/message-builder.js": {
+    "blank": 72,
+    "comment": 209,
+    "code": 329,
+    "language": "JavaScript"
+  },
+  "./static/js/app.js": {
+    "blank": 58,
+    "comment": 64,
+    "code": 327,
+    "language": "JavaScript"
+  },
+  "./lib/tls/provision.js": {
+    "blank": 82,
+    "comment": 214,
+    "code": 325,
+    "language": "JavaScript"
+  },
+  "./translations/de.po": {
+    "blank": 109,
+    "comment": 144,
+    "code": 325,
+    "language": "PO File"
+  },
+  "./encrypt.js": {
+    "blank": 45,
+    "comment": 23,
+    "code": 324,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-tokens.spec.js": {
+    "blank": 116,
+    "comment": 130,
+    "code": 322,
+    "language": "JavaScript"
+  },
+  "./translations/fr.po": {
+    "blank": 109,
+    "comment": 144,
+    "code": 318,
+    "language": "PO File"
+  },
+  "./translations/nl.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 317,
+    "language": "PO File"
+  },
+  "./test/retry-logic-test.js": {
+    "blank": 42,
+    "comment": 13,
+    "code": 316,
+    "language": "JavaScript"
+  },
+  "./test/tls-store-test.js": {
+    "blank": 79,
+    "comment": 75,
+    "code": 316,
+    "language": "JavaScript"
+  },
+  "./translations/pl.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 316,
+    "language": "PO File"
+  },
+  "./test/mcp-protocol-test.js": {
+    "blank": 54,
+    "comment": 38,
+    "code": 315,
+    "language": "JavaScript"
+  },
+  "./install.sh": {
+    "blank": 75,
+    "comment": 41,
+    "code": 312,
+    "language": "Bourne Shell"
+  },
+  "./test/complaint-test.js": {
+    "blank": 63,
+    "comment": 47,
+    "code": 312,
+    "language": "JavaScript"
+  },
+  "./lib/settings.js": {
+    "blank": 74,
+    "comment": 106,
+    "code": 311,
+    "language": "JavaScript"
+  },
+  "./translations/et.po": {
+    "blank": 109,
+    "comment": 144,
+    "code": 310,
+    "language": "PO File"
+  },
+  "./workers/smtp.js": {
+    "blank": 58,
+    "comment": 46,
+    "code": 310,
+    "language": "JavaScript"
+  },
+  "./test/mcp-listen-test.js": {
+    "blank": 39,
+    "comment": 24,
+    "code": 308,
+    "language": "JavaScript"
+  },
+  "./translations/es.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 308,
+    "language": "PO File"
+  },
+  "./translations/it.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 308,
+    "language": "PO File"
+  },
+  "./test/stream-encrypt-test.js": {
+    "blank": 107,
+    "comment": 29,
+    "code": 306,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/mailbox-routes.js": {
+    "blank": 49,
+    "comment": 6,
+    "code": 305,
+    "language": "JavaScript"
+  },
+  "./translations/sv.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 305,
+    "language": "PO File"
+  },
+  "./translations/tr.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 305,
+    "language": "PO File"
+  },
+  "./test/imap-proxy-auth-test.js": {
+    "blank": 56,
+    "comment": 36,
+    "code": 303,
+    "language": "JavaScript"
+  },
+  "./views/layout/app.hbs": {
+    "blank": 72,
+    "comment": 42,
+    "code": 301,
+    "language": "Handlebars"
+  },
+  "./lib/api-routes/blocklist-routes.js": {
+    "blank": 41,
+    "comment": 1,
+    "code": 300,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/fetch.js": {
+    "blank": 52,
+    "comment": 33,
+    "code": 300,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/delivery-test-routes.js": {
+    "blank": 46,
+    "comment": 5,
+    "code": 299,
+    "language": "JavaScript"
+  },
+  "./test/sso-test.js": {
+    "blank": 56,
+    "comment": 19,
+    "code": 299,
+    "language": "JavaScript"
+  },
+  "./test/encryption-test.js": {
+    "blank": 65,
+    "comment": 24,
+    "code": 294,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-server.js": {
+    "blank": 68,
+    "comment": 40,
+    "code": 293,
+    "language": "JavaScript"
+  },
+  "./views/config/mcp.hbs": {
+    "blank": 64,
+    "comment": 38,
+    "code": 293,
+    "language": "Handlebars"
+  },
+  "./lib/token-permission-view.js": {
+    "blank": 38,
+    "comment": 138,
+    "code": 290,
+    "language": "JavaScript"
+  },
+  "./static/js/public.js": {
+    "blank": 51,
+    "comment": 102,
+    "code": 290,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/mail-ru.js": {
+    "blank": 60,
+    "comment": 14,
+    "code": 289,
+    "language": "JavaScript"
+  },
+  "./test/integration/phantom-folder-test.js": {
+    "blank": 43,
+    "comment": 46,
+    "code": 285,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/permission-map.js": {
+    "blank": 70,
+    "comment": 308,
+    "code": 283,
+    "language": "JavaScript"
+  },
+  "./test/mcp-consent-test.js": {
+    "blank": 57,
+    "comment": 52,
+    "code": 282,
+    "language": "JavaScript"
+  },
+  "./lib/tls/status.js": {
+    "blank": 52,
+    "comment": 148,
+    "code": 280,
+    "language": "JavaScript"
+  },
+  "./test/tls-catalog-test.js": {
+    "blank": 58,
+    "comment": 36,
+    "code": 280,
+    "language": "JavaScript"
+  },
+  "./lib/db.js": {
+    "blank": 61,
+    "comment": 34,
+    "code": 279,
+    "language": "JavaScript"
+  },
+  "./test/egress-filter-test.js": {
+    "blank": 62,
+    "comment": 32,
+    "code": 278,
+    "language": "JavaScript"
+  },
+  "./test/integration/draft-submit-api-test.js": {
+    "blank": 56,
+    "comment": 41,
+    "code": 278,
+    "language": "JavaScript"
+  },
+  "./lib/api-reference/model.js": {
+    "blank": 57,
+    "comment": 133,
+    "code": 273,
+    "language": "JavaScript"
+  },
+  "./lib/license-beacon.js": {
+    "blank": 32,
+    "comment": 47,
+    "code": 273,
+    "language": "JavaScript"
+  },
+  "./test/gcp-metadata-test.js": {
+    "blank": 39,
+    "comment": 12,
+    "code": 273,
+    "language": "JavaScript"
+  },
+  "./translations/ja.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 273,
+    "language": "PO File"
+  },
+  "./test/external-account-signer-integration-test.js": {
+    "blank": 55,
+    "comment": 35,
+    "code": 271,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/export-routes.js": {
+    "blank": 46,
+    "comment": 0,
+    "code": 268,
+    "language": "JavaScript"
+  },
+  "./translations/en.po": {
+    "blank": 108,
+    "comment": 142,
+    "code": 267,
+    "language": "PO File"
+  },
+  "./test/oauth-request-dispatch-test.js": {
+    "blank": 45,
+    "comment": 22,
+    "code": 266,
+    "language": "JavaScript"
+  },
+  "./test/ui-auth-routes-test.js": {
+    "blank": 34,
+    "comment": 15,
+    "code": 264,
+    "language": "JavaScript"
+  },
+  "./lib/payload-examples-webhooks.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 263,
+    "language": "JSON"
+  },
+  "./test/smtp-auth-test.js": {
+    "blank": 52,
+    "comment": 27,
+    "code": 263,
+    "language": "JavaScript"
+  },
+  "./test/outlook-mailbox-listing-test.js": {
+    "blank": 55,
+    "comment": 42,
+    "code": 261,
+    "language": "JavaScript"
+  },
+  "./list-generate.js": {
+    "blank": 25,
+    "comment": 32,
+    "code": 255,
+    "language": "JavaScript"
+  },
+  "./test/account-revoke-on-delete-test.js": {
+    "blank": 48,
+    "comment": 11,
+    "code": 255,
+    "language": "JavaScript"
+  },
+  "./lib/web-safe-html.js": {
+    "blank": 74,
+    "comment": 209,
+    "code": 252,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/subconnection.js": {
+    "blank": 63,
+    "comment": 74,
+    "code": 251,
+    "language": "JavaScript"
+  },
+  "./lib/redis-operations.js": {
+    "blank": 60,
+    "comment": 173,
+    "code": 251,
+    "language": "JavaScript"
+  },
+  "./test/process-new-enrichment-test.js": {
+    "blank": 62,
+    "comment": 22,
+    "code": 249,
+    "language": "JavaScript"
+  },
+  "./test/scope-checker-test.js": {
+    "blank": 43,
+    "comment": 8,
+    "code": 246,
+    "language": "JavaScript"
+  },
+  "./views/config/webhooks.hbs": {
+    "blank": 61,
+    "comment": 3,
+    "code": 246,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/search.js": {
+    "blank": 47,
+    "comment": 15,
+    "code": 244,
+    "language": "JavaScript"
+  },
+  "./test/mcp-oauth-test.js": {
+    "blank": 43,
+    "comment": 28,
+    "code": 243,
+    "language": "JavaScript"
+  },
+  "./test/gmail-client-behaviors-test.js": {
+    "blank": 60,
+    "comment": 23,
+    "code": 241,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/suppression-list-routes.js": {
+    "blank": 50,
+    "comment": 20,
+    "code": 240,
+    "language": "JavaScript"
+  },
+  "./test/ui-routes-table-test.js": {
+    "blank": 20,
+    "comment": 43,
+    "code": 240,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/indexer/parse-mime-tree.js": {
+    "blank": 44,
+    "comment": 57,
+    "code": 239,
+    "language": "JavaScript"
+  },
+  "./lib/sso.js": {
+    "blank": 52,
+    "comment": 121,
+    "code": 239,
+    "language": "JavaScript"
+  },
+  "./test/autoreply-test.js": {
+    "blank": 41,
+    "comment": 15,
+    "code": 239,
+    "language": "JavaScript"
+  },
+  "./views/partials/filter_editor_js.hbs": {
+    "blank": 40,
+    "comment": 23,
+    "code": 239,
+    "language": "Handlebars"
+  },
+  "./lib/ui-routes/mcp-consent-routes.js": {
+    "blank": 50,
+    "comment": 94,
+    "code": 237,
+    "language": "JavaScript"
+  },
+  "./test/outbox-test.js": {
+    "blank": 55,
+    "comment": 38,
+    "code": 237,
+    "language": "JavaScript"
+  },
+  "./views/config/network.hbs": {
+    "blank": 45,
+    "comment": 1,
+    "code": 237,
+    "language": "Handlebars"
+  },
+  "./.github/workflows/test.yml": {
+    "blank": 19,
+    "comment": 59,
+    "code": 236,
+    "language": "YAML"
+  },
+  "./lib/imapproxy/imap-core/lib/search.js": {
+    "blank": 41,
+    "comment": 53,
+    "code": 236,
+    "language": "JavaScript"
+  },
+  "./test/add-trackers-test.js": {
+    "blank": 57,
+    "comment": 33,
+    "code": 236,
+    "language": "JavaScript"
+  },
+  "./test/outlook-fallback-poll-test.js": {
+    "blank": 46,
+    "comment": 8,
+    "code": 236,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/imap-compiler-test.js": {
+    "blank": 29,
+    "comment": 9,
+    "code": 234,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/oauth.js": {
+    "blank": 55,
+    "comment": 112,
+    "code": 234,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/outlook/graph-api.js": {
+    "blank": 51,
+    "comment": 115,
+    "code": 231,
+    "language": "JavaScript"
+  },
+  "./lib/gateway.js": {
+    "blank": 43,
+    "comment": 22,
+    "code": 231,
+    "language": "JavaScript"
+  },
+  "./lib/tls/catalog.js": {
+    "blank": 44,
+    "comment": 155,
+    "code": 229,
+    "language": "JavaScript"
+  },
+  "./test/oauth2-apps-test.js": {
+    "blank": 96,
+    "comment": 5,
+    "code": 229,
+    "language": "JavaScript"
+  },
+  "./lib/utils/network.js": {
+    "blank": 45,
+    "comment": 117,
+    "code": 225,
+    "language": "JavaScript"
+  },
+  "./test/auth-event-classification-test.js": {
+    "blank": 62,
+    "comment": 56,
+    "code": 225,
+    "language": "JavaScript"
+  },
+  "./test/base-client-helpers-test.js": {
+    "blank": 49,
+    "comment": 13,
+    "code": 224,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/listen.js": {
+    "blank": 36,
+    "comment": 117,
+    "code": 221,
+    "language": "JavaScript"
+  },
+  "./test/imap-setup-subconnections-test.js": {
+    "blank": 57,
+    "comment": 27,
+    "code": 220,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-tls.spec.js": {
+    "blank": 68,
+    "comment": 60,
+    "code": 219,
+    "language": "JavaScript"
+  },
+  "./test/imap-sync-strategy-test.js": {
+    "blank": 32,
+    "comment": 19,
+    "code": 218,
+    "language": "JavaScript"
+  },
+  "./test/token-permission-view-test.js": {
+    "blank": 38,
+    "comment": 47,
+    "code": 218,
+    "language": "JavaScript"
+  },
+  "./lib/consts.js": {
+    "blank": 97,
+    "comment": 184,
+    "code": 217,
+    "language": "JavaScript"
+  },
+  "./lib/stream-encrypt.js": {
+    "blank": 46,
+    "comment": 3,
+    "code": 215,
+    "language": "JavaScript"
+  },
+  "./lib/message-port-stream.js": {
+    "blank": 36,
+    "comment": 91,
+    "code": 213,
+    "language": "JavaScript"
+  },
+  "./lib/security-headers.js": {
+    "blank": 41,
+    "comment": 159,
+    "code": 211,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/select.js": {
+    "blank": 25,
+    "comment": 13,
+    "code": 210,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-connection-teardown-test.js": {
+    "blank": 41,
+    "comment": 48,
+    "code": 209,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/parse-date.js": {
+    "blank": 10,
+    "comment": 7,
+    "code": 208,
+    "language": "JavaScript"
+  },
+  "./lib/templates.js": {
+    "blank": 48,
+    "comment": 6,
+    "code": 208,
+    "language": "JavaScript"
+  },
+  "./test/subconnection-reconnect-backoff-test.js": {
+    "blank": 44,
+    "comment": 49,
+    "code": 208,
+    "language": "JavaScript"
+  },
+  "./test/account-create-reauth-reconnect-test.js": {
+    "blank": 52,
+    "comment": 57,
+    "code": 207,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/unsubscribe-routes.js": {
+    "blank": 31,
+    "comment": 25,
+    "code": 205,
+    "language": "JavaScript"
+  },
+  "./lib/arf-detect.js": {
+    "blank": 43,
+    "comment": 24,
+    "code": 204,
+    "language": "JavaScript"
+  },
+  "./test/message-builder-test.js": {
+    "blank": 43,
+    "comment": 16,
+    "code": 203,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/external-account-signer.js": {
+    "blank": 36,
+    "comment": 27,
+    "code": 201,
+    "language": "JavaScript"
+  },
+  "./test/account-state-test.js": {
+    "blank": 55,
+    "comment": 6,
+    "code": 201,
+    "language": "JavaScript"
+  },
+  "./test/api-mutating-handlers-test.js": {
+    "blank": 38,
+    "comment": 11,
+    "code": 201,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-envelope-addresses-test.js": {
+    "blank": 48,
+    "comment": 33,
+    "code": 201,
+    "language": "JavaScript"
+  },
+  "./test/base-client-submit-test.js": {
+    "blank": 44,
+    "comment": 11,
+    "code": 198,
+    "language": "JavaScript"
+  },
+  "./test/reply-recipients-test.js": {
+    "blank": 65,
+    "comment": 18,
+    "code": 195,
+    "language": "JavaScript"
+  },
+  "./test/account-assignment-test.js": {
+    "blank": 37,
+    "comment": 8,
+    "code": 193,
+    "language": "JavaScript"
+  },
+  "./test/rewrite-text-nodes-test.js": {
+    "blank": 23,
+    "comment": 20,
+    "code": 193,
+    "language": "JavaScript"
+  },
+  "./test/webhook-request-test.js": {
+    "blank": 42,
+    "comment": 24,
+    "code": 193,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/route-helpers.js": {
+    "blank": 44,
+    "comment": 223,
+    "code": 192,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/smtp-test-routes.js": {
+    "blank": 42,
+    "comment": 9,
+    "code": 192,
+    "language": "JavaScript"
+  },
+  "./test/llm-summary-test.js": {
+    "blank": 35,
+    "comment": 4,
+    "code": 191,
+    "language": "JavaScript"
+  },
+  "./test/process-changes-test.js": {
+    "blank": 23,
+    "comment": 3,
+    "code": 191,
+    "language": "JavaScript"
+  },
+  "./test/smtp-message-processor-test.js": {
+    "blank": 47,
+    "comment": 50,
+    "code": 191,
+    "language": "JavaScript"
+  },
+  "./views/templates/template.hbs": {
+    "blank": 63,
+    "comment": 4,
+    "code": 191,
+    "language": "Handlebars"
+  },
+  "./lib/encrypt.js": {
+    "blank": 45,
+    "comment": 101,
+    "code": 190,
+    "language": "JavaScript"
+  },
+  "./test/egress-fetch-test.js": {
+    "blank": 41,
+    "comment": 13,
+    "code": 190,
+    "language": "JavaScript"
+  },
+  "./test/rate-limit-test.js": {
+    "blank": 62,
+    "comment": 43,
+    "code": 189,
+    "language": "JavaScript"
+  },
+  "./test/webhook-routing-test.js": {
+    "blank": 35,
+    "comment": 17,
+    "code": 188,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/mcp-oauth-routes.js": {
+    "blank": 39,
+    "comment": 34,
+    "code": 187,
+    "language": "JavaScript"
+  },
+  "./test/bounce-arf-hostile-input-test.js": {
+    "blank": 29,
+    "comment": 16,
+    "code": 187,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/imap-compile-stream.js": {
+    "blank": 46,
+    "comment": 20,
+    "code": 186,
+    "language": "JavaScript"
+  },
+  "./lib/enum-descriptions.js": {
+    "blank": 29,
+    "comment": 22,
+    "code": 185,
+    "language": "JavaScript"
+  },
+  "./.github/workflows/deploy.yml": {
+    "blank": 28,
+    "comment": 30,
+    "code": 184,
+    "language": "YAML"
+  },
+  "./lib/passkeys.js": {
+    "blank": 36,
+    "comment": 19,
+    "code": 183,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/export-routes.js": {
+    "blank": 12,
+    "comment": 12,
+    "code": 183,
+    "language": "JavaScript"
+  },
+  "./test/views-csp-guardrail-test.js": {
+    "blank": 29,
+    "comment": 58,
+    "code": 181,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/outbox-routes.js": {
+    "blank": 29,
+    "comment": 2,
+    "code": 180,
+    "language": "JavaScript"
+  },
+  "./test/gmail-watch-renewal-test.js": {
+    "blank": 53,
+    "comment": 31,
+    "code": 180,
+    "language": "JavaScript"
+  },
+  "./test/token-audit-log-test.js": {
+    "blank": 37,
+    "comment": 33,
+    "code": 179,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/webhook-route-routes.js": {
+    "blank": 23,
+    "comment": 3,
+    "code": 178,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/list.js": {
+    "blank": 31,
+    "comment": 11,
+    "code": 176,
+    "language": "JavaScript"
+  },
+  "./.github/workflows/release.yaml": {
+    "blank": 21,
+    "comment": 56,
+    "code": 175,
+    "language": "YAML"
+  },
+  "./lib/egress-filter.js": {
+    "blank": 41,
+    "comment": 136,
+    "code": 175,
+    "language": "JavaScript"
+  },
+  "./lib/llm-pre-process.js": {
+    "blank": 33,
+    "comment": 75,
+    "code": 175,
+    "language": "JavaScript"
+  },
+  "./test/redis-lua-scripts-test.js": {
+    "blank": 37,
+    "comment": 5,
+    "code": 175,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/proxy-handoff.js": {
+    "blank": 29,
+    "comment": 44,
+    "code": 174,
+    "language": "JavaScript"
+  },
+  "./scripts/refresh-test-tokens.js": {
+    "blank": 31,
+    "comment": 3,
+    "code": 174,
+    "language": "JavaScript"
+  },
+  "./test/run-sync-api-test.js": {
+    "blank": 26,
+    "comment": 5,
+    "code": 173,
+    "language": "JavaScript"
+  },
+  "./gettext-extract.js": {
+    "blank": 34,
+    "comment": 37,
+    "code": 172,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/store.js": {
+    "blank": 27,
+    "comment": 9,
+    "code": 172,
+    "language": "JavaScript"
+  },
+  "./package.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 172,
+    "language": "JSON"
+  },
+  "./lib/openapi/build-document.js": {
+    "blank": 61,
+    "comment": 98,
+    "code": 171,
+    "language": "JavaScript"
+  },
+  "./views/config/smtp.hbs": {
+    "blank": 40,
+    "comment": 3,
+    "code": 171,
+    "language": "Handlebars"
+  },
+  "./views/internals/index.hbs": {
+    "blank": 14,
+    "comment": 5,
+    "code": 171,
+    "language": "Handlebars"
+  },
+  "./test/account-http-route-test.js": {
+    "blank": 31,
+    "comment": 12,
+    "code": 169,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-ui-busy-state.spec.js": {
+    "blank": 53,
+    "comment": 51,
+    "code": 168,
+    "language": "JavaScript"
+  },
+  "./views/dashboard.hbs": {
+    "blank": 29,
+    "comment": 11,
+    "code": 168,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/indexer/body-structure.js": {
+    "blank": 40,
+    "comment": 88,
+    "code": 167,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-get-attachment-test.js": {
+    "blank": 56,
+    "comment": 40,
+    "code": 167,
+    "language": "JavaScript"
+  },
+  "./test/imap-client-timers-test.js": {
+    "blank": 42,
+    "comment": 13,
+    "code": 165,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/fixtures/simple.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 164,
+    "language": "JSON"
+  },
+  "./test/response-stream-test.js": {
+    "blank": 60,
+    "comment": 29,
+    "code": 164,
+    "language": "JavaScript"
+  },
+  "./lib/api-reference/format.js": {
+    "blank": 40,
+    "comment": 77,
+    "code": 163,
+    "language": "JavaScript"
+  },
+  "./lib/rewrite-text-nodes.js": {
+    "blank": 40,
+    "comment": 63,
+    "code": 163,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-protocol-test.js": {
+    "blank": 28,
+    "comment": 29,
+    "code": 163,
+    "language": "JavaScript"
+  },
+  "./test/imap-reconnect-guard-test.js": {
+    "blank": 38,
+    "comment": 43,
+    "code": 163,
+    "language": "JavaScript"
+  },
+  "./test/integration/helpers.js": {
+    "blank": 24,
+    "comment": 46,
+    "code": 163,
+    "language": "JavaScript"
+  },
+  "./test/imap-task-completed-test.js": {
+    "blank": 54,
+    "comment": 39,
+    "code": 161,
+    "language": "JavaScript"
+  },
+  "./test/oauth-gmail-api-mode-test.js": {
+    "blank": 28,
+    "comment": 41,
+    "code": 160,
+    "language": "JavaScript"
+  },
+  "./lib/outbox.js": {
+    "blank": 44,
+    "comment": 90,
+    "code": 158,
+    "language": "JavaScript"
+  },
+  "./test/run-tests.js": {
+    "blank": 30,
+    "comment": 82,
+    "code": 158,
+    "language": "JavaScript"
+  },
+  "./lib/tls/self-signed.js": {
+    "blank": 34,
+    "comment": 94,
+    "code": 154,
+    "language": "JavaScript"
+  },
+  "./test/account-type-report-test.js": {
+    "blank": 32,
+    "comment": 25,
+    "code": 154,
+    "language": "JavaScript"
+  },
+  "./test/smtp-pool-manager-test.js": {
+    "blank": 25,
+    "comment": 16,
+    "code": 154,
+    "language": "JavaScript"
+  },
+  "./test/gmail-history-poison-test.js": {
+    "blank": 32,
+    "comment": 28,
+    "code": 153,
+    "language": "JavaScript"
+  },
+  "./test/imap-listing-new-entries-test.js": {
+    "blank": 50,
+    "comment": 35,
+    "code": 153,
+    "language": "JavaScript"
+  },
+  "./test/webhook-routes-store-test.js": {
+    "blank": 32,
+    "comment": 5,
+    "code": 152,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/append.js": {
+    "blank": 27,
+    "comment": 9,
+    "code": 151,
+    "language": "JavaScript"
+  },
+  "./test/e2e/helpers/bootstrap.js": {
+    "blank": 24,
+    "comment": 106,
+    "code": 151,
+    "language": "JavaScript"
+  },
+  "./test/encrypt-rotation-test.js": {
+    "blank": 34,
+    "comment": 24,
+    "code": 151,
+    "language": "JavaScript"
+  },
+  "./test/imap-connect-pause-guard-test.js": {
+    "blank": 22,
+    "comment": 25,
+    "code": 151,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/license-routes.js": {
+    "blank": 20,
+    "comment": 0,
+    "code": 148,
+    "language": "JavaScript"
+  },
+  "./views/config/imap-proxy.hbs": {
+    "blank": 37,
+    "comment": 3,
+    "code": 147,
+    "language": "Handlebars"
+  },
+  "./lib/token-permissions.js": {
+    "blank": 47,
+    "comment": 129,
+    "code": 146,
+    "language": "JavaScript"
+  },
+  "./test/integration/gmail-polling-test.js": {
+    "blank": 19,
+    "comment": 9,
+    "code": 145,
+    "language": "JavaScript"
+  },
+  "./test/integration/draft-submit-test.js": {
+    "blank": 31,
+    "comment": 14,
+    "code": 143,
+    "language": "JavaScript"
+  },
+  "./test/tls-self-signed-test.js": {
+    "blank": 39,
+    "comment": 38,
+    "code": 143,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/uid-store.js": {
+    "blank": 23,
+    "comment": 5,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-stream.js": {
+    "blank": 31,
+    "comment": 65,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/gcp-metadata.js": {
+    "blank": 35,
+    "comment": 82,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./lib/tls/context.js": {
+    "blank": 42,
+    "comment": 118,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./test/bounce-heuristics-test.js": {
+    "blank": 24,
+    "comment": 16,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./test/integration/sendonly-test.js": {
+    "blank": 28,
+    "comment": 4,
+    "code": 142,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-mcp.spec.js": {
+    "blank": 38,
+    "comment": 36,
+    "code": 141,
+    "language": "JavaScript"
+  },
+  "./test/redis-scan-delete-test.js": {
+    "blank": 26,
+    "comment": 21,
+    "code": 141,
+    "language": "JavaScript"
+  },
+  "./test/integration/token-scope-test.js": {
+    "blank": 28,
+    "comment": 35,
+    "code": 140,
+    "language": "JavaScript"
+  },
+  "./lib/metrics-collector.js": {
+    "blank": 28,
+    "comment": 40,
+    "code": 139,
+    "language": "JavaScript"
+  },
+  "./views/partials/test_send.hbs": {
+    "blank": 12,
+    "comment": 9,
+    "code": 138,
+    "language": "Handlebars"
+  },
+  "./test/settings-privileged-keys-test.js": {
+    "blank": 35,
+    "comment": 36,
+    "code": 137,
+    "language": "JavaScript"
+  },
+  "./test/auth-failure-backfill-test.js": {
+    "blank": 35,
+    "comment": 28,
+    "code": 136,
+    "language": "JavaScript"
+  },
+  "./test/integration/tracking-e2e-test.js": {
+    "blank": 27,
+    "comment": 22,
+    "code": 136,
+    "language": "JavaScript"
+  },
+  "./views/tokens/index.hbs": {
+    "blank": 20,
+    "comment": 13,
+    "code": 136,
+    "language": "Handlebars"
+  },
+  "./lib/auth-token.js": {
+    "blank": 26,
+    "comment": 85,
+    "code": 135,
+    "language": "JavaScript"
+  },
+  "./test/e2e/happy-path.spec.js": {
+    "blank": 20,
+    "comment": 26,
+    "code": 135,
+    "language": "JavaScript"
+  },
+  "./test/subconnection-start-cleanup-test.js": {
+    "blank": 32,
+    "comment": 30,
+    "code": 134,
+    "language": "JavaScript"
+  },
+  "./lib/swagger-options.js": {
+    "blank": 14,
+    "comment": 28,
+    "code": 133,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-starttls-test.js": {
+    "blank": 18,
+    "comment": 18,
+    "code": 133,
+    "language": "JavaScript"
+  },
+  "./test/oauth2-apps-client-test.js": {
+    "blank": 29,
+    "comment": 8,
+    "code": 133,
+    "language": "JavaScript"
+  },
+  "./test/oauth2-apps-crud-test.js": {
+    "blank": 31,
+    "comment": 17,
+    "code": 132,
+    "language": "JavaScript"
+  },
+  "./lib/api-reference/index.js": {
+    "blank": 33,
+    "comment": 57,
+    "code": 131,
+    "language": "JavaScript"
+  },
+  "./lib/sentry.js": {
+    "blank": 25,
+    "comment": 50,
+    "code": 131,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/dashboard-routes.js": {
+    "blank": 25,
+    "comment": 19,
+    "code": 131,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/authenticate-plain.js": {
+    "blank": 18,
+    "comment": 7,
+    "code": 130,
+    "language": "JavaScript"
+  },
+  "./CLAUDE.md": {
+    "blank": 78,
+    "comment": 0,
+    "code": 129,
+    "language": "Markdown"
+  },
+  "./lib/email-client/smtp-pool-manager.js": {
+    "blank": 27,
+    "comment": 61,
+    "code": 129,
+    "language": "JavaScript"
+  },
+  "./test/export-worker-robustness-test.js": {
+    "blank": 24,
+    "comment": 16,
+    "code": 129,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/reference-routes.js": {
+    "blank": 30,
+    "comment": 40,
+    "code": 128,
+    "language": "JavaScript"
+  },
+  "./test/imap-should-run-partial-sync-test.js": {
+    "blank": 14,
+    "comment": 9,
+    "code": 127,
+    "language": "JavaScript"
+  },
+  "./lib/account-assignment.js": {
+    "blank": 11,
+    "comment": 70,
+    "code": 126,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/external-account-config.js": {
+    "blank": 23,
+    "comment": 23,
+    "code": 126,
+    "language": "JavaScript"
+  },
+  "./test/redis-url-test.js": {
+    "blank": 30,
+    "comment": 20,
+    "code": 126,
+    "language": "JavaScript"
+  },
+  "./lib/tls/der.js": {
+    "blank": 29,
+    "comment": 69,
+    "code": 125,
+    "language": "JavaScript"
+  },
+  "./lib/api-reference/code-samples.js": {
+    "blank": 32,
+    "comment": 38,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/test-client.js": {
+    "blank": 24,
+    "comment": 4,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./static/js/passkey-register.js": {
+    "blank": 21,
+    "comment": 11,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./test/email-client-test.js": {
+    "blank": 36,
+    "comment": 7,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./test/mcp-resources-test.js": {
+    "blank": 25,
+    "comment": 21,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./test/oauth2-apps-migrate-test.js": {
+    "blank": 41,
+    "comment": 22,
+    "code": 124,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/status.js": {
+    "blank": 20,
+    "comment": 6,
+    "code": 123,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/imap-formal-syntax.js": {
+    "blank": 21,
+    "comment": 3,
+    "code": 123,
+    "language": "JavaScript"
+  },
+  "./views/config/service.hbs": {
+    "blank": 26,
+    "comment": 1,
+    "code": 123,
+    "language": "Handlebars"
+  },
+  "./test/mcp-json-schema-test.js": {
+    "blank": 26,
+    "comment": 7,
+    "code": 122,
+    "language": "JavaScript"
+  },
+  "./views/partials/reference/operation.hbs": {
+    "blank": 13,
+    "comment": 26,
+    "code": 122,
+    "language": "Handlebars"
+  },
+  "./views/webhooks/webhook.hbs": {
+    "blank": 40,
+    "comment": 2,
+    "code": 122,
+    "language": "Handlebars"
+  },
+  "./.claude/rules/workers.md": {
+    "blank": 37,
+    "comment": 0,
+    "code": 121,
+    "language": "Markdown"
+  },
+  "./test/imap-stale-view-test.js": {
+    "blank": 23,
+    "comment": 18,
+    "code": 121,
+    "language": "JavaScript"
+  },
+  "./views/config/license.hbs": {
+    "blank": 32,
+    "comment": 1,
+    "code": 121,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/login.js": {
+    "blank": 12,
+    "comment": 3,
+    "code": 120,
+    "language": "JavaScript"
+  },
+  "./test/e2e/unsubscribe.spec.js": {
+    "blank": 20,
+    "comment": 23,
+    "code": 119,
+    "language": "JavaScript"
+  },
+  "./test/test-runner-stall-watchdog-test.js": {
+    "blank": 27,
+    "comment": 45,
+    "code": 119,
+    "language": "JavaScript"
+  },
+  "./test/settings-routes-test.js": {
+    "blank": 38,
+    "comment": 27,
+    "code": 118,
+    "language": "JavaScript"
+  },
+  "./test/forced-sso-login-test.js": {
+    "blank": 28,
+    "comment": 28,
+    "code": 117,
+    "language": "JavaScript"
+  },
+  "./test/parse-signed-form-data-test.js": {
+    "blank": 25,
+    "comment": 18,
+    "code": 117,
+    "language": "JavaScript"
+  },
+  "./setup-production.sh": {
+    "blank": 42,
+    "comment": 57,
+    "code": 116,
+    "language": "Bourne Shell"
+  },
+  "./test/imap-listing-refresh-test.js": {
+    "blank": 33,
+    "comment": 18,
+    "code": 115,
+    "language": "JavaScript"
+  },
+  "./test/imap-uidvalidity-id-test.js": {
+    "blank": 31,
+    "comment": 14,
+    "code": 115,
+    "language": "JavaScript"
+  },
+  "./views/account/passkeys.hbs": {
+    "blank": 10,
+    "comment": 16,
+    "code": 115,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/README.md": {
+    "blank": 32,
+    "comment": 0,
+    "code": 114,
+    "language": "Markdown"
+  },
+  "./test/oauth-flags-test.js": {
+    "blank": 25,
+    "comment": 7,
+    "code": 114,
+    "language": "JavaScript"
+  },
+  "./test/calendar-event-test.js": {
+    "blank": 19,
+    "comment": 9,
+    "code": 113,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-get-message-test.js": {
+    "blank": 29,
+    "comment": 23,
+    "code": 112,
+    "language": "JavaScript"
+  },
+  "./README.md": {
+    "blank": 63,
+    "comment": 0,
+    "code": 111,
+    "language": "Markdown"
+  },
+  "./lib/api-routes/stats-routes.js": {
+    "blank": 11,
+    "comment": 2,
+    "code": 111,
+    "language": "JavaScript"
+  },
+  "./test/integration/ui-routes-smoke-test.js": {
+    "blank": 18,
+    "comment": 36,
+    "code": 111,
+    "language": "JavaScript"
+  },
+  "./lib/account/account-state.js": {
+    "blank": 32,
+    "comment": 65,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-idle-timeout-test.js": {
+    "blank": 15,
+    "comment": 19,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./test/integration/outlook-polling-test.js": {
+    "blank": 23,
+    "comment": 15,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./test/integration/unsubscribe-events-test.js": {
+    "blank": 27,
+    "comment": 50,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./test/oauth-nonce-test.js": {
+    "blank": 24,
+    "comment": 15,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./winconf.js": {
+    "blank": 28,
+    "comment": 55,
+    "code": 110,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/mcp-routes.js": {
+    "blank": 29,
+    "comment": 52,
+    "code": 109,
+    "language": "JavaScript"
+  },
+  "./test/token-mint-bounds-test.js": {
+    "blank": 17,
+    "comment": 5,
+    "code": 109,
+    "language": "JavaScript"
+  },
+  "./test/helpers/sync-operations-context.js": {
+    "blank": 10,
+    "comment": 18,
+    "code": 107,
+    "language": "JavaScript"
+  },
+  "./lib/lists.js": {
+    "blank": 26,
+    "comment": 8,
+    "code": 106,
+    "language": "JavaScript"
+  },
+  "./views/accounts/edit.hbs": {
+    "blank": 48,
+    "comment": 6,
+    "code": 105,
+    "language": "Handlebars"
+  },
+  "./views/partials/scope_info.hbs": {
+    "blank": 28,
+    "comment": 2,
+    "code": 105,
+    "language": "Handlebars"
+  },
+  "./lib/email-client/gmail/gmail-api.js": {
+    "blank": 31,
+    "comment": 54,
+    "code": 104,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/imap-compiler.js": {
+    "blank": 23,
+    "comment": 7,
+    "code": 104,
+    "language": "JavaScript"
+  },
+  "./lib/token-audit-log.js": {
+    "blank": 29,
+    "comment": 99,
+    "code": 104,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/theme/tomorrow_night.css": {
+    "blank": 25,
+    "comment": 0,
+    "code": 103,
+    "language": "CSS"
+  },
+  "./static/js/ace/css/theme/tomorrow_night_eighties.css": {
+    "blank": 25,
+    "comment": 0,
+    "code": 103,
+    "language": "CSS"
+  },
+  "./test/export-concurrency-test.js": {
+    "blank": 30,
+    "comment": 38,
+    "code": 101,
+    "language": "JavaScript"
+  },
+  "./test/pbkdf2-phc-test.js": {
+    "blank": 19,
+    "comment": 9,
+    "code": 101,
+    "language": "JavaScript"
+  },
+  "./views/config/oauth/subscriptions.hbs": {
+    "blank": 13,
+    "comment": 2,
+    "code": 101,
+    "language": "Handlebars"
+  },
+  "./views/templates/index.hbs": {
+    "blank": 14,
+    "comment": 4,
+    "code": 101,
+    "language": "Handlebars"
+  },
+  "./lib/oauth/scope-checker.js": {
+    "blank": 19,
+    "comment": 114,
+    "code": 100,
+    "language": "JavaScript"
+  },
+  "./test/api-client-text-limit-test.js": {
+    "blank": 21,
+    "comment": 10,
+    "code": 100,
+    "language": "JavaScript"
+  },
+  "./test/integration/auth-failure-park-test.js": {
+    "blank": 31,
+    "comment": 26,
+    "code": 100,
+    "language": "JavaScript"
+  },
+  "./lib/response-stream.js": {
+    "blank": 26,
+    "comment": 65,
+    "code": 99,
+    "language": "JavaScript"
+  },
+  "./test/notification-handler-test.js": {
+    "blank": 18,
+    "comment": 11,
+    "code": 99,
+    "language": "JavaScript"
+  },
+  "./test/export-download-route-test.js": {
+    "blank": 23,
+    "comment": 8,
+    "code": 98,
+    "language": "JavaScript"
+  },
+  "./test/sub-script-test.js": {
+    "blank": 20,
+    "comment": 11,
+    "code": 98,
+    "language": "JavaScript"
+  },
+  "./views/config/email-processing.hbs": {
+    "blank": 21,
+    "comment": 1,
+    "code": 98,
+    "language": "Handlebars"
+  },
+  "./examples/auth-server.js": {
+    "blank": 22,
+    "comment": 37,
+    "code": 97,
+    "language": "JavaScript"
+  },
+  "./scan.js": {
+    "blank": 21,
+    "comment": 5,
+    "code": 97,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/pubsub-routes.js": {
+    "blank": 14,
+    "comment": 0,
+    "code": 96,
+    "language": "JavaScript"
+  },
+  "./test/acme-config-guardrail-test.js": {
+    "blank": 25,
+    "comment": 41,
+    "code": 96,
+    "language": "JavaScript"
+  },
+  "./test/expected-identity-test.js": {
+    "blank": 19,
+    "comment": 17,
+    "code": 96,
+    "language": "JavaScript"
+  },
+  "./test/serialize-test.js": {
+    "blank": 20,
+    "comment": 10,
+    "code": 96,
+    "language": "JavaScript"
+  },
+  "./test/totp-test.js": {
+    "blank": 18,
+    "comment": 10,
+    "code": 96,
+    "language": "JavaScript"
+  },
+  "./test/imap-start-cleanup-test.js": {
+    "blank": 22,
+    "comment": 16,
+    "code": 95,
+    "language": "JavaScript"
+  },
+  "./lib/smtp-auth.js": {
+    "blank": 19,
+    "comment": 41,
+    "code": 94,
+    "language": "JavaScript"
+  },
+  "./test/cli-dispatch-test.js": {
+    "blank": 20,
+    "comment": 16,
+    "code": 94,
+    "language": "JavaScript"
+  },
+  "./test/search-label-filter-test.js": {
+    "blank": 26,
+    "comment": 7,
+    "code": 94,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/json-schema.js": {
+    "blank": 28,
+    "comment": 47,
+    "code": 93,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-security-headers.spec.js": {
+    "blank": 28,
+    "comment": 21,
+    "code": 93,
+    "language": "JavaScript"
+  },
+  "./test/imap-message-id-test.js": {
+    "blank": 33,
+    "comment": 26,
+    "code": 93,
+    "language": "JavaScript"
+  },
+  "./views/accounts/register/validating.hbs": {
+    "blank": 19,
+    "comment": 27,
+    "code": 93,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/getquotaroot.js": {
+    "blank": 15,
+    "comment": 4,
+    "code": 92,
+    "language": "JavaScript"
+  },
+  "./lib/sub-script.js": {
+    "blank": 23,
+    "comment": 19,
+    "code": 92,
+    "language": "JavaScript"
+  },
+  "./test/settings-coupling-test.js": {
+    "blank": 32,
+    "comment": 22,
+    "code": 92,
+    "language": "JavaScript"
+  },
+  "./test/worker-not-available-test.js": {
+    "blank": 23,
+    "comment": 34,
+    "code": 92,
+    "language": "JavaScript"
+  },
+  "./views/config/branding.hbs": {
+    "blank": 36,
+    "comment": 1,
+    "code": 92,
+    "language": "Handlebars"
+  },
+  "./views/mcp/authorize.hbs": {
+    "blank": 19,
+    "comment": 27,
+    "code": 92,
+    "language": "Handlebars"
+  },
+  "./docker-compose.yml": {
+    "blank": 11,
+    "comment": 30,
+    "code": 90,
+    "language": "YAML"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/copy.js": {
+    "blank": 17,
+    "comment": 2,
+    "code": 90,
+    "language": "JavaScript"
+  },
+  "./lib/redis-scan-delete.js": {
+    "blank": 14,
+    "comment": 5,
+    "code": 90,
+    "language": "JavaScript"
+  },
+  "./test/account-picker-test.js": {
+    "blank": 19,
+    "comment": 15,
+    "code": 90,
+    "language": "JavaScript"
+  },
+  "./views/partials/reference/schema-node.hbs": {
+    "blank": 23,
+    "comment": 44,
+    "code": 90,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/move.js": {
+    "blank": 16,
+    "comment": 1,
+    "code": 89,
+    "language": "JavaScript"
+  },
+  "./test/redis-lua-guards-test.js": {
+    "blank": 29,
+    "comment": 20,
+    "code": 89,
+    "language": "JavaScript"
+  },
+  "./lib/add-trackers.js": {
+    "blank": 23,
+    "comment": 8,
+    "code": 88,
+    "language": "JavaScript"
+  },
+  "./lib/egress-fetch.js": {
+    "blank": 30,
+    "comment": 78,
+    "code": 88,
+    "language": "JavaScript"
+  },
+  "./test/integration/account-logs-download-test.js": {
+    "blank": 26,
+    "comment": 23,
+    "code": 88,
+    "language": "JavaScript"
+  },
+  "./test/oauth-form-metadata-server-test.js": {
+    "blank": 15,
+    "comment": 8,
+    "code": 88,
+    "language": "JavaScript"
+  },
+  "./test/outlook-client-sendmail-test.js": {
+    "blank": 17,
+    "comment": 27,
+    "code": 88,
+    "language": "JavaScript"
+  },
+  "./lib/logger.js": {
+    "blank": 22,
+    "comment": 33,
+    "code": 87,
+    "language": "JavaScript"
+  },
+  "./test/license-beacon-test.js": {
+    "blank": 18,
+    "comment": 36,
+    "code": 87,
+    "language": "JavaScript"
+  },
+  "./test/smtp-worker-drain-test.js": {
+    "blank": 16,
+    "comment": 11,
+    "code": 87,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/id.js": {
+    "blank": 12,
+    "comment": 2,
+    "code": 86,
+    "language": "JavaScript"
+  },
+  "./test/integration/imap4rev2-disable-test.js": {
+    "blank": 14,
+    "comment": 21,
+    "code": 85,
+    "language": "JavaScript"
+  },
+  "./test/surface-grants-test.js": {
+    "blank": 14,
+    "comment": 16,
+    "code": 85,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/index.js": {
+    "blank": 23,
+    "comment": 53,
+    "code": 84,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/listing-diff.js": {
+    "blank": 16,
+    "comment": 106,
+    "code": 84,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/compress.js": {
+    "blank": 16,
+    "comment": 2,
+    "code": 84,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/starttls.js": {
+    "blank": 20,
+    "comment": 17,
+    "code": 83,
+    "language": "JavaScript"
+  },
+  "./test/oauth-form-layout-test.js": {
+    "blank": 17,
+    "comment": 4,
+    "code": 83,
+    "language": "JavaScript"
+  },
+  "./lib/field-usage.js": {
+    "blank": 30,
+    "comment": 37,
+    "code": 82,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/rename.js": {
+    "blank": 15,
+    "comment": 5,
+    "code": 82,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/resources.js": {
+    "blank": 23,
+    "comment": 40,
+    "code": 82,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/theme/xcode.css": {
+    "blank": 23,
+    "comment": 1,
+    "code": 82,
+    "language": "CSS"
+  },
+  "./lib/email-client/api-retry.js": {
+    "blank": 20,
+    "comment": 46,
+    "code": 81,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/fixtures/mimetree.js": {
+    "blank": 4,
+    "comment": 0,
+    "code": 81,
+    "language": "JavaScript"
+  },
+  "./test/helpers/capture-api-routes.js": {
+    "blank": 14,
+    "comment": 47,
+    "code": 81,
+    "language": "JavaScript"
+  },
+  "./test/settings-keys-guardrail-test.js": {
+    "blank": 12,
+    "comment": 20,
+    "code": 81,
+    "language": "JavaScript"
+  },
+  "./views/config/oauth/index.hbs": {
+    "blank": 11,
+    "comment": 4,
+    "code": 81,
+    "language": "Handlebars"
+  },
+  "./views/config/security.hbs": {
+    "blank": 23,
+    "comment": 1,
+    "code": 81,
+    "language": "Handlebars"
+  },
+  "./lib/capa.js": {
+    "blank": 13,
+    "comment": 4,
+    "code": 80,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/lsub.js": {
+    "blank": 17,
+    "comment": 5,
+    "code": 80,
+    "language": "JavaScript"
+  },
+  "./lib/webhook-routing.js": {
+    "blank": 17,
+    "comment": 36,
+    "code": 80,
+    "language": "JavaScript"
+  },
+  "./test/tls-renewal-contract-test.js": {
+    "blank": 24,
+    "comment": 39,
+    "code": 80,
+    "language": "JavaScript"
+  },
+  "./lib/handlebars-helpers.js": {
+    "blank": 27,
+    "comment": 44,
+    "code": 79,
+    "language": "JavaScript"
+  },
+  "./lib/privileged-settings.js": {
+    "blank": 6,
+    "comment": 48,
+    "code": 79,
+    "language": "JavaScript"
+  },
+  "./views/suppression-lists/index.hbs": {
+    "blank": 8,
+    "comment": 0,
+    "code": 79,
+    "language": "Handlebars"
+  },
+  "./test/gettext-coverage-test.js": {
+    "blank": 13,
+    "comment": 20,
+    "code": 78,
+    "language": "JavaScript"
+  },
+  "./test/handlebars-helpers-test.js": {
+    "blank": 18,
+    "comment": 7,
+    "code": 78,
+    "language": "JavaScript"
+  },
+  "./test/worker-rpc-error-test.js": {
+    "blank": 13,
+    "comment": 2,
+    "code": 78,
+    "language": "JavaScript"
+  },
+  "./test/gmail-watch-state-test.js": {
+    "blank": 19,
+    "comment": 20,
+    "code": 77,
+    "language": "JavaScript"
+  },
+  "./views/partials/reference/try-it.hbs": {
+    "blank": 18,
+    "comment": 56,
+    "code": 77,
+    "language": "Handlebars"
+  },
+  "./views/suppression-lists/list.hbs": {
+    "blank": 10,
+    "comment": 5,
+    "code": 77,
+    "language": "Handlebars"
+  },
+  "./static/fonts/pt-sans/OFL.txt": {
+    "blank": 17,
+    "comment": 0,
+    "code": 76,
+    "language": "Text"
+  },
+  "./test/e2e/hosted-form.spec.js": {
+    "blank": 17,
+    "comment": 32,
+    "code": 76,
+    "language": "JavaScript"
+  },
+  "./test/mailbox-process-new-checks-test.js": {
+    "blank": 20,
+    "comment": 15,
+    "code": 76,
+    "language": "JavaScript"
+  },
+  "./test/mcp-inject-test.js": {
+    "blank": 14,
+    "comment": 4,
+    "code": 76,
+    "language": "JavaScript"
+  },
+  "./test/read-env-value-test.js": {
+    "blank": 16,
+    "comment": 19,
+    "code": 76,
+    "language": "JavaScript"
+  },
+  "./test/submit-schema-bounds-test.js": {
+    "blank": 17,
+    "comment": 9,
+    "code": 76,
+    "language": "JavaScript"
+  },
+  "./views/webhooks/index.hbs": {
+    "blank": 12,
+    "comment": 0,
+    "code": 76,
+    "language": "Handlebars"
+  },
+  "./test/respawn-backoff-test.js": {
+    "blank": 18,
+    "comment": 12,
+    "code": 75,
+    "language": "JavaScript"
+  },
+  "./views/gateways/index.hbs": {
+    "blank": 13,
+    "comment": 2,
+    "code": 75,
+    "language": "Handlebars"
+  },
+  "./lib/imap-proxy-auth.js": {
+    "blank": 18,
+    "comment": 49,
+    "code": 74,
+    "language": "JavaScript"
+  },
+  "./test/integration/auth-success-flap-test.js": {
+    "blank": 17,
+    "comment": 26,
+    "code": 74,
+    "language": "JavaScript"
+  },
+  "./test/msgpack-compat-test.js": {
+    "blank": 13,
+    "comment": 11,
+    "code": 74,
+    "language": "JavaScript"
+  },
+  "./test/ui-partial-context-leak-test.js": {
+    "blank": 17,
+    "comment": 36,
+    "code": 74,
+    "language": "JavaScript"
+  },
+  "./test/imap-client-delete-test.js": {
+    "blank": 16,
+    "comment": 15,
+    "code": 73,
+    "language": "JavaScript"
+  },
+  "./test/imap-client-event-guard-test.js": {
+    "blank": 12,
+    "comment": 11,
+    "code": 73,
+    "language": "JavaScript"
+  },
+  "./test/imap-login-failure-test.js": {
+    "blank": 11,
+    "comment": 23,
+    "code": 73,
+    "language": "JavaScript"
+  },
+  "./test/session-token-grants-test.js": {
+    "blank": 18,
+    "comment": 30,
+    "code": 73,
+    "language": "JavaScript"
+  },
+  "./lib/api-routes/mint-bounds.js": {
+    "blank": 14,
+    "comment": 24,
+    "code": 72,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/indexer/create-envelope.js": {
+    "blank": 12,
+    "comment": 19,
+    "code": 72,
+    "language": "JavaScript"
+  },
+  "./test/outlook-identity-test.js": {
+    "blank": 18,
+    "comment": 17,
+    "code": 72,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/create.js": {
+    "blank": 15,
+    "comment": 7,
+    "code": 71,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/getquota.js": {
+    "blank": 12,
+    "comment": 2,
+    "code": 71,
+    "language": "JavaScript"
+  },
+  "./static/imap-capabilities-1.csv": {
+    "blank": 0,
+    "comment": 0,
+    "code": 71,
+    "language": "CSV"
+  },
+  "./test/api-search-query-test.js": {
+    "blank": 17,
+    "comment": 7,
+    "code": 71,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-line-length-test.js": {
+    "blank": 11,
+    "comment": 8,
+    "code": 71,
+    "language": "JavaScript"
+  },
+  "./eslint.config.js": {
+    "blank": 1,
+    "comment": 41,
+    "code": 70,
+    "language": "JavaScript"
+  },
+  "./test/reject-worker-calls-test.js": {
+    "blank": 23,
+    "comment": 4,
+    "code": 70,
+    "language": "JavaScript"
+  },
+  "./test/settings-license-sentry-test.js": {
+    "blank": 30,
+    "comment": 4,
+    "code": 70,
+    "language": "JavaScript"
+  },
+  "./LICENSE_EMAILENGINE.txt": {
+    "blank": 42,
+    "comment": 0,
+    "code": 68,
+    "language": "Text"
+  },
+  "./lib/imapproxy/imap-core/test/memory-notifier.js": {
+    "blank": 23,
+    "comment": 38,
+    "code": 68,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/settings-page.js": {
+    "blank": 16,
+    "comment": 33,
+    "code": 68,
+    "language": "JavaScript"
+  },
+  "./views/config/tls-upload.hbs": {
+    "blank": 10,
+    "comment": 3,
+    "code": 68,
+    "language": "Handlebars"
+  },
+  "./lib/account/auth-failure-backfill.js": {
+    "blank": 22,
+    "comment": 87,
+    "code": 67,
+    "language": "JavaScript"
+  },
+  "./lib/redis-url.js": {
+    "blank": 11,
+    "comment": 2,
+    "code": 67,
+    "language": "JavaScript"
+  },
+  "./test/dovecot/README.md": {
+    "blank": 13,
+    "comment": 0,
+    "code": 67,
+    "language": "Markdown"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/delete.js": {
+    "blank": 13,
+    "comment": 5,
+    "code": 66,
+    "language": "JavaScript"
+  },
+  "./test/logger-sentry-filter-test.js": {
+    "blank": 13,
+    "comment": 9,
+    "code": 66,
+    "language": "JavaScript"
+  },
+  "./test/views-table-stack-guardrail-test.js": {
+    "blank": 14,
+    "comment": 25,
+    "code": 66,
+    "language": "JavaScript"
+  },
+  "./views/partials/webhook_form.hbs": {
+    "blank": 17,
+    "comment": 0,
+    "code": 66,
+    "language": "Handlebars"
+  },
+  "./lib/smtp-message-processor.js": {
+    "blank": 17,
+    "comment": 70,
+    "code": 65,
+    "language": "JavaScript"
+  },
+  "./test/imap-delete-mailbox-test.js": {
+    "blank": 17,
+    "comment": 6,
+    "code": 65,
+    "language": "JavaScript"
+  },
+  "./test/imap-sync-lock-order-test.js": {
+    "blank": 29,
+    "comment": 16,
+    "code": 65,
+    "language": "JavaScript"
+  },
+  "./static/fonts/pt-sans-font.css": {
+    "blank": 7,
+    "comment": 8,
+    "code": 64,
+    "language": "CSS"
+  },
+  "./test/helpers/account-hash.js": {
+    "blank": 13,
+    "comment": 21,
+    "code": 64,
+    "language": "JavaScript"
+  },
+  "./test/helpers/stall-reporter.js": {
+    "blank": 19,
+    "comment": 62,
+    "code": 64,
+    "language": "JavaScript"
+  },
+  "./test/provider-flag-mapping-test.js": {
+    "blank": 18,
+    "comment": 8,
+    "code": 64,
+    "language": "JavaScript"
+  },
+  "./test/webhooks-cache-test.js": {
+    "blank": 20,
+    "comment": 12,
+    "code": 64,
+    "language": "JavaScript"
+  },
+  "./static/js/login-passkey.js": {
+    "blank": 13,
+    "comment": 2,
+    "code": 63,
+    "language": "JavaScript"
+  },
+  "./test/oauth-error-status-test.js": {
+    "blank": 15,
+    "comment": 1,
+    "code": 63,
+    "language": "JavaScript"
+  },
+  "./views/partials/gateway_js.hbs": {
+    "blank": 8,
+    "comment": 0,
+    "code": 63,
+    "language": "Handlebars"
+  },
+  "./views/unsubscribe.hbs": {
+    "blank": 18,
+    "comment": 7,
+    "code": 63,
+    "language": "Handlebars"
+  },
+  "./test/idempotency-test.js": {
+    "blank": 20,
+    "comment": 12,
+    "code": 62,
+    "language": "JavaScript"
+  },
+  "./test/openapi-golden-test.js": {
+    "blank": 24,
+    "comment": 23,
+    "code": 62,
+    "language": "JavaScript"
+  },
+  "./test/read-env-value-guardrail-test.js": {
+    "blank": 12,
+    "comment": 21,
+    "code": 62,
+    "language": "JavaScript"
+  },
+  "./test/retry-setup-test.js": {
+    "blank": 17,
+    "comment": 13,
+    "code": 62,
+    "language": "JavaScript"
+  },
+  "./views/legal.hbs": {
+    "blank": 18,
+    "comment": 0,
+    "code": 62,
+    "language": "Handlebars"
+  },
+  "./SECURITY.md": {
+    "blank": 19,
+    "comment": 0,
+    "code": 61,
+    "language": "Markdown"
+  },
+  "./test/delivery-error-test.js": {
+    "blank": 17,
+    "comment": 19,
+    "code": 61,
+    "language": "JavaScript"
+  },
+  "./views/accounts/browse.hbs": {
+    "blank": 11,
+    "comment": 5,
+    "code": 61,
+    "language": "Handlebars"
+  },
+  "./views/config/logging.hbs": {
+    "blank": 14,
+    "comment": 1,
+    "code": 61,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/uid-expunge.js": {
+    "blank": 9,
+    "comment": 2,
+    "code": 60,
+    "language": "JavaScript"
+  },
+  "./test/account-special-use-form-test.js": {
+    "blank": 14,
+    "comment": 19,
+    "code": 60,
+    "language": "JavaScript"
+  },
+  "./test/imap-listing-consumers-guardrail-test.js": {
+    "blank": 14,
+    "comment": 12,
+    "code": 60,
+    "language": "JavaScript"
+  },
+  "./workers/imap-proxy.js": {
+    "blank": 11,
+    "comment": 3,
+    "code": 60,
+    "language": "JavaScript"
+  },
+  "./lib/delivery-error.js": {
+    "blank": 14,
+    "comment": 109,
+    "code": 59,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/imap-composer.js": {
+    "blank": 11,
+    "comment": 1,
+    "code": 59,
+    "language": "JavaScript"
+  },
+  "./lib/lua/s-list-accounts.lua": {
+    "blank": 22,
+    "comment": 36,
+    "code": 59,
+    "language": "Lua"
+  },
+  "./lib/ui-routes/ai-options.js": {
+    "blank": 13,
+    "comment": 32,
+    "code": 59,
+    "language": "JavaScript"
+  },
+  "./translations/README.md": {
+    "blank": 23,
+    "comment": 0,
+    "code": 59,
+    "language": "Markdown"
+  },
+  "./views/account/password.hbs": {
+    "blank": 14,
+    "comment": 3,
+    "code": 59,
+    "language": "Handlebars"
+  },
+  "./views/partials/accounts_table.hbs": {
+    "blank": 6,
+    "comment": 18,
+    "code": 59,
+    "language": "Handlebars"
+  },
+  "./test/mailbox-get-message-bounce-test.js": {
+    "blank": 15,
+    "comment": 7,
+    "code": 58,
+    "language": "JavaScript"
+  },
+  "./views/partials/reference/nav.hbs": {
+    "blank": 13,
+    "comment": 49,
+    "code": 58,
+    "language": "Handlebars"
+  },
+  "./.github/CODE_OF_CONDUCT.md": {
+    "blank": 19,
+    "comment": 0,
+    "code": 57,
+    "language": "Markdown"
+  },
+  "./lib/imapproxy/imap-core/test/prepare.sh": {
+    "blank": 16,
+    "comment": 1,
+    "code": 57,
+    "language": "Bourne Shell"
+  },
+  "./lib/rate-limit.js": {
+    "blank": 14,
+    "comment": 41,
+    "code": 57,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/theme/kuroir.css": {
+    "blank": 20,
+    "comment": 1,
+    "code": 57,
+    "language": "CSS"
+  },
+  "./test/gateway-list-test.js": {
+    "blank": 10,
+    "comment": 4,
+    "code": 57,
+    "language": "JavaScript"
+  },
+  "./translations/locales.json": {
+    "blank": 10,
+    "comment": 0,
+    "code": 57,
+    "language": "JSON"
+  },
+  "./lib/email-client/notification-handler.js": {
+    "blank": 14,
+    "comment": 38,
+    "code": 56,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/length-limiter.js": {
+    "blank": 10,
+    "comment": 10,
+    "code": 56,
+    "language": "JavaScript"
+  },
+  "./test/integration/connect-error-response-test.js": {
+    "blank": 11,
+    "comment": 24,
+    "code": 56,
+    "language": "JavaScript"
+  },
+  "./test/lists-test.js": {
+    "blank": 18,
+    "comment": 2,
+    "code": 56,
+    "language": "JavaScript"
+  },
+  "./views/partials/template_form.hbs": {
+    "blank": 24,
+    "comment": 2,
+    "code": 56,
+    "language": "Handlebars"
+  },
+  "./views/reference/index.hbs": {
+    "blank": 11,
+    "comment": 9,
+    "code": 56,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/expunge.js": {
+    "blank": 9,
+    "comment": 4,
+    "code": 55,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/subscribe.js": {
+    "blank": 11,
+    "comment": 3,
+    "code": 55,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/unsubscribe.js": {
+    "blank": 11,
+    "comment": 3,
+    "code": 55,
+    "language": "JavaScript"
+  },
+  "./lib/totp.js": {
+    "blank": 18,
+    "comment": 9,
+    "code": 55,
+    "language": "JavaScript"
+  },
+  "./test/account-exists-test.js": {
+    "blank": 14,
+    "comment": 13,
+    "code": 55,
+    "language": "JavaScript"
+  },
+  "./views/account/login.hbs": {
+    "blank": 7,
+    "comment": 3,
+    "code": 55,
+    "language": "Handlebars"
+  },
+  "./views/gateways/gateway.hbs": {
+    "blank": 17,
+    "comment": 1,
+    "code": 55,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/README.md": {
+    "blank": 18,
+    "comment": 0,
+    "code": 54,
+    "language": "Markdown"
+  },
+  "./lib/webhook-request.js": {
+    "blank": 15,
+    "comment": 55,
+    "code": 54,
+    "language": "JavaScript"
+  },
+  "./test/helpers/build-openapi-spec.js": {
+    "blank": 18,
+    "comment": 44,
+    "code": 54,
+    "language": "JavaScript"
+  },
+  "./test/imap-worker-assign-test.js": {
+    "blank": 12,
+    "comment": 6,
+    "code": 54,
+    "language": "JavaScript"
+  },
+  "./test/redis-reconnect-watch-test.js": {
+    "blank": 15,
+    "comment": 9,
+    "code": 54,
+    "language": "JavaScript"
+  },
+  "./scripts/README.md": {
+    "blank": 22,
+    "comment": 0,
+    "code": 53,
+    "language": "Markdown"
+  },
+  "./test/arrival-checks-test.js": {
+    "blank": 16,
+    "comment": 10,
+    "code": 53,
+    "language": "JavaScript"
+  },
+  "./test/helpers/token-refresh.js": {
+    "blank": 12,
+    "comment": 15,
+    "code": 53,
+    "language": "JavaScript"
+  },
+  "./test/token-fetch-test.js": {
+    "blank": 12,
+    "comment": 20,
+    "code": 53,
+    "language": "JavaScript"
+  },
+  "./.githooks/pre-commit": {
+    "blank": 10,
+    "comment": 18,
+    "code": 52,
+    "language": "Bourne Again Shell"
+  },
+  "./lib/pbkdf2-phc.js": {
+    "blank": 17,
+    "comment": 32,
+    "code": 52,
+    "language": "JavaScript"
+  },
+  "./test/detach-client-test.js": {
+    "blank": 16,
+    "comment": 14,
+    "code": 52,
+    "language": "JavaScript"
+  },
+  "./test/helpers/ethereal.js": {
+    "blank": 6,
+    "comment": 14,
+    "code": 52,
+    "language": "JavaScript"
+  },
+  "./test/ui-routes-size-test.js": {
+    "blank": 7,
+    "comment": 38,
+    "code": 52,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/credential-errors.js": {
+    "blank": 8,
+    "comment": 51,
+    "code": 51,
+    "language": "JavaScript"
+  },
+  "./lib/lua/z-expunge.lua": {
+    "blank": 16,
+    "comment": 29,
+    "code": 51,
+    "language": "Lua"
+  },
+  "./test/settings-page-test.js": {
+    "blank": 13,
+    "comment": 4,
+    "code": 51,
+    "language": "JavaScript"
+  },
+  "./test/api-token-rejection-test.js": {
+    "blank": 15,
+    "comment": 6,
+    "code": 50,
+    "language": "JavaScript"
+  },
+  "./test/gmail-header-map-test.js": {
+    "blank": 9,
+    "comment": 8,
+    "code": 50,
+    "language": "JavaScript"
+  },
+  "./scripts/build-icon.js": {
+    "blank": 12,
+    "comment": 16,
+    "code": 49,
+    "language": "JavaScript"
+  },
+  "./test/helpers/http-proxy-server.js": {
+    "blank": 7,
+    "comment": 2,
+    "code": 49,
+    "language": "JavaScript"
+  },
+  "./Dockerfile": {
+    "blank": 17,
+    "comment": 40,
+    "code": 48,
+    "language": "Dockerfile"
+  },
+  "./lib/email-client/gmail/send-request.js": {
+    "blank": 9,
+    "comment": 27,
+    "code": 48,
+    "language": "JavaScript"
+  },
+  "./lib/worker-rpc-error.js": {
+    "blank": 9,
+    "comment": 38,
+    "code": 48,
+    "language": "JavaScript"
+  },
+  "./test/dovecot/run-dovecot-tests.sh": {
+    "blank": 9,
+    "comment": 25,
+    "code": 48,
+    "language": "Bourne Shell"
+  },
+  "./test/network-errors-test.js": {
+    "blank": 11,
+    "comment": 6,
+    "code": 48,
+    "language": "JavaScript"
+  },
+  "./lib/utils/header-map.js": {
+    "blank": 11,
+    "comment": 51,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./test/docker-commit-hash-guardrail-test.js": {
+    "blank": 12,
+    "comment": 23,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./test/helpers/wait-for-server.js": {
+    "blank": 9,
+    "comment": 12,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./test/imap-data-test.js": {
+    "blank": 12,
+    "comment": 15,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-upstream-client-test.js": {
+    "blank": 14,
+    "comment": 11,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./test/webhook-dispatcher-retry-test.js": {
+    "blank": 11,
+    "comment": 13,
+    "code": 47,
+    "language": "JavaScript"
+  },
+  "./views/accounts/register/imap.hbs": {
+    "blank": 6,
+    "comment": 6,
+    "code": 47,
+    "language": "Handlebars"
+  },
+  "./.github/workflows/e2e.yml": {
+    "blank": 5,
+    "comment": 4,
+    "code": 46,
+    "language": "YAML"
+  },
+  "./copy-static-files.sh": {
+    "blank": 13,
+    "comment": 23,
+    "code": 46,
+    "language": "Bourne Shell"
+  },
+  "./lib/api-routes/bull-board-routes.js": {
+    "blank": 9,
+    "comment": 1,
+    "code": 46,
+    "language": "JavaScript"
+  },
+  "./test/api-boolean-flags-test.js": {
+    "blank": 7,
+    "comment": 8,
+    "code": 46,
+    "language": "JavaScript"
+  },
+  "./test/operation-impact-test.js": {
+    "blank": 10,
+    "comment": 14,
+    "code": 46,
+    "language": "JavaScript"
+  },
+  "./lib/calendar-event.js": {
+    "blank": 12,
+    "comment": 21,
+    "code": 45,
+    "language": "JavaScript"
+  },
+  "./lib/respawn-backoff.js": {
+    "blank": 15,
+    "comment": 36,
+    "code": 45,
+    "language": "JavaScript"
+  },
+  "./test/helpers/capture-http-server.js": {
+    "blank": 10,
+    "comment": 19,
+    "code": 45,
+    "language": "JavaScript"
+  },
+  "./lib/openapi/index.js": {
+    "blank": 15,
+    "comment": 41,
+    "code": 44,
+    "language": "JavaScript"
+  },
+  "./test/header-map-test.js": {
+    "blank": 16,
+    "comment": 16,
+    "code": 44,
+    "language": "JavaScript"
+  },
+  "./test/templates-test.js": {
+    "blank": 14,
+    "comment": 5,
+    "code": 44,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/fixtures/chunks.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 43,
+    "language": "JavaScript"
+  },
+  "./test/llm-pre-process-cache-test.js": {
+    "blank": 14,
+    "comment": 4,
+    "code": 43,
+    "language": "JavaScript"
+  },
+  "./test/oauth-workspace-restriction-test.js": {
+    "blank": 12,
+    "comment": 19,
+    "code": 43,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/gmail-service-auth.js": {
+    "blank": 8,
+    "comment": 14,
+    "code": 42,
+    "language": "JavaScript"
+  },
+  "./test/base32-test.js": {
+    "blank": 7,
+    "comment": 4,
+    "code": 42,
+    "language": "JavaScript"
+  },
+  "./test/verify-app-detail-test.js": {
+    "blank": 14,
+    "comment": 6,
+    "code": 42,
+    "language": "JavaScript"
+  },
+  "./test/webhook-egress-dispatcher-test.js": {
+    "blank": 11,
+    "comment": 16,
+    "code": 42,
+    "language": "JavaScript"
+  },
+  "./views/layout/login.hbs": {
+    "blank": 20,
+    "comment": 13,
+    "code": 42,
+    "language": "Handlebars"
+  },
+  "./test/bounce-store-sweep-test.js": {
+    "blank": 13,
+    "comment": 3,
+    "code": 41,
+    "language": "JavaScript"
+  },
+  "./test/dockerfile-cli-modules-test.js": {
+    "blank": 10,
+    "comment": 13,
+    "code": 41,
+    "language": "JavaScript"
+  },
+  "./test/fatal-shutdown-test.js": {
+    "blank": 8,
+    "comment": 14,
+    "code": 41,
+    "language": "JavaScript"
+  },
+  "./test/helpers/capture-ui-routes.js": {
+    "blank": 12,
+    "comment": 11,
+    "code": 41,
+    "language": "JavaScript"
+  },
+  "./test/log-redaction-test.js": {
+    "blank": 8,
+    "comment": 2,
+    "code": 41,
+    "language": "JavaScript"
+  },
+  "./.github/actions/wait-for-tests/action.yml": {
+    "blank": 0,
+    "comment": 3,
+    "code": 40,
+    "language": "YAML"
+  },
+  "./lib/email-client/imap/stale-view.js": {
+    "blank": 14,
+    "comment": 55,
+    "code": 40,
+    "language": "JavaScript"
+  },
+  "./test/tls-routes-test.js": {
+    "blank": 12,
+    "comment": 13,
+    "code": 40,
+    "language": "JavaScript"
+  },
+  "./views/layout/public.hbs": {
+    "blank": 20,
+    "comment": 3,
+    "code": 40,
+    "language": "Handlebars"
+  },
+  "./lib/lua/ee-get-idempotency.lua": {
+    "blank": 19,
+    "comment": 28,
+    "code": 39,
+    "language": "Lua"
+  },
+  "./test/imap-path-comparison-guardrail-test.js": {
+    "blank": 9,
+    "comment": 18,
+    "code": 39,
+    "language": "JavaScript"
+  },
+  "./test/queue-retention-test.js": {
+    "blank": 11,
+    "comment": 6,
+    "code": 39,
+    "language": "JavaScript"
+  },
+  "./test/test-runner-server-guards-test.js": {
+    "blank": 10,
+    "comment": 8,
+    "code": 39,
+    "language": "JavaScript"
+  },
+  "./app.json": {
+    "blank": 2,
+    "comment": 0,
+    "code": 38,
+    "language": "JSON"
+  },
+  "./lib/imapproxy/imap-core/test/client.js": {
+    "blank": 7,
+    "comment": 1,
+    "code": 38,
+    "language": "JavaScript"
+  },
+  "./static/js/evaluation-worker.js": {
+    "blank": 7,
+    "comment": 2,
+    "code": 38,
+    "language": "JavaScript"
+  },
+  "./test/helpers/mock-db.js": {
+    "blank": 5,
+    "comment": 12,
+    "code": 38,
+    "language": "JavaScript"
+  },
+  "./test/imap-core-vendored-test.js": {
+    "blank": 9,
+    "comment": 18,
+    "code": 38,
+    "language": "JavaScript"
+  },
+  "./views/accounts/register/index.hbs": {
+    "blank": 14,
+    "comment": 6,
+    "code": 38,
+    "language": "Handlebars"
+  },
+  "./.github/workflows/claude.yml": {
+    "blank": 8,
+    "comment": 11,
+    "code": 37,
+    "language": "YAML"
+  },
+  "./static/undraw_profile.svg": {
+    "blank": 0,
+    "comment": 1,
+    "code": 37,
+    "language": "SVG"
+  },
+  "./test/decode-headers-test.js": {
+    "blank": 15,
+    "comment": 12,
+    "code": 37,
+    "language": "JavaScript"
+  },
+  "./views/upgrade.hbs": {
+    "blank": 6,
+    "comment": 0,
+    "code": 37,
+    "language": "Handlebars"
+  },
+  "./lib/api-token-scheme.js": {
+    "blank": 14,
+    "comment": 21,
+    "code": 36,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/idle.js": {
+    "blank": 9,
+    "comment": 0,
+    "code": 36,
+    "language": "JavaScript"
+  },
+  "./lib/routes-ui.js": {
+    "blank": 17,
+    "comment": 15,
+    "code": 36,
+    "language": "JavaScript"
+  },
+  "./lib/tls/listeners.js": {
+    "blank": 7,
+    "comment": 19,
+    "code": 36,
+    "language": "JavaScript"
+  },
+  "./render.yaml": {
+    "blank": 2,
+    "comment": 6,
+    "code": 36,
+    "language": "YAML"
+  },
+  "./test/imap-core-indexer-test.js": {
+    "blank": 8,
+    "comment": 10,
+    "code": 36,
+    "language": "JavaScript"
+  },
+  "./lib/cert-handler.js": {
+    "blank": 10,
+    "comment": 17,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/close.js": {
+    "blank": 6,
+    "comment": 3,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./test/helpers/worker-rpc.js": {
+    "blank": 7,
+    "comment": 3,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./test/integration/csrf-test.js": {
+    "blank": 11,
+    "comment": 10,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./test/integration/tracking-signature-test.js": {
+    "blank": 13,
+    "comment": 11,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./test/reconnect-backoff-test.js": {
+    "blank": 18,
+    "comment": 7,
+    "code": 35,
+    "language": "JavaScript"
+  },
+  "./views/layout/main.hbs": {
+    "blank": 13,
+    "comment": 3,
+    "code": 35,
+    "language": "Handlebars"
+  },
+  "./test/integration/oauth-apps-listing-test.js": {
+    "blank": 9,
+    "comment": 9,
+    "code": 34,
+    "language": "JavaScript"
+  },
+  "./test/views-form-control-name-guardrail-test.js": {
+    "blank": 10,
+    "comment": 21,
+    "code": 34,
+    "language": "JavaScript"
+  },
+  "./views/layout/prompt.hbs": {
+    "blank": 19,
+    "comment": 6,
+    "code": 34,
+    "language": "Handlebars"
+  },
+  "./test/decode-jwt-payload-test.js": {
+    "blank": 9,
+    "comment": 5,
+    "code": 33,
+    "language": "JavaScript"
+  },
+  "./test/integration/webhooks-server.js": {
+    "blank": 6,
+    "comment": 0,
+    "code": 33,
+    "language": "JavaScript"
+  },
+  "./test/lru-cache-test.js": {
+    "blank": 7,
+    "comment": 3,
+    "code": 33,
+    "language": "JavaScript"
+  },
+  "./views/reference/token.hbs": {
+    "blank": 9,
+    "comment": 11,
+    "code": 33,
+    "language": "Handlebars"
+  },
+  "./.claude/rules/testing.md": {
+    "blank": 5,
+    "comment": 0,
+    "code": 32,
+    "language": "Markdown"
+  },
+  "./lib/account/bounce-store-sweep.js": {
+    "blank": 12,
+    "comment": 19,
+    "code": 32,
+    "language": "JavaScript"
+  },
+  "./lib/msgpack.js": {
+    "blank": 10,
+    "comment": 15,
+    "code": 32,
+    "language": "JavaScript"
+  },
+  "./test/helpers/tls-fixtures.js": {
+    "blank": 8,
+    "comment": 25,
+    "code": 32,
+    "language": "JavaScript"
+  },
+  "./views/partials/side_menu.hbs": {
+    "blank": 7,
+    "comment": 3,
+    "code": 32,
+    "language": "Handlebars"
+  },
+  "./views/partials/tls_security_card.hbs": {
+    "blank": 4,
+    "comment": 15,
+    "code": 32,
+    "language": "Handlebars"
+  },
+  "./config/test.toml": {
+    "blank": 11,
+    "comment": 4,
+    "code": 31,
+    "language": "TOML"
+  },
+  "./getswagger.sh": {
+    "blank": 9,
+    "comment": 4,
+    "code": 31,
+    "language": "Bourne Shell"
+  },
+  "./lib/oauth/scope-list.js": {
+    "blank": 12,
+    "comment": 12,
+    "code": 31,
+    "language": "JavaScript"
+  },
+  "./views/partials/ui/stat-card.hbs": {
+    "blank": 0,
+    "comment": 24,
+    "code": 31,
+    "language": "Handlebars"
+  },
+  "./lib/api-routes/changes-routes.js": {
+    "blank": 9,
+    "comment": 14,
+    "code": 30,
+    "language": "JavaScript"
+  },
+  "./lib/read-env-value.js": {
+    "blank": 8,
+    "comment": 30,
+    "code": 30,
+    "language": "JavaScript"
+  },
+  "./test/fips-guardrail-test.js": {
+    "blank": 10,
+    "comment": 6,
+    "code": 30,
+    "language": "JavaScript"
+  },
+  "./views/partials/add_account_modal.hbs": {
+    "blank": 4,
+    "comment": 0,
+    "code": 30,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/enable.js": {
+    "blank": 7,
+    "comment": 0,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./test/gettext-pot-order-test.js": {
+    "blank": 9,
+    "comment": 4,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./test/helpers/auth-failure.js": {
+    "blank": 8,
+    "comment": 31,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./test/helpers/oauth-context.js": {
+    "blank": 7,
+    "comment": 15,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./test/integration/acme-challenge-route-test.js": {
+    "blank": 11,
+    "comment": 20,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./.github/docker-smoke-test.sh": {
+    "blank": 7,
+    "comment": 26,
+    "code": 28,
+    "language": "Bourne Shell"
+  },
+  "./config/default.toml": {
+    "blank": 8,
+    "comment": 25,
+    "code": 28,
+    "language": "TOML"
+  },
+  "./lib/account/imap-data.js": {
+    "blank": 8,
+    "comment": 38,
+    "code": 28,
+    "language": "JavaScript"
+  },
+  "./lib/headers-rewriter.js": {
+    "blank": 5,
+    "comment": 0,
+    "code": 28,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/imap-indexer-test.js": {
+    "blank": 37,
+    "comment": 170,
+    "code": 28,
+    "language": "JavaScript"
+  },
+  "./views/partials/address_list.hbs": {
+    "blank": 1,
+    "comment": 4,
+    "code": 28,
+    "language": "Handlebars"
+  },
+  "./views/reference/redirect.hbs": {
+    "blank": 9,
+    "comment": 12,
+    "code": 28,
+    "language": "Handlebars"
+  },
+  "./.claude/rules/admin-ui.md": {
+    "blank": 3,
+    "comment": 0,
+    "code": 27,
+    "language": "Markdown"
+  },
+  "./.github/workflows/claude-code-review.yml": {
+    "blank": 6,
+    "comment": 16,
+    "code": 27,
+    "language": "YAML"
+  },
+  "./lib/account/expected-identity.js": {
+    "blank": 11,
+    "comment": 50,
+    "code": 27,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/outlook/send-request.js": {
+    "blank": 5,
+    "comment": 39,
+    "code": 27,
+    "language": "JavaScript"
+  },
+  "./playwright.config.js": {
+    "blank": 4,
+    "comment": 16,
+    "code": 27,
+    "language": "JavaScript"
+  },
+  "./static/js/flyonui.js": {
+    "blank": 0,
+    "comment": 179,
+    "code": 27,
+    "language": "JavaScript"
+  },
+  "./test/e2e/pages-bull-board.spec.js": {
+    "blank": 11,
+    "comment": 19,
+    "code": 27,
+    "language": "JavaScript"
+  },
+  "./views/error.hbs": {
+    "blank": 1,
+    "comment": 8,
+    "code": 27,
+    "language": "Handlebars"
+  },
+  "./views/partials/alerts.hbs": {
+    "blank": 0,
+    "comment": 1,
+    "code": 27,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/form-field.hbs": {
+    "blank": 0,
+    "comment": 33,
+    "code": 27,
+    "language": "Handlebars"
+  },
+  "./lib/api-routes/behavior-notes.js": {
+    "blank": 14,
+    "comment": 24,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./lib/mcp/inject.js": {
+    "blank": 8,
+    "comment": 36,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./test/admin-token-payload-test.js": {
+    "blank": 9,
+    "comment": 12,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./test/severity-test.js": {
+    "blank": 6,
+    "comment": 1,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./test/ui-busy-action-guardrail-test.js": {
+    "blank": 7,
+    "comment": 15,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./test/worker-count-env-guardrail-test.js": {
+    "blank": 8,
+    "comment": 10,
+    "code": 26,
+    "language": "JavaScript"
+  },
+  "./SECURITY.txt": {
+    "blank": 2,
+    "comment": 0,
+    "code": 25,
+    "language": "Text"
+  },
+  "./test/helpers/auth-throttle.js": {
+    "blank": 9,
+    "comment": 29,
+    "code": 25,
+    "language": "JavaScript"
+  },
+  "./test/imap-cursor-decode-test.js": {
+    "blank": 8,
+    "comment": 5,
+    "code": 25,
+    "language": "JavaScript"
+  },
+  "./test/mock-db-shape-test.js": {
+    "blank": 5,
+    "comment": 2,
+    "code": 25,
+    "language": "JavaScript"
+  },
+  "./lib/utils/decode-headers.js": {
+    "blank": 7,
+    "comment": 38,
+    "code": 24,
+    "language": "JavaScript"
+  },
+  "./test/sentry-release-test.js": {
+    "blank": 7,
+    "comment": 9,
+    "code": 24,
+    "language": "JavaScript"
+  },
+  "./views/partials/ui/row-actions.hbs": {
+    "blank": 1,
+    "comment": 35,
+    "code": 24,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/logout.js": {
+    "blank": 3,
+    "comment": 0,
+    "code": 23,
+    "language": "JavaScript"
+  },
+  "./lib/translations.js": {
+    "blank": 8,
+    "comment": 2,
+    "code": 23,
+    "language": "JavaScript"
+  },
+  "./test/submit-progress-test.js": {
+    "blank": 6,
+    "comment": 6,
+    "code": 23,
+    "language": "JavaScript"
+  },
+  "./test/test-runner-force-exit-test.js": {
+    "blank": 8,
+    "comment": 21,
+    "code": 23,
+    "language": "JavaScript"
+  },
+  "./views/account-identity-error.hbs": {
+    "blank": 5,
+    "comment": 6,
+    "code": 23,
+    "language": "Handlebars"
+  },
+  "./views/oauth-scope-error.hbs": {
+    "blank": 5,
+    "comment": 2,
+    "code": 23,
+    "language": "Handlebars"
+  },
+  "./views/partials/public_theme_init.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 23,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/pagination.hbs": {
+    "blank": 2,
+    "comment": 13,
+    "code": 23,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/picker.hbs": {
+    "blank": 4,
+    "comment": 20,
+    "code": 23,
+    "language": "Handlebars"
+  },
+  "./lib/api-routes/operation-impact.js": {
+    "blank": 10,
+    "comment": 48,
+    "code": 22,
+    "language": "JavaScript"
+  },
+  "./lib/lua/h-set-bigger.lua": {
+    "blank": 8,
+    "comment": 20,
+    "code": 22,
+    "language": "Lua"
+  },
+  "./test/helpers/admin-templates.js": {
+    "blank": 8,
+    "comment": 7,
+    "code": 22,
+    "language": "JavaScript"
+  },
+  "./views/account/totp.hbs": {
+    "blank": 3,
+    "comment": 1,
+    "code": 22,
+    "language": "Handlebars"
+  },
+  "./lib/email-client/reconnect-backoff.js": {
+    "blank": 6,
+    "comment": 11,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/setquota.js": {
+    "blank": 3,
+    "comment": 0,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/decode-jwt-payload.js": {
+    "blank": 5,
+    "comment": 13,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/ace.js": {
+    "blank": 2,
+    "comment": 0,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./test/helpers/dockerfile.js": {
+    "blank": 6,
+    "comment": 15,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./test/helpers/instant-timers.js": {
+    "blank": 7,
+    "comment": 9,
+    "code": 21,
+    "language": "JavaScript"
+  },
+  "./views/account-workspace-error.hbs": {
+    "blank": 5,
+    "comment": 4,
+    "code": 21,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/checkbox.hbs": {
+    "blank": 0,
+    "comment": 30,
+    "code": 21,
+    "language": "Handlebars"
+  },
+  "./lib/base32.js": {
+    "blank": 7,
+    "comment": 3,
+    "code": 20,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/connection-errors.js": {
+    "blank": 5,
+    "comment": 27,
+    "code": 20,
+    "language": "JavaScript"
+  },
+  "./lib/ui-routes/outlook-subscription-view.js": {
+    "blank": 8,
+    "comment": 8,
+    "code": 20,
+    "language": "JavaScript"
+  },
+  "./static/favicon/manifest.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 20,
+    "language": "JSON"
+  },
+  "./views/gateways/edit.hbs": {
+    "blank": 9,
+    "comment": 0,
+    "code": 20,
+    "language": "Handlebars"
+  },
+  "./views/gateways/new.hbs": {
+    "blank": 10,
+    "comment": 0,
+    "code": 20,
+    "language": "Handlebars"
+  },
+  "./views/partials/oauth_pubsub_app_select.hbs": {
+    "blank": 5,
+    "comment": 9,
+    "code": 20,
+    "language": "Handlebars"
+  },
+  "./views/partials/webhooks_editor_functions.hbs": {
+    "blank": 4,
+    "comment": 5,
+    "code": 20,
+    "language": "Handlebars"
+  },
+  "./lib/lua/h-update-bigger.lua": {
+    "blank": 8,
+    "comment": 18,
+    "code": 19,
+    "language": "Lua"
+  },
+  "./lib/oauth/outlook-identity.js": {
+    "blank": 7,
+    "comment": 35,
+    "code": 19,
+    "language": "JavaScript"
+  },
+  "./lib/queue-retention.js": {
+    "blank": 8,
+    "comment": 31,
+    "code": 19,
+    "language": "JavaScript"
+  },
+  "./test/helpers/flush-redis.js": {
+    "blank": 5,
+    "comment": 9,
+    "code": 19,
+    "language": "JavaScript"
+  },
+  "./test/helpers/redis-teardown.js": {
+    "blank": 2,
+    "comment": 30,
+    "code": 19,
+    "language": "JavaScript"
+  },
+  "./views/internals/thread.hbs": {
+    "blank": 3,
+    "comment": 0,
+    "code": 19,
+    "language": "Handlebars"
+  },
+  "./config/e2e.toml": {
+    "blank": 6,
+    "comment": 12,
+    "code": 18,
+    "language": "TOML"
+  },
+  "./entitlements.mac.plist": {
+    "blank": 0,
+    "comment": 0,
+    "code": 18,
+    "language": "XML"
+  },
+  "./lib/lua/ee-reserve-attempts.lua": {
+    "blank": 8,
+    "comment": 16,
+    "code": 18,
+    "language": "Lua"
+  },
+  "./lib/network-errors.js": {
+    "blank": 7,
+    "comment": 25,
+    "code": 18,
+    "language": "JavaScript"
+  },
+  "./lib/queue-stats.js": {
+    "blank": 7,
+    "comment": 24,
+    "code": 18,
+    "language": "JavaScript"
+  },
+  "./lib/utils/is-email.js": {
+    "blank": 7,
+    "comment": 9,
+    "code": 18,
+    "language": "JavaScript"
+  },
+  "./views/partials/reference/try-field.hbs": {
+    "blank": 2,
+    "comment": 11,
+    "code": 18,
+    "language": "Handlebars"
+  },
+  "./lib/reject-worker-calls.js": {
+    "blank": 5,
+    "comment": 20,
+    "code": 17,
+    "language": "JavaScript"
+  },
+  "./test/imap-proxy-tls-options-test.js": {
+    "blank": 5,
+    "comment": 3,
+    "code": 17,
+    "language": "JavaScript"
+  },
+  "./test/integration/test-config.js": {
+    "blank": 8,
+    "comment": 13,
+    "code": 17,
+    "language": "JavaScript"
+  },
+  "./views/partials/ui/menu-section.hbs": {
+    "blank": 0,
+    "comment": 15,
+    "code": 17,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/modal.hbs": {
+    "blank": 0,
+    "comment": 27,
+    "code": 17,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/radio.hbs": {
+    "blank": 0,
+    "comment": 24,
+    "code": 17,
+    "language": "Handlebars"
+  },
+  "./views/reference/tag.hbs": {
+    "blank": 6,
+    "comment": 5,
+    "code": 17,
+    "language": "Handlebars"
+  },
+  "./lib/api-routes/account-binding.js": {
+    "blank": 4,
+    "comment": 38,
+    "code": 16,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/test/tools-test.js": {
+    "blank": 5,
+    "comment": 1,
+    "code": 16,
+    "language": "JavaScript"
+  },
+  "./test/helpers/inline-scripts.js": {
+    "blank": 7,
+    "comment": 18,
+    "code": 16,
+    "language": "JavaScript"
+  },
+  "./views/partials/oauth_scope_presets.hbs": {
+    "blank": 0,
+    "comment": 5,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/params.hbs": {
+    "blank": 2,
+    "comment": 18,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/token-alert.hbs": {
+    "blank": 3,
+    "comment": 30,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/code-editor.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/list-empty.hbs": {
+    "blank": 0,
+    "comment": 21,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/menu-item.hbs": {
+    "blank": 0,
+    "comment": 11,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/page-header.hbs": {
+    "blank": 0,
+    "comment": 21,
+    "code": 16,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/response-error.js": {
+    "blank": 5,
+    "comment": 26,
+    "code": 15,
+    "language": "JavaScript"
+  },
+  "./lib/oauth/token-fetch.js": {
+    "blank": 5,
+    "comment": 28,
+    "code": 15,
+    "language": "JavaScript"
+  },
+  "./test/helpers/list-files.js": {
+    "blank": 4,
+    "comment": 10,
+    "code": 15,
+    "language": "JavaScript"
+  },
+  "./update-info.sh": {
+    "blank": 2,
+    "comment": 17,
+    "code": 15,
+    "language": "Bourne Shell"
+  },
+  "./views/partials/ui/breadcrumb.hbs": {
+    "blank": 0,
+    "comment": 15,
+    "code": 15,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/confirm-modal.hbs": {
+    "blank": 0,
+    "comment": 26,
+    "code": 15,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/overflow-menu.hbs": {
+    "blank": 3,
+    "comment": 24,
+    "code": 15,
+    "language": "Handlebars"
+  },
+  "./lib/email-client/outlook-fallback-poll.js": {
+    "blank": 5,
+    "comment": 11,
+    "code": 14,
+    "language": "JavaScript"
+  },
+  "./lib/lua/z-get-by-uid.lua": {
+    "blank": 9,
+    "comment": 16,
+    "code": 14,
+    "language": "Lua"
+  },
+  "./lib/utils/mailbox-path.js": {
+    "blank": 6,
+    "comment": 31,
+    "code": 14,
+    "language": "JavaScript"
+  },
+  "./lib/webhook-egress.js": {
+    "blank": 7,
+    "comment": 21,
+    "code": 14,
+    "language": "JavaScript"
+  },
+  "./test/dovecot/listener-settings.js": {
+    "blank": 3,
+    "comment": 7,
+    "code": 14,
+    "language": "JavaScript"
+  },
+  "./views/config/service-preview.hbs": {
+    "blank": 1,
+    "comment": 2,
+    "code": 14,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/code-block.hbs": {
+    "blank": 0,
+    "comment": 12,
+    "code": 14,
+    "language": "Handlebars"
+  },
+  "./.github/dependabot.yml": {
+    "blank": 1,
+    "comment": 8,
+    "code": 13,
+    "language": "YAML"
+  },
+  "./lib/email-client/imap/login-failure.js": {
+    "blank": 7,
+    "comment": 32,
+    "code": 13,
+    "language": "JavaScript"
+  },
+  "./lib/get-secret.js": {
+    "blank": 6,
+    "comment": 0,
+    "code": 13,
+    "language": "JavaScript"
+  },
+  "./lib/lua/ee-list-remove.lua": {
+    "blank": 8,
+    "comment": 16,
+    "code": 13,
+    "language": "Lua"
+  },
+  "./lib/lua/z-get-mailbox-id.lua": {
+    "blank": 10,
+    "comment": 19,
+    "code": 13,
+    "language": "Lua"
+  },
+  "./lib/lua/z-get.lua": {
+    "blank": 9,
+    "comment": 16,
+    "code": 13,
+    "language": "Lua"
+  },
+  "./lib/ui-routes/special-use-paths.js": {
+    "blank": 4,
+    "comment": 16,
+    "code": 13,
+    "language": "JavaScript"
+  },
+  "./views/accounts/index.hbs": {
+    "blank": 4,
+    "comment": 0,
+    "code": 13,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/schema.hbs": {
+    "blank": 0,
+    "comment": 6,
+    "code": 13,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/secret-field.hbs": {
+    "blank": 0,
+    "comment": 24,
+    "code": 13,
+    "language": "Handlebars"
+  },
+  "./.github/contributing.md": {
+    "blank": 5,
+    "comment": 0,
+    "code": 12,
+    "language": "Markdown"
+  },
+  "./.ncurc.js": {
+    "blank": 0,
+    "comment": 71,
+    "code": 12,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/tls-options.js": {
+    "blank": 4,
+    "comment": 12,
+    "code": 12,
+    "language": "JavaScript"
+  },
+  "./lib/lua/h-set-new-mark.lua": {
+    "blank": 6,
+    "comment": 18,
+    "code": 12,
+    "language": "Lua"
+  },
+  "./test/helpers/walk-json.js": {
+    "blank": 3,
+    "comment": 3,
+    "code": 12,
+    "language": "JavaScript"
+  },
+  "./views/config/oauth/edit.hbs": {
+    "blank": 4,
+    "comment": 0,
+    "code": 12,
+    "language": "Handlebars"
+  },
+  "./views/partials/public_alerts.hbs": {
+    "blank": 0,
+    "comment": 3,
+    "code": 12,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/details.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 12,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/state-badge.hbs": {
+    "blank": 0,
+    "comment": 15,
+    "code": 12,
+    "language": "Handlebars"
+  },
+  "./views/templates/edit.hbs": {
+    "blank": 5,
+    "comment": 1,
+    "code": 12,
+    "language": "Handlebars"
+  },
+  "./lib/address-strategies.js": {
+    "blank": 3,
+    "comment": 4,
+    "code": 11,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/unselect.js": {
+    "blank": 3,
+    "comment": 0,
+    "code": 11,
+    "language": "JavaScript"
+  },
+  "./lib/lua/ee-export-queue-add.lua": {
+    "blank": 9,
+    "comment": 19,
+    "code": 11,
+    "language": "Lua"
+  },
+  "./lib/lua/h-del-if-equals.lua": {
+    "blank": 9,
+    "comment": 19,
+    "code": 11,
+    "language": "Lua"
+  },
+  "./lib/lua/z-set.lua": {
+    "blank": 9,
+    "comment": 19,
+    "code": 11,
+    "language": "Lua"
+  },
+  "./lib/oauth/retry-setup.js": {
+    "blank": 3,
+    "comment": 24,
+    "code": 11,
+    "language": "JavaScript"
+  },
+  "./release-please-config.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 11,
+    "language": "JSON"
+  },
+  "./test/helpers/http-proxy-worker.js": {
+    "blank": 3,
+    "comment": 4,
+    "code": 11,
+    "language": "JavaScript"
+  },
+  "./views/config/oauth/new.hbs": {
+    "blank": 4,
+    "comment": 0,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./views/index.hbs": {
+    "blank": 3,
+    "comment": 0,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./views/partials/theme_init.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/btn.hbs": {
+    "blank": 0,
+    "comment": 30,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/choice-tabs.hbs": {
+    "blank": 0,
+    "comment": 21,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./views/webhooks/edit.hbs": {
+    "blank": 6,
+    "comment": 1,
+    "code": 11,
+    "language": "Handlebars"
+  },
+  "./.github/ISSUE_TEMPLATE/report-an-issue.md": {
+    "blank": 3,
+    "comment": 0,
+    "code": 10,
+    "language": "Markdown"
+  },
+  "./lib/api-routes/route-metadata.js": {
+    "blank": 6,
+    "comment": 32,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/capability.js": {
+    "blank": 3,
+    "comment": 0,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/namespace.js": {
+    "blank": 3,
+    "comment": 1,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/upstream-client.js": {
+    "blank": 5,
+    "comment": 23,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./lib/lua/ee-list-add.lua": {
+    "blank": 8,
+    "comment": 16,
+    "code": 10,
+    "language": "Lua"
+  },
+  "./lib/lua/h-set-if-equals.lua": {
+    "blank": 9,
+    "comment": 20,
+    "code": 10,
+    "language": "Lua"
+  },
+  "./lib/mcp/index.js": {
+    "blank": 5,
+    "comment": 13,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./lib/utils/severity.js": {
+    "blank": 4,
+    "comment": 17,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./test/helpers/mock-logger.js": {
+    "blank": 4,
+    "comment": 4,
+    "code": 10,
+    "language": "JavaScript"
+  },
+  "./views/partials/gmail_api_scopes.hbs": {
+    "blank": 1,
+    "comment": 5,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/partials/oauth_graph_endpoints.hbs": {
+    "blank": 0,
+    "comment": 2,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/card.hbs": {
+    "blank": 0,
+    "comment": 16,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/entity-id.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/tooltip.hbs": {
+    "blank": 0,
+    "comment": 17,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/templates/new.hbs": {
+    "blank": 5,
+    "comment": 1,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./views/webhooks/new.hbs": {
+    "blank": 6,
+    "comment": 1,
+    "code": 10,
+    "language": "Handlebars"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/check.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 9,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/commands/noop.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 9,
+    "language": "JavaScript"
+  },
+  "./lib/imapproxy/imap-core/lib/handler/imap-handler.js": {
+    "blank": 2,
+    "comment": 0,
+    "code": 9,
+    "language": "JavaScript"
+  },
+  "./lib/lua/h-set-exists.lua": {
+    "blank": 7,
+    "comment": 13,
+    "code": 9,
+    "language": "Lua"
+  },
+  "./lib/lua/h-set-new.lua": {
+    "blank": 7,
+    "comment": 13,
+    "code": 9,
+    "language": "Lua"
+  },
+  "./lib/ui-routes/oauth-form-context.js": {
+    "blank": 2,
+    "comment": 8,
+    "code": 9,
+    "language": "JavaScript"
+  },
+  "./lib/utils/unsafe-key.js": {
+    "blank": 5,
+    "comment": 45,
+    "code": 9,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/main-6.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 9,
+    "language": "SVG"
+  },
+  "./static/js/ace/css/main-8.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 9,
+    "language": "SVG"
+  },
+  "./views/partials/reference/disclosure.hbs": {
+    "blank": 3,
+    "comment": 31,
+    "code": 9,
+    "language": "Handlebars"
+  },
+  "./.prettierrc.js": {
+    "blank": 0,
+    "comment": 0,
+    "code": 8,
+    "language": "JavaScript"
+  },
+  "./lib/email-client/imap/detach-client.js": {
+    "blank": 3,
+    "comment": 16,
+    "code": 8,
+    "language": "JavaScript"
+  },
+  "./lib/lua/ee-release-attempts.lua": {
+    "blank": 5,
+    "comment": 10,
+    "code": 8,
+    "language": "Lua"
+  },
+  "./lib/lua/h-incrby-exists.lua": {
+    "blank": 7,
+    "comment": 13,
+    "code": 8,
+    "language": "Lua"
+  },
+  "./test/helpers/fatal-probe.js": {
+    "blank": 5,
+    "comment": 7,
+    "code": 8,
+    "language": "JavaScript"
+  },
+  "./test/helpers/pkce.js": {
+    "blank": 4,
+    "comment": 2,
+    "code": 8,
+    "language": "JavaScript"
+  },
+  "./views/partials/gateway_form.hbs": {
+    "blank": 7,
+    "comment": 3,
+    "code": 8,
+    "language": "Handlebars"
+  },
+  "./views/partials/public_test_labels.hbs": {
+    "blank": 1,
+    "comment": 6,
+    "code": 8,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/alert-banner.hbs": {
+    "blank": 0,
+    "comment": 16,
+    "code": 8,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/search-input.hbs": {
+    "blank": 0,
+    "comment": 23,
+    "code": 8,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/section-title.hbs": {
+    "blank": 0,
+    "comment": 9,
+    "code": 8,
+    "language": "Handlebars"
+  },
+  "./prepare-bundle-deps.sh": {
+    "blank": 3,
+    "comment": 18,
+    "code": 7,
+    "language": "Bourne Shell"
+  },
+  "./static/js/ace/css/main-5.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 7,
+    "language": "SVG"
+  },
+  "./static/js/ace/css/main-7.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 7,
+    "language": "SVG"
+  },
+  "./static/js/ace/ext-language_tools.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/ext-searchbox.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/mode-handlebars.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/mode-html.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/mode-javascript.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/mode-json.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/mode-markdown.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/snippets/javascript.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/snippets/markdown.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/theme-kuroir.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/theme-tomorrow_night.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/theme-tomorrow_night_eighties.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/theme-xcode.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 7,
+    "language": "JavaScript"
+  },
+  "./views/partials/editor_scope_info.hbs": {
+    "blank": 0,
+    "comment": 1,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./views/partials/head_assets.hbs": {
+    "blank": 2,
+    "comment": 3,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/delete-modal.hbs": {
+    "blank": 0,
+    "comment": 19,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/empty-state.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/env-managed-alert.hbs": {
+    "blank": 0,
+    "comment": 12,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/tooltip-rich.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 7,
+    "language": "Handlebars"
+  },
+  "./lib/create-imap-client.js": {
+    "blank": 4,
+    "comment": 14,
+    "code": 6,
+    "language": "JavaScript"
+  },
+  "./lib/parse-message.js": {
+    "blank": 4,
+    "comment": 11,
+    "code": 6,
+    "language": "JavaScript"
+  },
+  "./lib/submit-progress.js": {
+    "blank": 3,
+    "comment": 20,
+    "code": 6,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/css/main-9.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 6,
+    "language": "SVG"
+  },
+  "./views/partials/ace_assets.hbs": {
+    "blank": 0,
+    "comment": 7,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/mcp_access_levels.hbs": {
+    "blank": 0,
+    "comment": 14,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/schema-tools.hbs": {
+    "blank": 3,
+    "comment": 16,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/choice-tab.hbs": {
+    "blank": 0,
+    "comment": 17,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/clear-alert.hbs": {
+    "blank": 0,
+    "comment": 13,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/copy-btn.hbs": {
+    "blank": 0,
+    "comment": 13,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/copy-field.hbs": {
+    "blank": 0,
+    "comment": 14,
+    "code": 6,
+    "language": "Handlebars"
+  },
+  "./lib/utils/to-camel-case.js": {
+    "blank": 3,
+    "comment": 9,
+    "code": 5,
+    "language": "JavaScript"
+  },
+  "./test/helpers/hbs-comments.js": {
+    "blank": 3,
+    "comment": 6,
+    "code": 5,
+    "language": "JavaScript"
+  },
+  "./views/license.hbs": {
+    "blank": 2,
+    "comment": 0,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./views/partials/oauth_config_header.hbs": {
+    "blank": 0,
+    "comment": 3,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./views/partials/security_header.hbs": {
+    "blank": 1,
+    "comment": 0,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/account-picker.hbs": {
+    "blank": 3,
+    "comment": 25,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/model-picker.hbs": {
+    "blank": 2,
+    "comment": 24,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/row-link.hbs": {
+    "blank": 0,
+    "comment": 12,
+    "code": 5,
+    "language": "Handlebars"
+  },
+  "./static/js/ace/css/main-10.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 4,
+    "language": "SVG"
+  },
+  "./static/js/ace/css/main-11.svg": {
+    "blank": 1,
+    "comment": 0,
+    "code": 4,
+    "language": "SVG"
+  },
+  "./static/js/ace/css/main-12.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 4,
+    "language": "SVG"
+  },
+  "./views/partials/oauth_tabs.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 4,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/section-heading.hbs": {
+    "blank": 1,
+    "comment": 11,
+    "code": 4,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/badge.hbs": {
+    "blank": 0,
+    "comment": 17,
+    "code": 4,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/detail-toolbar.hbs": {
+    "blank": 0,
+    "comment": 17,
+    "code": 4,
+    "language": "Handlebars"
+  },
+  "./.release-please-manifest.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 3,
+    "language": "JSON"
+  },
+  "./lib/imapproxy/imap-core/index.js": {
+    "blank": 1,
+    "comment": 0,
+    "code": 3,
+    "language": "JavaScript"
+  },
+  "./lib/lua/z-get-mailbox-path.lua": {
+    "blank": 5,
+    "comment": 12,
+    "code": 3,
+    "language": "Lua"
+  },
+  "./static/robots.txt": {
+    "blank": 1,
+    "comment": 0,
+    "code": 3,
+    "language": "Text"
+  },
+  "./test/e2e/helpers/ethereal.js": {
+    "blank": 3,
+    "comment": 5,
+    "code": 3,
+    "language": "JavaScript"
+  },
+  "./views/account/login-redirect.hbs": {
+    "blank": 5,
+    "comment": 15,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./views/partials/mcp_account_limit.hbs": {
+    "blank": 0,
+    "comment": 11,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./views/partials/mcp_tool_count.hbs": {
+    "blank": 1,
+    "comment": 16,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/search-crumb.hbs": {
+    "blank": 0,
+    "comment": 9,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/setting-ref.hbs": {
+    "blank": 0,
+    "comment": 23,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/tabs.hbs": {
+    "blank": 0,
+    "comment": 20,
+    "code": 3,
+    "language": "Handlebars"
+  },
+  "./lib/enum-message-flags.js": {
+    "blank": 2,
+    "comment": 2,
+    "code": 2,
+    "language": "JavaScript"
+  },
+  "./test/fixtures/security-headers/page.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 2,
+    "language": "Handlebars"
+  },
+  "./sbom.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "JSON"
+  },
+  "./static/css/flyonui.css": {
+    "blank": 0,
+    "comment": 1,
+    "code": 1,
+    "language": "CSS"
+  },
+  "./static/css/highlight.min.css": {
+    "blank": 1,
+    "comment": 9,
+    "code": 1,
+    "language": "CSS"
+  },
+  "./static/js/ace/README.txt": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Text"
+  },
+  "./static/js/ace/css/main-25.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "SVG"
+  },
+  "./static/js/ace/worker-html.js": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/worker-javascript.js": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "JavaScript"
+  },
+  "./static/js/ace/worker-json.js": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "JavaScript"
+  },
+  "./static/providers/ms_dark.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "SVG"
+  },
+  "./static/providers/ms_light.svg": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "SVG"
+  },
+  "./static/vendor/simplewebauthn/browser.min.js": {
+    "blank": 0,
+    "comment": 1,
+    "code": 1,
+    "language": "JavaScript"
+  },
+  "./test/fixtures/security-headers/layout/app.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./test/fixtures/security-headers/layout/public.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/accounts_header.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/gateways_header.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/reference/anchor-link.hbs": {
+    "blank": 2,
+    "comment": 17,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/templates_header.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/tokens_header.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/menu-title.hbs": {
+    "blank": 0,
+    "comment": 5,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/ui/tab.hbs": {
+    "blank": 0,
+    "comment": 18,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/partials/webhooks_header.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "./views/redirect.hbs": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1,
+    "language": "Handlebars"
+  },
+  "SUM": {
+    "blank": 35578,
+    "comment": 36954,
+    "code": 226083,
+    "nFiles": 947
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "header": {
+    "cloc_url": "github.com/AlDanial/cloc",
+    "cloc_version": "2.06",
+    "elapsed_seconds": 0.0574851036071777,
+    "n_files": 54,
+    "n_lines": 12990,
+    "files_per_second": 939.373796192609,
+    "lines_per_second": 225971.585417444,
+    "report_file": "kadri-cloc.json"
+  },
+  "./package-lock.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 2639,
+    "language": "JSON"
+  },
+  "./conformance/report.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 1705,
+    "language": "JSON"
+  },
+  "./src/sync.ts": {
+    "blank": 57,
+    "comment": 33,
+    "code": 773,
+    "language": "TypeScript"
+  },
+  "./test/scenarios.mjs": {
+    "blank": 9,
+    "comment": 29,
+    "code": 684,
+    "language": "JavaScript"
+  },
+  "./spec/event-payloads.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 563,
+    "language": "JSON"
+  },
+  "./src/store.ts": {
+    "blank": 27,
+    "comment": 36,
+    "code": 560,
+    "language": "TypeScript"
+  },
+  "./src/imap.ts": {
+    "blank": 41,
+    "comment": 34,
+    "code": 389,
+    "language": "TypeScript"
+  },
+  "./spec/account-config.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 327,
+    "language": "JSON"
+  },
+  "./src/jmap.ts": {
+    "blank": 31,
+    "comment": 13,
+    "code": 307,
+    "language": "TypeScript"
+  },
+  "./spec/action-params.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 296,
+    "language": "JSON"
+  },
+  "./src/schema.ts": {
+    "blank": 33,
+    "comment": 18,
+    "code": 284,
+    "language": "TypeScript"
+  },
+  "./src/api.ts": {
+    "blank": 15,
+    "comment": 13,
+    "code": 217,
+    "language": "TypeScript"
+  },
+  "./src/gmail.ts": {
+    "blank": 26,
+    "comment": 10,
+    "code": 212,
+    "language": "TypeScript"
+  },
+  "./src/mcp.ts": {
+    "blank": 14,
+    "comment": 9,
+    "code": 203,
+    "language": "TypeScript"
+  },
+  "./README.md": {
+    "blank": 74,
+    "comment": 0,
+    "code": 192,
+    "language": "Markdown"
+  },
+  "./test/conformance.mjs": {
+    "blank": 12,
+    "comment": 15,
+    "code": 191,
+    "language": "JavaScript"
+  },
+  "./test/targets.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 188,
+    "language": "JSON"
+  },
+  "./test/mock-graph.mjs": {
+    "blank": 7,
+    "comment": 8,
+    "code": 181,
+    "language": "JavaScript"
+  },
+  "./src/graph.ts": {
+    "blank": 22,
+    "comment": 12,
+    "code": 175,
+    "language": "TypeScript"
+  },
+  "./src/inbound.ts": {
+    "blank": 19,
+    "comment": 6,
+    "code": 164,
+    "language": "TypeScript"
+  },
+  "./test/mock-gmail.mjs": {
+    "blank": 6,
+    "comment": 5,
+    "code": 147,
+    "language": "JavaScript"
+  },
+  "./conformance/REPORT.md": {
+    "blank": 50,
+    "comment": 0,
+    "code": 128,
+    "language": "Markdown"
+  },
+  "./src/threading.ts": {
+    "blank": 13,
+    "comment": 17,
+    "code": 122,
+    "language": "TypeScript"
+  },
+  "./spec/capabilities.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 99,
+    "language": "JSON"
+  },
+  "./test/mcp-smoke.mjs": {
+    "blank": 13,
+    "comment": 3,
+    "code": 94,
+    "language": "JavaScript"
+  },
+  "./spec/token.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 91,
+    "language": "JSON"
+  },
+  "./src/scope.ts": {
+    "blank": 10,
+    "comment": 11,
+    "code": 80,
+    "language": "TypeScript"
+  },
+  "./src/oauth.ts": {
+    "blank": 7,
+    "comment": 6,
+    "code": 75,
+    "language": "TypeScript"
+  },
+  "./src/api.test.ts": {
+    "blank": 5,
+    "comment": 0,
+    "code": 74,
+    "language": "TypeScript"
+  },
+  "./test/mcp-isolation.mjs": {
+    "blank": 1,
+    "comment": 2,
+    "code": 73,
+    "language": "JavaScript"
+  },
+  "./src/oauth.test.ts": {
+    "blank": 3,
+    "comment": 0,
+    "code": 66,
+    "language": "TypeScript"
+  },
+  "./test/mock-mail.mjs": {
+    "blank": 6,
+    "comment": 7,
+    "code": 63,
+    "language": "JavaScript"
+  },
+  "./test/oauth.mjs": {
+    "blank": 6,
+    "comment": 12,
+    "code": 59,
+    "language": "JavaScript"
+  },
+  "./src/adapter.ts": {
+    "blank": 5,
+    "comment": 31,
+    "code": 58,
+    "language": "TypeScript"
+  },
+  "./src/threading.test.ts": {
+    "blank": 8,
+    "comment": 0,
+    "code": 54,
+    "language": "TypeScript"
+  },
+  "./test/idle-probe.mjs": {
+    "blank": 5,
+    "comment": 5,
+    "code": 53,
+    "language": "JavaScript"
+  },
+  "./test/seed.mjs": {
+    "blank": 4,
+    "comment": 4,
+    "code": 42,
+    "language": "JavaScript"
+  },
+  "./package.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 37,
+    "language": "JSON"
+  },
+  "./spec/event.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 36,
+    "language": "JSON"
+  },
+  "./src/index.ts": {
+    "blank": 6,
+    "comment": 2,
+    "code": 35,
+    "language": "TypeScript"
+  },
+  "./spec/action-request.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 34,
+    "language": "JSON"
+  },
+  "./test/stalwart-setup.mjs": {
+    "blank": 4,
+    "comment": 5,
+    "code": 30,
+    "language": "JavaScript"
+  },
+  "./src/store.test.ts": {
+    "blank": 5,
+    "comment": 0,
+    "code": 29,
+    "language": "TypeScript"
+  },
+  "./test/stalwart-oauth.mjs": {
+    "blank": 2,
+    "comment": 6,
+    "code": 29,
+    "language": "JavaScript"
+  },
+  "./spec/publish-request.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 26,
+    "language": "JSON"
+  },
+  "./test/events.mjs": {
+    "blank": 1,
+    "comment": 1,
+    "code": 23,
+    "language": "JavaScript"
+  },
+  "./docker-compose.yml": {
+    "blank": 0,
+    "comment": 5,
+    "code": 22,
+    "language": "YAML"
+  },
+  "./CONTRIBUTING.md": {
+    "blank": 10,
+    "comment": 0,
+    "code": 20,
+    "language": "Markdown"
+  },
+  "./scripts/export-schema.mjs": {
+    "blank": 2,
+    "comment": 3,
+    "code": 20,
+    "language": "JavaScript"
+  },
+  "./test/repro-flag-then-append.mjs": {
+    "blank": 1,
+    "comment": 2,
+    "code": 20,
+    "language": "JavaScript"
+  },
+  "./test/smoke.mjs": {
+    "blank": 3,
+    "comment": 4,
+    "code": 17,
+    "language": "JavaScript"
+  },
+  "./Dockerfile": {
+    "blank": 1,
+    "comment": 1,
+    "code": 15,
+    "language": "Dockerfile"
+  },
+  "./SECURITY.md": {
+    "blank": 7,
+    "comment": 0,
+    "code": 15,
+    "language": "Markdown"
+  },
+  "./tsconfig.json": {
+    "blank": 0,
+    "comment": 0,
+    "code": 15,
+    "language": "JSON"
+  },
+  "SUM": {
+    "blank": 571,
+    "comment": 368,
+    "code": 12051,
+    "nFiles": 54
+  }
+}

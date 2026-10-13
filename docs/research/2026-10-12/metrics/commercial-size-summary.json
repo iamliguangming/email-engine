@@ -1,0 +1,38 @@
+{
+  "other": {
+    "files": 79,
+    "code": 50277,
+    "comment": 2437,
+    "blank": 3048
+  },
+  "static_all": {
+    "files": 56,
+    "code": 16846,
+    "comment": 1823,
+    "blank": 2338
+  },
+  "backend_js_lua": {
+    "files": 240,
+    "code": 70428,
+    "comment": 20236,
+    "blank": 13572
+  },
+  "bundled_imap_core_all": {
+    "files": 74,
+    "code": 17833,
+    "comment": 1479,
+    "blank": 2114
+  },
+  "test_js": {
+    "files": 330,
+    "code": 59085,
+    "comment": 9042,
+    "blank": 12351
+  },
+  "views": {
+    "files": 168,
+    "code": 11614,
+    "comment": 1937,
+    "blank": 2155
+  }
+}

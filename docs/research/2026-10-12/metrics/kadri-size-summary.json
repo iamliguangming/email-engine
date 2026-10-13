@@ -1,0 +1,26 @@
+{
+  "other": {
+    "files": 20,
+    "code": 6468,
+    "comment": 9,
+    "blank": 144
+  },
+  "production_ts": {
+    "files": 15,
+    "code": 3654,
+    "comment": 251,
+    "blank": 326
+  },
+  "test_js": {
+    "files": 15,
+    "code": 1706,
+    "comment": 108,
+    "blank": 80
+  },
+  "unit_tests": {
+    "files": 4,
+    "code": 223,
+    "comment": 0,
+    "blank": 21
+  }
+}

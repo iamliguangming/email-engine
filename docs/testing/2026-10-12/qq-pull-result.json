@@ -1,0 +1,34 @@
+{
+  "mailbox": "redacted@qq.com",
+  "range": {
+    "from": "2026-10-05T08:20:25.816833+00:00",
+    "to": "2026-10-12T08:20:25.816833+00:00"
+  },
+  "operation_id": "645e901a-dbfe-4e42-a61d-3032e8d53261",
+  "count": 13,
+  "body_checks": [
+    {
+      "id": "302a02926d6790c7fa6ff99bdb6c4758fc3da05f922c9dc329aefd87dbca6e79",
+      "text_characters": 597,
+      "attachments": 0,
+      "truncated": false
+    },
+    {
+      "id": "8b0a064411c196c913eba203330059d87220a45f9c26c75bbc9040698a5703ba",
+      "text_characters": 989,
+      "attachments": 0,
+      "truncated": false
+    },
+    {
+      "id": "910991685744542bcf1c4ce0a5eaca1d17235b503768d1112a2ed9289a93b687",
+      "text_characters": 7546,
+      "attachments": 0,
+      "truncated": false
+    }
+  ],
+  "pages": 3,
+  "idempotency_same_operation": true,
+  "ai_enabled": false,
+  "continuous": false,
+  "redaction_note": "Mailbox address redacted for public handoff; measurements unchanged."
+}

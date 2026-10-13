@@ -1,18 +1,33 @@
 # email-engine
 
+## PinTalent 独立邮件收件服务
+
+新增 `npm run start:mail`：PostgreSQL + pg-boss，支持个人多邮箱、项目绑定、时间区间拉取、规则/AI 推荐和人工选择后交付。使用原 Kadri 邮箱适配器，独立于下方旧 SQLite 入口。
+
+- [业务背景、核心接口与测试交接](docs/mail-service-test-handoff.md)
+- [使用、行为与聘钉接入契约](docs/mail-intake.md)
+- [OpenAPI 快照](docs/mail-api.openapi.json)，运行时 `/openapi.json`
+- 本地部署：`docker compose --env-file .env.mail -f compose.mail.yml up -d --build`，先按 `.env.mail.example` 配置。
+- 本轮交付独立服务；聘钉页面、真实积分及候选人入库的接入另行验收。
+
 ## Fork baseline
 
 This fork retains the Apache-2.0 upstream baseline at `f2f4bac6e86d39aed105f21486da37e589537d12`.
-The `codex/mail-sync-foundation` branch adds scoped-query and credential-rotation fixes;
+The `codex/mail-sync-foundation` branch adds scoped-query and credential-rotation fixes,
+and the independent PostgreSQL mail-intake service described above;
 `main` remains the upstream baseline. This is an experimental foundation, not a production release.
 
 Run `npm test`, `node test/mcp-isolation.mjs`, and
 `node test/conformance.mjs gmail-mock graph-mock` for the local regression suites.
-These use synthetic mail and mock providers. Live-provider validation, Gmail attachment indicators,
-account lifecycle APIs, message pagination, body caching, and application-level project authorization
-remain unfinished. No PinTalent integration is included in this branch.
+These baseline suites use synthetic mail and mock providers. The new `src/mail/` service additionally
+has PostgreSQL/pg-boss integration tests and a recorded real QQ IMAP trial. See the handoff for exact
+coverage and remaining gaps. PinTalent UI, production FastMCP, real billing/import integration,
+and generic event webhook delivery are not yet included.
 
 ## Upstream overview
+
+The following describes the retained upstream entry point, not the new mail-intake service.
+Its SSE, webhook, IDLE and send capabilities must not be assumed available through `src/mail/`.
 
 A self-hosted engine that turns any mailbox into one ordered event stream, with safe, reversible actions. Plug in IMAP today, JMAP and the Gmail and Microsoft APIs next, and every app or AI agent on the other side sees the same seven events and the same twelve actions. Think of it as USB for email.
 

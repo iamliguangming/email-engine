@@ -1,0 +1,54 @@
+{
+  "marker": "PINTALENT-EVENT-3788b1e8fabf",
+  "message_id": "db98b8be4392740aaac723e8aed3065b457764236325b701f446bc6fadbd8f8c",
+  "body_marker_matches": true,
+  "events": [
+    {
+      "sequence": "16",
+      "event_id": "05da375a-3ff0-46a6-bc69-1d72f8b640f5",
+      "tenant": "local-mail-test",
+      "owner_id": "qq-mail-owner",
+      "project_id": "qq-retrieval-test",
+      "type": "mail.discovered",
+      "payload": {
+        "origin": "live",
+        "binding_id": "5fa81e98-43b5-47e8-94b3-61e0f4df7900",
+        "message_id": "db98b8be4392740aaac723e8aed3065b457764236325b701f446bc6fadbd8f8c",
+        "operation_id": "99031884-8840-426f-b0c2-a7033941c7f1"
+      },
+      "created_at": "2026-10-12T08:25:30.464Z"
+    },
+    {
+      "sequence": "17",
+      "event_id": "b9eb747a-8ffc-4313-874e-236b7742b60a",
+      "tenant": "local-mail-test",
+      "owner_id": "qq-mail-owner",
+      "project_id": "qq-retrieval-test",
+      "type": "import.completed",
+      "payload": {
+        "indexed": 1,
+        "binding_id": "5fa81e98-43b5-47e8-94b3-61e0f4df7900",
+        "operation_id": "99031884-8840-426f-b0c2-a7033941c7f1"
+      },
+      "created_at": "2026-10-12T08:25:30.464Z"
+    },
+    {
+      "sequence": "18",
+      "event_id": "59c17d20-ecbb-4a5a-a2f4-0a597738ee6a",
+      "tenant": "local-mail-test",
+      "owner_id": "qq-mail-owner",
+      "project_id": "qq-retrieval-test",
+      "type": "import.completed",
+      "payload": {
+        "indexed": 1,
+        "binding_id": "5fa81e98-43b5-47e8-94b3-61e0f4df7900",
+        "operation_id": "bdeb7c86-0edc-4728-9bbf-f5029f30b821"
+      },
+      "created_at": "2026-10-12T08:26:29.651Z"
+    }
+  ],
+  "webhook_implemented": false,
+  "discovery_event_count": 1,
+  "second_sync_dedup_passed": true,
+  "gmail_send_id": "1a12f36e2ef2785b"
+}
