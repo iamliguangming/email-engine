@@ -216,6 +216,15 @@ export function mailApi(
   app.post("/v1/bindings/:id/rematch", async (c) =>
     c.json(await service.rematch(who(c), c.req.param("id"), key(c)), 202),
   );
+  app.delete("/v1/bindings/:id", async (c) =>
+    c.json(
+      await service.removeBinding(
+        who(c),
+        c.req.param("id"),
+        await c.req.json(),
+      ),
+    ),
+  );
   app.delete("/v1/mailboxes/:id", async (c) => {
     const { version } = z
       .object({ version: z.number().int().positive() })

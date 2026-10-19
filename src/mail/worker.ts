@@ -547,7 +547,18 @@ export class MailWorker {
       const bindings = (
         await c.query(`SELECT b.* FROM mail_bindings b JOIN mail_principals p ON p.tenant=b.tenant AND p.user_id=b.owner_id
         WHERE b.enabled AND b.continuous AND p.enabled AND p.projects->>b.project_id='write'
-        AND NOT EXISTS(SELECT 1 FROM mail_operations o WHERE o.binding_id=b.id AND o.input->>'origin'='live' AND o.status IN ('queued','running','retrying','failed') AND (o.status<>'failed' OR (o.input->>'version')::integer=b.version))
+        AND NOT EXISTS(
+          SELECT 1 FROM mail_operations o
+          WHERE o.binding_id=b.id AND o.input->>'origin'='live'
+            AND (
+              o.status IN ('queued','running','retrying')
+              OR (
+                o.status='failed'
+                AND (o.input->>'version')::integer=b.version
+                AND o.updated_at > now() - interval '10 minutes'
+              )
+            )
+        )
         FOR UPDATE OF b SKIP LOCKED`)
       ).rows;
       for (const b of bindings) {

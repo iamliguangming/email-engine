@@ -123,7 +123,7 @@ test(
       async close() {},
     });
     const gateway = async (
-      kind: "match" | "import",
+      kind: "match" | "import" | "events",
       key: string,
       payload: any,
     ) => {
@@ -859,6 +859,76 @@ test(
             await client.close();
             await new Promise<void>((r) => server.close(() => r()));
           }
+        },
+      );
+      await t.test(
+        "delete binding keeps the mailbox and messages but removes the relationship",
+        async () => {
+          const current = await req(`/v1/bindings/${binding}`, human);
+          assert.equal(current.status, 200);
+          const version = current.body.version;
+          assert.equal(
+            (
+              await req(`/v1/bindings/${binding}`, human, "DELETE", {
+                version: version + 1,
+              })
+            ).status,
+            409,
+          );
+          assert.equal(
+            (
+              await req(`/v1/bindings/${binding}`, other, "DELETE", {
+                version,
+              })
+            ).status,
+            404,
+          );
+          const removed = await req(
+            `/v1/bindings/${binding}`,
+            human,
+            "DELETE",
+            { version },
+          );
+          assert.equal(removed.status, 200);
+          assert.deepEqual(removed.body, {
+            id: binding,
+            status: "deleted",
+          });
+          assert.equal(
+            (await req(`/v1/bindings/${binding}`, human)).status,
+            404,
+          );
+          const counts = await db.pool.query(
+            `SELECT
+               (SELECT count(*) FROM mail_items WHERE binding_id=$1)::int AS items,
+               (SELECT count(*) FROM mail_selections WHERE binding_id=$1)::int AS selections,
+               (SELECT count(*) FROM mail_operations WHERE binding_id=$1)::int AS operations,
+               (SELECT count(*) FROM mail_bindings WHERE id=$1)::int AS bindings,
+               (SELECT count(*) FROM mail_messages WHERE account_id=$2)::int AS messages`,
+            [binding, mailbox],
+          );
+          assert.equal(counts.rows[0].items, 0);
+          assert.equal(counts.rows[0].selections, 0);
+          assert.equal(counts.rows[0].operations, 0);
+          assert.equal(counts.rows[0].bindings, 0);
+          assert.ok(counts.rows[0].messages >= 3);
+          assert.equal(
+            (await req(`/v1/mailboxes/${mailbox}`, human)).status,
+            200,
+          );
+          const rebound = await req(
+            "/v1/bindings",
+            human,
+            "POST",
+            {
+              mailbox_id: mailbox,
+              project_id: "p1",
+              folders: ["INBOX"],
+              matching: { mode: "manual" },
+            },
+            "bind-again",
+          );
+          assert.equal(rebound.status, 201);
         },
       );
     } finally {

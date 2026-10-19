@@ -4,6 +4,7 @@
 // Everything above this file sees folders, messages, flags and refs only.
 import { ImapFlow, type FetchMessageObject, type FetchQueryObject, type MessageStructureObject } from "imapflow";
 import { OAuthClient } from "./oauth.js";
+import { decodeText } from "./mail/charset.js";
 import nodemailer from "nodemailer";
 import { roleFromName, type MailRange, type RangePage, type Adapter, type RemoteFolder, type RemoteMessage, type SyncSink } from "./adapter.js";
 import type { Address, Capabilities, Flags, FolderRole, ImapAccountConfig } from "./schema.js";
@@ -100,11 +101,11 @@ export function snippetFrom(raw: Buffer | undefined, structure: MessageStructure
   let text: string;
   if (enc === "base64") {
     const s = raw.toString("ascii").replace(/[^A-Za-z0-9+/=]/g, "");
-    text = Buffer.from(s.slice(0, s.length - (s.length % 4)), "base64").toString("utf8");
+    text = decodeText(Buffer.from(s.slice(0, s.length - (s.length % 4)), "base64"), charset);
   } else {
     const latin = raw.toString("latin1");
     const decoded = enc === "quoted-printable" ? decodeQP(latin) : latin;
-    text = charset.startsWith("utf") ? Buffer.from(decoded, "latin1").toString("utf8") : decoded;
+    text = decodeText(Buffer.from(decoded, "latin1"), charset);
   }
   if (String(node?.type ?? "").toLowerCase() === "text/html") {
     text = text.replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/gi, "").replace(/<[^>]+>/g, " ");

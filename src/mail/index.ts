@@ -6,6 +6,7 @@ import { MailWorker } from "./worker.js";
 import { mailApi } from "./api.js";
 import { ConnectionSessions } from "./oauth.js";
 import { httpGateway } from "./gateway.js";
+import { startWebhookDelivery } from "./webhook.js";
 const required = (name: string) => {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is required`);
@@ -66,6 +67,7 @@ if (role !== "worker") {
   });
 }
 if (role !== "api") await worker.start();
+if (role !== "api" && base) await startWebhookDelivery(db, gateway);
 console.log(JSON.stringify({ service: "mail-intake", role, status: "ready" }));
 let stopping = false;
 const stop = async () => {

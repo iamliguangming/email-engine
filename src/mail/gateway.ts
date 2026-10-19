@@ -1,7 +1,7 @@
 import { createHmac } from "node:crypto";
 import { MailError } from "./contracts.js";
 export type Gateway = (
-  kind: "match" | "import",
+  kind: "match" | "import" | "events",
   key: string,
   payload: object,
 ) => Promise<any>;

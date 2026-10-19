@@ -1,6 +1,7 @@
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
 import { simpleParser } from "mailparser";
+import { textFromParsed } from "./html.js";
 import { GmailAdapter } from "../gmail.js";
 import { GraphAdapter } from "../graph.js";
 import { ImapAdapter } from "../imap.js";
@@ -159,7 +160,7 @@ export function providerFactory(allowPrivate = false): ProviderFactory {
           );
         const body = await simpleParser(raw);
         return {
-          text: body.text ?? "",
+          text: textFromParsed(body),
           attachments: body.attachments.map((a, i) => ({
             filename: a.filename ?? `attachment-${i}`,
             contentType: a.contentType,

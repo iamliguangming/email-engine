@@ -144,6 +144,12 @@ route(
   "BindingUpdate",
 );
 route(
+  "delete",
+  "/v1/bindings/{id}",
+  "Delete the binding relationship and its per-binding mail state; the mailbox is kept",
+  "Version",
+);
+route(
   "post",
   "/v1/bindings/{id}/imports",
   "Pull a UTC half-open receipt-time interval into the review list",

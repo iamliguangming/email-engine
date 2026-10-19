@@ -211,7 +211,12 @@ export class MailService {
   }
   presentAccount(a: any) {
     const { config, ...safe } = a;
-    return safe;
+    try {
+      const parsed = JSON.parse(this.db.cipher.decrypt(config));
+      return { ...safe, username: parsed?.imap?.user ?? null };
+    } catch {
+      return { ...safe, username: null };
+    }
   }
   async createAccount(
     p: Identity,
@@ -381,6 +386,57 @@ export class MailService {
           [id],
         );
       return row;
+    });
+  }
+  async removeBinding(p: Identity, id: string, input: unknown) {
+    if (p.actor !== "human")
+      fail(
+        "human_required",
+        "A user must remove the mailbox-project binding",
+        403,
+      );
+    const { version } = z
+      .object({ version: z.number().int().positive() })
+      .parse(input);
+    await this.binding(p, id, true);
+    return this.db.tx(async (c) => {
+      const b = first(
+        await c.query(
+          "SELECT * FROM mail_bindings WHERE id=$1 AND tenant=$2 AND owner_id=$3 FOR UPDATE",
+          [id, p.tenant, p.user],
+        ),
+      );
+      if (!b) fail("not_found", "Binding not found", 404);
+      requireProject(p, b.project_id, true);
+      if (b.version !== version)
+        fail(
+          "version_conflict",
+          "Binding changed; reload before deleting",
+          409,
+        );
+      const pending = await c.query(
+        "SELECT 1 FROM mail_selections WHERE binding_id=$1 AND status='queued' LIMIT 1",
+        [id],
+      );
+      if (pending.rowCount)
+        fail(
+          "delivery_in_progress",
+          "Wait for pending deliveries before unbinding",
+          409,
+        );
+      await c.query(
+        "UPDATE mail_operations SET status='cancelled' WHERE binding_id=$1 AND status IN ('queued','running','retrying')",
+        [id],
+      );
+      await c.query(
+        "DELETE FROM mail_import_items WHERE operation_id IN (SELECT id FROM mail_operations WHERE binding_id=$1)",
+        [id],
+      );
+      await c.query("DELETE FROM mail_selections WHERE binding_id=$1", [id]);
+      await c.query("DELETE FROM mail_operations WHERE binding_id=$1", [id]);
+      await c.query("DELETE FROM mail_items WHERE binding_id=$1", [id]);
+      await c.query("DELETE FROM mail_bindings WHERE id=$1", [id]);
+      return { id, status: "deleted" };
     });
   }
   async startImport(p: Identity, id: string, input: unknown, key: string) {
