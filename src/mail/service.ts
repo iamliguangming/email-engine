@@ -29,6 +29,8 @@ export const constantEqual = (a: string, b: string) =>
   timingSafeEqual(Buffer.from(hash(a)), Buffer.from(hash(b)));
 const first = (r: any) => r.rows[0];
 export class MailService {
+  private contentLocks = new Map<string, Promise<void>>();
+
   constructor(
     public db: MailDatabase,
     public providers: ProviderFactory,
@@ -539,32 +541,66 @@ export class MailService {
         "Reconnect this mailbox before reading content",
         409,
       );
-    const lock = await this.db.pool.connect();
-    let acquired = false;
-    let provider: MailProvider | undefined;
+    return this.withContentLock(a.id, async () => {
+      const lock = await this.db.pool.connect();
+      let acquired = false;
+      let provider: MailProvider | undefined;
+      try {
+        // Continuous sync/import can hold the mailbox lock for a moment. Wait
+        // briefly so downloading an attachment right after opening a message
+        // does not surface a spurious 409 to the user.
+        const deadline = Date.now() + 8000;
+        while (!acquired) {
+          acquired = first(
+            await lock.query(
+              "SELECT pg_try_advisory_lock(hashtextextended($1,1)) AS locked",
+              [a.id],
+            ),
+          ).locked;
+          if (acquired) break;
+          if (Date.now() >= deadline)
+            throw new MailError(
+              "mailbox_busy",
+              "Mailbox is busy; retry shortly",
+              409,
+              true,
+            );
+          await new Promise(resolve => setTimeout(resolve, 250));
+        }
+        provider = await this.openProvider(a);
+        return await provider.content(m.summary);
+      } finally {
+        if (provider) await provider.close().catch(() => {});
+        if (acquired)
+          await lock.query(
+            "SELECT pg_advisory_unlock(hashtextextended($1,1))",
+            [a.id],
+          );
+        lock.release();
+      }
+    });
+  }
+  private async withContentLock<T>(
+    accountId: string,
+    work: () => Promise<T>,
+  ): Promise<T> {
+    // Keep waiting requests in-process: only one content fetch per account may
+    // hold a pooled connection while the worker owns the mailbox lock.
+    const previous = this.contentLocks.get(accountId) ?? Promise.resolve();
+    let release!: () => void;
+    const current = new Promise<void>(resolve => {
+      release = resolve;
+    });
+    const tail = previous.then(() => current);
+    this.contentLocks.set(accountId, tail);
+    await previous.catch(() => {});
     try {
-      acquired = first(
-        await lock.query(
-          "SELECT pg_try_advisory_lock(hashtextextended($1,1)) AS locked",
-          [a.id],
-        ),
-      ).locked;
-      if (!acquired)
-        throw new MailError(
-          "mailbox_busy",
-          "Mailbox is busy; retry shortly",
-          409,
-          true,
-        );
-      provider = await this.openProvider(a);
-      return await provider.content(m.summary);
+      return await work();
     } finally {
-      if (provider) await provider.close().catch(() => {});
-      if (acquired)
-        await lock.query("SELECT pg_advisory_unlock(hashtextextended($1,1))", [
-          a.id,
-        ]);
-      lock.release();
+      release();
+      if (this.contentLocks.get(accountId) === tail) {
+        this.contentLocks.delete(accountId);
+      }
     }
   }
   async openProvider(a: any) {
