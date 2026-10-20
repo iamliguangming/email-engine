@@ -1,0 +1,14 @@
+image:
+  tag: test-11f7637
+
+existingSecret: pintalent-mail-secrets
+
+rolloutToken: "test-11f7637"
+
+api:
+  hostGatewayUrl: http://pintalent-csq-backend:8000/api/mail-gateway
+
+postgresql:
+  persistence:
+    storageClass: local-path
+    size: 10Gi

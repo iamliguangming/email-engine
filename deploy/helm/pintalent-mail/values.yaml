@@ -1,0 +1,79 @@
+nameOverride: ""
+fullnameOverride: ""
+
+imagePullSecrets: []
+
+image:
+  repository: pintalent-mail
+  # Set an immutable build tag per release (required).
+  tag: ""
+  pullPolicy: IfNotPresent
+
+# Bump to force a rollout when an externally managed Secret rotates.
+rolloutToken: ""
+
+# Preferred: create this Secret out of band and reference it here.
+# Required keys: MAIL_PG_PASSWORD, MAIL_SECRET, MAIL_ADMIN_TOKEN,
+# MAIL_HOST_GATEWAY_SECRET. MAIL_PG_PASSWORD must be URL-safe because the
+# chart builds DATABASE_URL from it.
+existingSecret: ""
+
+# Only used when existingSecret is empty. Values here would otherwise live in
+# the release, so prefer an externally managed Secret.
+secret:
+  pgPassword: ""
+  mailSecret: ""
+  adminToken: ""
+  hostGatewaySecret: ""
+
+api:
+  replicas: 1
+  port: 8095
+  # OAuth callbacks are not exposed in the test setup; leave empty to default
+  # to the in-cluster API Service.
+  publicUrl: ""
+  # email-engine appends /match, /import and /events to this base. Required:
+  # set it to your pindin backend Service, e.g.
+  # http://<pintalent-release>-backend:8000/api/mail-gateway.
+  hostGatewayUrl: ""
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 768Mi
+
+worker:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 768Mi
+
+postgresql:
+  image:
+    repository: postgres
+    tag: 17-alpine
+    pullPolicy: IfNotPresent
+  port: 5432
+  auth:
+    database: mail
+    username: mail
+  persistence:
+    storageClass: local-path
+    size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
