@@ -1,3 +1,4 @@
+import { graphRange } from "./mail/graph-range.js";
 import { readLimited } from "./mail/limits.js";
 // Fork modification (2026-10-12): persist rotated OAuth credentials through the account configuration callback.
 // The only file that speaks Microsoft Graph mail. Folders are folders; sync is
@@ -117,15 +118,7 @@ export class GraphAdapter implements Adapter {
   }
 
   async scanRange(range: MailRange, cursor: string | null): Promise<RangePage> {
-    const q = new URLSearchParams({ "$top": "50", "$select": SELECT,
-      "$filter": `receivedDateTime ge ${range.from} and receivedDateTime lt ${range.to}` });
-    const url = cursor ?? `${this.base}/messages?${q}`;
-    // Provider pagination cannot redirect our bearer token to another origin.
-    if (new URL(url).origin !== new URL(this.base).origin || !new URL(url).pathname.startsWith("/v1.0/me/")) throw new Error("invalid Graph pagination URL");
-    const page = await this.api<any>(url);
-    const messages = (page?.value ?? []).map((raw: any) => ({ ...toRemoteMessage(raw, raw.parentFolderId), date: new Date(raw.receivedDateTime).toISOString() }))
-      .filter((m: RemoteMessage) => m.date >= range.from && m.date < range.to && (!range.folders.length || m.folderPaths.some(f => range.folders.includes(f))));
-    return { messages, next: page?.["@odata.nextLink"] ?? null };
+    return graphRange(this.base, (url) => this.api(url), toRemoteMessage, range, cursor, SELECT);
   }
 
   // ---------- sync: one delta query per folder ----------

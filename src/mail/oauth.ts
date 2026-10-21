@@ -1,3 +1,4 @@
+import { microsoftEndpoints, requiresMicrosoftConsent, type MicrosoftCloud } from "./microsoft-cloud.js";
 import { createHash, randomBytes } from "node:crypto";
 import { z } from "zod";
 import { MailService, hash } from "./service.js";
@@ -5,7 +6,7 @@ import { fail, type Identity } from "./contracts.js";
 export interface OAuthApps {
   publicUrl: string;
   google?: { clientId: string; clientSecret: string };
-  microsoft?: { clientId: string; clientSecret: string; tenant: string };
+  microsoft?: { clientId: string; clientSecret: string; tenant: string; cloud?: MicrosoftCloud };
 }
 export class ConnectionSessions {
   constructor(
@@ -47,11 +48,11 @@ export class ConnectionSessions {
     const scope =
       data.provider === "gmail"
         ? "https://www.googleapis.com/auth/gmail.readonly"
-        : "openid offline_access https://graph.microsoft.com/Mail.Read https://graph.microsoft.com/User.Read";
+        : `openid ${microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).scope} ${microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).graph}/User.Read`;
     const url = new URL(
       data.provider === "gmail"
         ? "https://accounts.google.com/o/oauth2/v2/auth"
-        : `https://login.microsoftonline.com/${this.apps.microsoft!.tenant}/oauth2/v2.0/authorize`,
+        : microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).authorize,
     );
     for (const [k, v] of Object.entries({
       client_id: app!.clientId,
@@ -92,7 +93,7 @@ export class ConnectionSessions {
     const endpoint =
       session.provider === "gmail"
         ? "https://oauth2.googleapis.com/token"
-        : `https://login.microsoftonline.com/${this.apps.microsoft!.tenant}/oauth2/v2.0/token`;
+        : microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).token;
     const body = new URLSearchParams({
       grant_type: "authorization_code",
       client_id: app!.clientId,
@@ -108,6 +109,8 @@ export class ConnectionSessions {
       signal: AbortSignal.timeout(30000),
     });
     const tokens: any = await response.json();
+    if (session.provider === "graph" && requiresMicrosoftConsent(tokens.error, tokens.error_description))
+      fail("oauth_admin_required", "Microsoft consent requires administrator review; stop and contact the administrator", 403);
     if (!response.ok || !tokens.refresh_token || !tokens.access_token)
       fail(
         "oauth_exchange_failed",
@@ -117,7 +120,7 @@ export class ConnectionSessions {
     const profile = await fetch(
       session.provider === "gmail"
         ? "https://gmail.googleapis.com/gmail/v1/users/me/profile"
-        : "https://graph.microsoft.com/v1.0/me?$select=mail,userPrincipalName",
+        : `${microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).graph}/v1.0/me?$select=mail,userPrincipalName`,
       {
         headers: { authorization: `Bearer ${tokens.access_token}` },
         redirect: "error",
@@ -156,7 +159,8 @@ export class ConnectionSessions {
               client_id: app!.clientId,
               client_secret: app!.clientSecret,
               refresh_token: tokens.refresh_token,
-              scope: "https://graph.microsoft.com/Mail.Read offline_access",
+              scope: microsoftEndpoints(this.apps.microsoft!.cloud, this.apps.microsoft!.tenant).scope,
+              ...(this.apps.microsoft!.cloud === "china" ? { base_url: microsoftEndpoints("china", this.apps.microsoft!.tenant).graph, token_url: microsoftEndpoints("china", this.apps.microsoft!.tenant).token } : {}),
             },
           };
     const existing = (

@@ -1,3 +1,4 @@
+import { trustedMicrosoftEndpoints } from "./microsoft-cloud.js";
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
 import { simpleParser } from "mailparser";
@@ -89,7 +90,7 @@ export async function validateConfig(
   if (config.provider === "graph") {
     if (!/^[a-zA-Z0-9.-]+$/.test(config.graph.tenant))
       throw new MailError("invalid_tenant", "Invalid Microsoft tenant");
-    if ((config.graph.base_url || config.graph.token_url) && !allowPrivate)
+    if ((config.graph.base_url || config.graph.token_url) && !allowPrivate && !trustedMicrosoftEndpoints(config.graph))
       throw new MailError(
         "invalid_endpoint",
         "Custom Graph endpoints are disabled",

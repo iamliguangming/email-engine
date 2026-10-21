@@ -1,3 +1,4 @@
+import { microsoftCloud } from "./microsoft-cloud.js";
 import { serve } from "@hono/node-server";
 import { MailDatabase } from "./database.js";
 import { MailService } from "./service.js";
@@ -56,6 +57,7 @@ if (role !== "worker") {
             clientId: required("MAIL_MICROSOFT_CLIENT_ID"),
             clientSecret: required("MAIL_MICROSOFT_CLIENT_SECRET"),
             tenant: process.env.MAIL_MICROSOFT_TENANT ?? "common",
+            cloud: microsoftCloud(process.env.MAIL_MICROSOFT_CLOUD),
           },
         }
       : {}),

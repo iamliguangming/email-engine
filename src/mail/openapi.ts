@@ -79,6 +79,7 @@ route(
   200,
   true,
 );
+route("get", "/v1/connection-options", "Configured Gmail/Microsoft OAuth connection availability and Microsoft cloud");
 route("get", "/v1/me", "Current delegated identity and live project grants");
 route(
   "post",
