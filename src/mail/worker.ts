@@ -302,6 +302,12 @@ export class MailWorker {
             binding_id: b.id,
             indexed: current.indexed + added,
           });
+          // A later successful import proves the provider is healthy again;
+          // do not keep an old failure string on a ready account.
+          await c.query(
+            "UPDATE mail_accounts SET error=NULL WHERE id=$1 AND error IS NOT NULL",
+            [account.id],
+          );
         }
       });
     } catch (e) {
