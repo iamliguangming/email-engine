@@ -6,6 +6,7 @@ import { providerFactory } from "./provider.js";
 import { MailWorker } from "./worker.js";
 import { mailApi } from "./api.js";
 import { ConnectionSessions } from "./oauth.js";
+import { parseGmailAuthMode } from "./gmail-mode.js";
 import { httpGateway } from "./gateway.js";
 import { startWebhookDelivery } from "./webhook.js";
 const required = (name: string) => {
@@ -21,6 +22,7 @@ if (admin.length < 32)
 const allowPrivate = process.env.MAIL_ALLOW_PRIVATE_HOSTS === "true";
 if (allowPrivate && process.env.NODE_ENV === "production")
   throw new Error("Private host overrides are disabled in production");
+const gmailAuthMode = parseGmailAuthMode(process.env.MAIL_GMAIL_AUTH_MODE);
 const base = process.env.MAIL_HOST_GATEWAY_URL;
 const db = new MailDatabase(database, secret);
 await db.start();
@@ -28,6 +30,7 @@ const service = new MailService(db, providerFactory(allowPrivate), {
   allowPrivate,
   aiEnabled: !!base,
   deliveryEnabled: !!base,
+  gmailAuthMode,
 });
 const gateway = base
   ? httpGateway(base, required("MAIL_HOST_GATEWAY_SECRET"))
@@ -43,7 +46,7 @@ if (role !== "worker") {
   const publicUrl = process.env.MAIL_PUBLIC_URL ?? "http://localhost:8095";
   const sessions = new ConnectionSessions(service, {
     publicUrl,
-    ...(process.env.MAIL_GOOGLE_CLIENT_ID
+    ...(gmailAuthMode === "oauth" && process.env.MAIL_GOOGLE_CLIENT_ID
       ? {
           google: {
             clientId: required("MAIL_GOOGLE_CLIENT_ID"),

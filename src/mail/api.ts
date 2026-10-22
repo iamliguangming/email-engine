@@ -128,7 +128,7 @@ export function mailApi(
   const who = (c: any): Identity => c.get("identity");
   const key = (c: any) => c.req.header("idempotency-key") ?? "";
   app.get("/v1/me", (c) => c.json(who(c)));
-  app.get("/v1/connection-options", (c) => c.json({ gmail: Boolean(sessions?.apps.google && returnUrl), graph: Boolean(sessions?.apps.microsoft && returnUrl), microsoft_cloud: sessions?.apps.microsoft?.cloud ?? microsoftCloud(process.env.MAIL_MICROSOFT_CLOUD) }));
+  app.get("/v1/connection-options", (c) => c.json({ gmail: Boolean(sessions?.apps.google && returnUrl), graph: Boolean(sessions?.apps.microsoft && returnUrl), microsoft_cloud: sessions?.apps.microsoft?.cloud ?? microsoftCloud(process.env.MAIL_MICROSOFT_CLOUD), gmail_auth_mode: service.options.gmailAuthMode ?? "imap" }));
   app.post("/v1/connection-sessions", async (c) => {
     if (!sessions) fail("oauth_not_configured", "OAuth is unavailable", 503);
     return c.json(await sessions!.begin(who(c), await c.req.json()), 201);

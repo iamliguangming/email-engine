@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { oauthReturnUrl, completeOAuthReturn } from "./oauth-return.js";
 import { MailError } from "./contracts.js";
-import type { ConnectionSessions } from "./oauth.js";
+import { ConnectionSessions } from "./oauth.js";
 import { mailApi } from "./api.js";
 import type { MailService } from "./service.js";
 
@@ -46,8 +46,10 @@ test("mismatch, stale state and network failures return actionable status withou
 
 test("real HTTP callback redirects without delegated auth; connection options still require it", async () => {
   const previous = process.env.MAIL_OAUTH_RETURN_URL;
+  const previousCloud = process.env.MAIL_MICROSOFT_CLOUD;
   process.env.MAIL_OAUTH_RETURN_URL = target;
-  const service = { identity: async (token: string) => {
+  process.env.MAIL_MICROSOFT_CLOUD = "global";
+  const service = { options: { gmailAuthMode: "imap" }, identity: async (token: string) => {
     if (token !== "user-token") throw new MailError("unauthorized", "Invalid token", 401);
     return { tenant: "t1", user: "u1", actor: "human" };
   } } as unknown as MailService;
@@ -59,11 +61,31 @@ test("real HTTP callback redirects without delegated auth; connection options st
     assert.equal(response.headers.get("location"), target + "?mail_oauth=connected");
     assert.equal((await app.request("/v1/connection-options")).status, 401);
     const options = await app.request("/v1/connection-options", { headers: { authorization: "Bearer user-token" } });
-    assert.deepEqual(await options.json(), { gmail: true, graph: false, microsoft_cloud: "global" });
+    assert.deepEqual(await options.json(), { gmail: true, graph: false, microsoft_cloud: "global", gmail_auth_mode: "imap" });
     const absent = await mailApi(service, "admin").request("/v1/connection-options", { headers: { authorization: "Bearer user-token" } });
-    assert.deepEqual(await absent.json(), { gmail: false, graph: false, microsoft_cloud: "global" });
+    assert.deepEqual(await absent.json(), { gmail: false, graph: false, microsoft_cloud: "global", gmail_auth_mode: "imap" });
   } finally {
     if (previous === undefined) delete process.env.MAIL_OAUTH_RETURN_URL;
     else process.env.MAIL_OAUTH_RETURN_URL = previous;
+    if (previousCloud === undefined) delete process.env.MAIL_MICROSOFT_CLOUD;
+    else process.env.MAIL_MICROSOFT_CLOUD = previousCloud;
   }
+});
+
+test("imap mode rejects new Gmail OAuth sessions before touching the database", async () => {
+  const service = {
+    options: { gmailAuthMode: "imap" },
+    db: { pool: { query: async () => { throw new Error("db must not be used"); } } },
+  } as unknown as MailService;
+  const sessions = new ConnectionSessions(service, {
+    publicUrl: "http://localhost:8095",
+    google: { clientId: "fake", clientSecret: "never-return-this" },
+  });
+  await assert.rejects(
+    sessions.begin(
+      { tenant: "t1", user: "u1", projects: {}, enabled: true, actor: "human", version: 1 },
+      { provider: "gmail", expected_email: "user@gmail.com" },
+    ),
+    (error: any) => error.code === "gmail_oauth_disabled",
+  );
 });

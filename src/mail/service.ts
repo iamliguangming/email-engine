@@ -23,6 +23,7 @@ import {
   type ProviderFactory,
   validateConfig,
 } from "./provider.js";
+import { isGmailImapConfig, type GmailAuthMode } from "./gmail-mode.js";
 
 export const hash = (s: string) => createHash("sha256").update(s).digest("hex");
 export const constantEqual = (a: string, b: string) =>
@@ -38,6 +39,7 @@ export class MailService {
       aiEnabled: boolean;
       deliveryEnabled: boolean;
       allowPrivate?: boolean;
+      gmailAuthMode?: GmailAuthMode;
     },
   ) {}
   async identity(token: string): Promise<Identity> {
@@ -227,6 +229,12 @@ export class MailService {
     trustedOAuth = false,
   ) {
     const config = await validateConfig(input, !!this.options.allowPrivate);
+    if ((this.options.gmailAuthMode ?? "imap") === "oauth" && isGmailImapConfig(config))
+      fail(
+        "gmail_imap_disabled",
+        "Gmail IMAP is disabled; use Google OAuth",
+        400,
+      );
     if (!trustedOAuth && config.provider !== "imap")
       fail(
         "oauth_required",

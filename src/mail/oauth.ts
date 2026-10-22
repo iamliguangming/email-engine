@@ -21,6 +21,15 @@ export class ConnectionSessions {
       })
       .strict()
       .parse(input);
+    if (
+      data.provider === "gmail" &&
+      (this.service.options.gmailAuthMode ?? "imap") !== "oauth"
+    )
+      fail(
+        "gmail_oauth_disabled",
+        "Gmail OAuth is disabled; use the IMAP app-password flow",
+        403,
+      );
     const app =
       data.provider === "gmail" ? this.apps.google : this.apps.microsoft;
     if (!app)

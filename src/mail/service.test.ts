@@ -161,6 +161,7 @@ test(
       allowPrivate: true,
       aiEnabled: true,
       deliveryEnabled: true,
+      gmailAuthMode: "oauth",
     });
     let app = mailApi(service, admin);
     const req = async (
@@ -281,6 +282,7 @@ test(
             allowPrivate: true,
             aiEnabled: true,
             deliveryEnabled: true,
+            gmailAuthMode: "oauth",
           });
           app = mailApi(service, admin);
           await new MailWorker(service, gateway).start();
