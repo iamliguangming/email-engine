@@ -1,3 +1,5 @@
+import { microsoftCloud } from "./microsoft-cloud.js";
+import { oauthReturnUrl, completeOAuthReturn } from "./oauth-return.js";
 import { openapi } from "./openapi.js";
 import { Hono } from "hono";
 import { bodyLimit } from "hono/body-limit";
@@ -14,6 +16,7 @@ export function mailApi(
   adminToken: string,
   sessions?: ConnectionSessions,
 ) {
+  const returnUrl = oauthReturnUrl(process.env.MAIL_OAUTH_RETURN_URL);
   const app = new Hono<Env>();
   app.use(
     "*",
@@ -125,11 +128,13 @@ export function mailApi(
   const who = (c: any): Identity => c.get("identity");
   const key = (c: any) => c.req.header("idempotency-key") ?? "";
   app.get("/v1/me", (c) => c.json(who(c)));
+  app.get("/v1/connection-options", (c) => c.json({ gmail: Boolean(sessions?.apps.google && returnUrl), graph: Boolean(sessions?.apps.microsoft && returnUrl), microsoft_cloud: sessions?.apps.microsoft?.cloud ?? microsoftCloud(process.env.MAIL_MICROSOFT_CLOUD), gmail_auth_mode: service.options.gmailAuthMode ?? "imap" }));
   app.post("/v1/connection-sessions", async (c) => {
     if (!sessions) fail("oauth_not_configured", "OAuth is unavailable", 503);
     return c.json(await sessions!.begin(who(c), await c.req.json()), 201);
   });
   app.get("/v1/oauth/callback", async (c) => {
+    if (returnUrl) return c.redirect(await completeOAuthReturn(sessions, c.req.query(), returnUrl), 303);
     if (!sessions) fail("oauth_not_configured", "OAuth is unavailable", 503);
     if (c.req.query("error"))
       fail("oauth_denied", "Mailbox authorization was not completed");
@@ -215,6 +220,15 @@ export function mailApi(
   );
   app.post("/v1/bindings/:id/rematch", async (c) =>
     c.json(await service.rematch(who(c), c.req.param("id"), key(c)), 202),
+  );
+  app.delete("/v1/bindings/:id", async (c) =>
+    c.json(
+      await service.removeBinding(
+        who(c),
+        c.req.param("id"),
+        await c.req.json(),
+      ),
+    ),
   );
   app.delete("/v1/mailboxes/:id", async (c) => {
     const { version } = z

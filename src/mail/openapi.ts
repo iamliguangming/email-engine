@@ -79,6 +79,7 @@ route(
   200,
   true,
 );
+route("get", "/v1/connection-options", "Configured Gmail/Microsoft OAuth connection availability and Microsoft cloud");
 route("get", "/v1/me", "Current delegated identity and live project grants");
 route(
   "post",
@@ -142,6 +143,12 @@ route(
   "/v1/bindings/{id}",
   "Update matching settings or continuous discovery",
   "BindingUpdate",
+);
+route(
+  "delete",
+  "/v1/bindings/{id}",
+  "Delete the binding relationship and its per-binding mail state; the mailbox is kept",
+  "Version",
 );
 route(
   "post",

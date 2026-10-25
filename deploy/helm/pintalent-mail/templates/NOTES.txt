@@ -1,0 +1,13 @@
+PinTalent mail service deployed.
+
+API (cluster only):    http://{{ include "pintalent-mail.apiName" . }}:{{ .Values.api.port }}
+Postgres (cluster only): {{ include "pintalent-mail.postgresName" . }}:{{ .Values.postgresql.port }}
+
+Health check:
+  kubectl -n {{ .Release.Namespace }} exec deploy/{{ include "pintalent-mail.apiName" . }} -- node -e "fetch('http://127.0.0.1:{{ .Values.api.port }}/health').then(r=>r.text()).then(console.log)"
+
+Inspect the database from your machine:
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "pintalent-mail.postgresName" . }} 5432:5432
+
+The service has no Ingress. PinTalent reaches it over the cluster network,
+and email-engine calls the host gateway at {{ .Values.api.hostGatewayUrl }}.
