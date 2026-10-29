@@ -19,16 +19,27 @@ import {
   type Identity,
 } from "./contracts.js";
 import {
-  type MailProvider,
+  type MailContent,
+  type MailContentPreview,
   type ProviderFactory,
   validateConfig,
 } from "./provider.js";
+import { fetchProviderContent } from "./content-fetch.js";
+import { errorFields, logEvent } from "./log.js";
 import { isGmailImapConfig, type GmailAuthMode } from "./gmail-mode.js";
 
 export const hash = (s: string) => createHash("sha256").update(s).digest("hex");
 export const constantEqual = (a: string, b: string) =>
   timingSafeEqual(Buffer.from(hash(a)), Buffer.from(hash(b)));
 const first = (r: any) => r.rows[0];
+const previewContent = (body: MailContent): MailContentPreview => ({
+  text: body.text,
+  attachments: body.attachments.map(a => ({
+    filename: a.filename,
+    contentType: a.contentType,
+    size: a.content.length,
+  })),
+});
 export class MailService {
   private contentLocks = new Map<string, Promise<void>>();
 
@@ -41,6 +52,7 @@ export class MailService {
       allowPrivate?: boolean;
       gmailAuthMode?: GmailAuthMode;
       continuousIntervalSeconds?: number;
+      imapProxy?: string;
     },
   ) {}
   async identity(token: string): Promise<Identity> {
@@ -229,7 +241,11 @@ export class MailService {
     key: string,
     trustedOAuth = false,
   ) {
-    const config = await validateConfig(input, !!this.options.allowPrivate);
+    const config = await validateConfig(
+      input,
+      !!this.options.allowPrivate,
+      !!this.options.imapProxy,
+    );
     if ((this.options.gmailAuthMode ?? "imap") === "oauth" && isGmailImapConfig(config))
       fail(
         "gmail_imap_disabled",
@@ -281,6 +297,7 @@ export class MailService {
     const config = await validateConfig(
       parsed.config,
       !!this.options.allowPrivate,
+      !!this.options.imapProxy,
     );
     const a = await this.account(p, id);
     if (
@@ -534,7 +551,31 @@ export class MailService {
       as_of: boundary,
     };
   }
-  async getContent(p: Identity, binding: string, message: string) {
+  async getContent(
+    p: Identity,
+    binding: string,
+    message: string,
+  ): Promise<MailContent> {
+    return (await this.loadContent(p, binding, message, false)) as MailContent;
+  }
+  async getContentPreview(
+    p: Identity,
+    binding: string,
+    message: string,
+  ): Promise<MailContentPreview> {
+    return (await this.loadContent(
+      p,
+      binding,
+      message,
+      true,
+    )) as MailContentPreview;
+  }
+  private async loadContent(
+    p: Identity,
+    binding: string,
+    message: string,
+    preview: boolean,
+  ): Promise<MailContent | MailContentPreview> {
     const b = await this.binding(p, binding);
     const a = await this.account(p, b.account_id);
     const m = first(
@@ -550,10 +591,19 @@ export class MailService {
         "Reconnect this mailbox before reading content",
         409,
       );
+    const cached = await this.readCachedContent(m, preview);
+    if (cached) {
+      logEvent("info", "content_cache_hit", {
+        message_id: m.id,
+        preview,
+      });
+      return cached;
+    }
     return this.withContentLock(a.id, async () => {
+      const raced = await this.readCachedContent(m, preview);
+      if (raced) return raced;
       const lock = await this.db.pool.connect();
       let acquired = false;
-      let provider: MailProvider | undefined;
       try {
         // Continuous sync/import can hold the mailbox lock for a moment. Wait
         // briefly so downloading an attachment right after opening a message
@@ -576,16 +626,118 @@ export class MailService {
             );
           await new Promise(resolve => setTimeout(resolve, 250));
         }
-        provider = await this.openProvider(a);
-        return await provider.content(m.summary);
+        const started = Date.now();
+        let body: MailContent;
+        try {
+          body = await fetchProviderContent(
+            () => this.openProvider(a),
+            m.summary,
+          );
+        } catch (error) {
+          logEvent("error", "content_fetch_failed", {
+            message_id: m.id,
+            account_id: a.id,
+            duration_ms: Date.now() - started,
+            ...errorFields(error),
+          });
+          throw error;
+        }
+        const duration = Date.now() - started;
+        logEvent(duration >= 1000 ? "warn" : "info", "content_fetched", {
+          message_id: m.id,
+          account_id: a.id,
+          duration_ms: duration,
+          attachments: body.attachments.length,
+          attachment_bytes: body.attachments.reduce(
+            (total, attachment) => total + attachment.content.length,
+            0,
+          ),
+          text_chars: body.text.length,
+        });
+        try {
+          await this.writeCachedContent(m.id, m.content_hash, body);
+        } catch (error) {
+          logEvent("error", "content_cache_write_failed", {
+            message_id: m.id,
+            ...errorFields(error),
+          });
+        }
+        return preview ? previewContent(body) : body;
       } finally {
-        if (provider) await provider.close().catch(() => {});
         if (acquired)
           await lock.query(
             "SELECT pg_advisory_unlock(hashtextextended($1,1))",
             [a.id],
           );
         lock.release();
+      }
+    });
+  }
+  private async readCachedContent(
+    m: any,
+    preview: boolean,
+  ): Promise<MailContent | MailContentPreview | null> {
+    if (preview) {
+      const rows = (
+        await this.db.pool.query(
+          `SELECT c.content_hash,c.text,a.idx,a.filename,a.content_type,length(a.content) AS size
+           FROM mail_content_cache c
+           LEFT JOIN mail_content_attachments a ON a.message_id=c.message_id
+           WHERE c.message_id=$1 ORDER BY a.idx`,
+          [m.id],
+        )
+      ).rows;
+      if (!rows.length || rows[0].content_hash !== m.content_hash) return null;
+      return {
+        text: rows[0].text,
+        attachments: rows
+          .filter(row => row.idx !== null)
+          .map(row => ({
+            filename: row.filename,
+            contentType: row.content_type,
+            size: Number(row.size),
+          })),
+      };
+    }
+    const head = first(
+      await this.db.pool.query(
+        "SELECT content_hash,text FROM mail_content_cache WHERE message_id=$1",
+        [m.id],
+      ),
+    );
+    if (!head || head.content_hash !== m.content_hash) return null;
+    const attachments = (
+      await this.db.pool.query(
+        "SELECT idx,filename,content_type,content FROM mail_content_attachments WHERE message_id=$1 ORDER BY idx",
+        [m.id],
+      )
+    ).rows;
+    return {
+      text: head.text,
+      attachments: attachments.map((a: any) => ({
+        filename: a.filename,
+        contentType: a.content_type,
+        content: a.content,
+      })),
+    };
+  }
+  private async writeCachedContent(
+    id: string,
+    contentHash: string,
+    body: MailContent,
+  ) {
+    await this.db.tx(async (c) => {
+      await c.query("DELETE FROM mail_content_cache WHERE message_id=$1", [id]);
+      await c.query(
+        "INSERT INTO mail_content_cache(message_id,content_hash,text) VALUES($1,$2,$3)",
+        [id, contentHash, body.text],
+      );
+      for (let i = 0; i < body.attachments.length; i++) {
+        const a = body.attachments[i]!;
+        await c.query(
+          "INSERT INTO mail_content_attachments(message_id,idx,filename,content_type,content) VALUES($1,$2,$3,$4,$5)",
+          [id, i, a.filename, a.contentType, a.content],
+        );
       }
     });
   }

@@ -9,8 +9,11 @@ import { MailService, constantEqual } from "./service.js";
 import { fail, MailError, type Identity } from "./contracts.js";
 import { QUEUES } from "./database.js";
 import type { ConnectionSessions } from "./oauth.js";
+import { errorFields, logEvent } from "./log.js";
 
-type Env = { Variables: { identity: Identity; requestId: string } };
+type Env = {
+  Variables: { identity: Identity; requestId: string; startedAt: number };
+};
 export function mailApi(
   service: MailService,
   adminToken: string,
@@ -33,9 +36,19 @@ export function mailApi(
   );
   app.use("*", async (c, next) => {
     c.set("requestId", randomUUID());
+    c.set("startedAt", Date.now());
     c.header("cache-control", "no-store");
     c.header("x-content-type-options", "nosniff");
-    return next();
+    await next();
+    const duration = Date.now() - c.get("startedAt");
+    if (c.res.status < 400 && duration >= 1000)
+      logEvent("warn", "slow_request", {
+        method: c.req.method,
+        path: c.req.path,
+        status: c.res.status,
+        duration_ms: duration,
+        request_id: c.get("requestId"),
+      });
   });
   app.onError((e, c) => {
     if (e instanceof z.ZodError)
@@ -63,6 +76,22 @@ export function mailApi(
         },
         400,
       );
+    if (!(e instanceof MailError) || e.status >= 500 || e.retryable) {
+      logEvent("error", "request_failed", {
+        method: c.req.method,
+        path: c.req.path,
+        status: e instanceof MailError ? e.status : 500,
+        duration_ms: Date.now() - (c.get("startedAt") ?? Date.now()),
+        request_id: c.get("requestId"),
+        ...(e instanceof MailError
+          ? {
+              code: e.code,
+              message: e.message.slice(0, 300),
+              retryable: e.retryable,
+            }
+          : errorFields(e)),
+      });
+    }
     const error =
       e instanceof MailError
         ? e
@@ -281,7 +310,7 @@ export function mailApi(
     return c.json(await service.listItems(who(c), c.req.param("id"), q));
   });
   app.get("/v1/bindings/:id/messages/:mid", async (c) => {
-    const body = await service.getContent(
+    const body = await service.getContentPreview(
       who(c),
       c.req.param("id"),
       c.req.param("mid"),
@@ -293,7 +322,7 @@ export function mailApi(
         index,
         filename: a.filename,
         content_type: a.contentType,
-        size: a.content.length,
+        size: a.size,
       })),
     });
   });

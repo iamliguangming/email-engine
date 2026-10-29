@@ -18,6 +18,10 @@ rolloutToken: ""
 # chart builds DATABASE_URL from it.
 existingSecret: ""
 
+# Optional HTTP/SOCKS proxy for IMAP connections, e.g. http://proxy:7890.
+# Applied to both the API and worker pods; Gmail/QQ may need it in restricted networks.
+imapProxy: ""
+
 # Only used when existingSecret is empty. Values here would otherwise live in
 # the release, so prefer an externally managed Secret.
 secret:

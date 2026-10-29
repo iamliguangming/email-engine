@@ -199,4 +199,28 @@ test("mailbox configuration forbids arbitrary token endpoints, insecure TLS and 
     }),
     /IMAP/,
   );
+  await assert.rejects(
+    validateConfig(
+      {
+        provider: "imap",
+        address: "x@example.test",
+        imap: { host: "127.0.0.1", user: "x", pass: "x", secure: true },
+      },
+      false,
+      true,
+    ),
+    /Private mail servers/,
+  );
+  await assert.rejects(
+    validateConfig(
+      {
+        provider: "imap",
+        address: "x@example.test",
+        imap: { host: "mail.internal", user: "x", pass: "x", secure: true },
+      },
+      false,
+      true,
+    ),
+    /Private mail servers/,
+  );
 });

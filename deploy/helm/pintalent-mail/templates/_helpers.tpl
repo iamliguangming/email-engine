@@ -73,4 +73,8 @@ app.kubernetes.io/instance: {{ .Release.Name }}
       key: MAIL_HOST_GATEWAY_SECRET
 - name: MAIL_HOST_GATEWAY_URL
   value: {{ required "api.hostGatewayUrl is required" .Values.api.hostGatewayUrl | quote }}
+{{- with .Values.imapProxy }}
+- name: MAIL_IMAP_PROXY
+  value: {{ . | quote }}
+{{- end }}
 {{- end }}

@@ -8,6 +8,7 @@ import { mailApi } from "./api.js";
 import { ConnectionSessions } from "./oauth.js";
 import { parseGmailAuthMode } from "./gmail-mode.js";
 import { parseContinuousIntervalSeconds } from "./continuous.js";
+import { parseImapProxy } from "./imap-proxy.js";
 import { httpGateway } from "./gateway.js";
 import { startWebhookDelivery } from "./webhook.js";
 const required = (name: string) => {
@@ -27,15 +28,17 @@ const gmailAuthMode = parseGmailAuthMode(process.env.MAIL_GMAIL_AUTH_MODE);
 const continuousIntervalSeconds = parseContinuousIntervalSeconds(
   process.env.MAIL_CONTINUOUS_INTERVAL_SECONDS,
 );
+const imapProxy = parseImapProxy(process.env.MAIL_IMAP_PROXY);
 const base = process.env.MAIL_HOST_GATEWAY_URL;
 const db = new MailDatabase(database, secret);
 await db.start();
-const service = new MailService(db, providerFactory(allowPrivate), {
+const service = new MailService(db, providerFactory(allowPrivate, imapProxy), {
   allowPrivate,
   aiEnabled: !!base,
   deliveryEnabled: !!base,
   gmailAuthMode,
   continuousIntervalSeconds,
+  imapProxy,
 });
 const gateway = base
   ? httpGateway(base, required("MAIL_HOST_GATEWAY_SECRET"))

@@ -10,13 +10,23 @@ import { AccountConfig, type AccountConfig as Config } from "../schema.js";
 import type { Adapter, MailRange, RangePage } from "../adapter.js";
 import { MailError } from "./contracts.js";
 
+export type MailAttachment = {
+  filename: string;
+  contentType: string;
+  content: Buffer;
+};
+export type MailContent = {
+  text: string;
+  attachments: MailAttachment[];
+};
+export type MailContentPreview = {
+  text: string;
+  attachments: { filename: string; contentType: string; size: number }[];
+};
 export interface MailProvider {
   verify(): ReturnType<Adapter["listFolders"]>;
   scan(range: MailRange, cursor: string | null): Promise<RangePage>;
-  content(summary: any): Promise<{
-    text: string;
-    attachments: { filename: string; contentType: string; content: Buffer }[];
-  }>;
+  content(summary: any): Promise<MailContent>;
   close(): Promise<void>;
 }
 export type ProviderFactory = (
@@ -41,6 +51,7 @@ const privateAddress = (ip: string) => {
 export async function validateConfig(
   input: unknown,
   allowPrivate = false,
+  useProxy = false,
 ): Promise<Config> {
   const config = AccountConfig.parse(input);
   if (!["imap", "gmail", "graph"].includes(config.provider))
@@ -63,15 +74,30 @@ export async function validateConfig(
         "invalid_oauth_endpoint",
         "Unsupported OAuth endpoint",
       );
-    const addresses = await lookup(config.imap.host, { all: true });
-    if (
-      !addresses.length ||
-      (!allowPrivate && addresses.some((a) => privateAddress(a.address)))
-    )
-      throw new MailError(
-        "invalid_host",
-        "Private mail servers require an operator-configured deployment",
-      );
+    if (!useProxy) {
+      const addresses = await lookup(config.imap.host, { all: true });
+      if (
+        !addresses.length ||
+        (!allowPrivate && addresses.some((a) => privateAddress(a.address)))
+      )
+        throw new MailError(
+          "invalid_host",
+          "Private mail servers require an operator-configured deployment",
+        );
+    } else if (!allowPrivate) {
+      const host = config.imap.host.toLowerCase();
+      if (
+        (isIP(host) !== 0 && privateAddress(host)) ||
+        host === "localhost" ||
+        host.endsWith(".localhost") ||
+        host.endsWith(".local") ||
+        host.endsWith(".internal")
+      )
+        throw new MailError(
+          "invalid_host",
+          "Private mail servers require an operator-configured deployment",
+        );
+    }
     if (config.smtp)
       throw new MailError(
         "read_only_intake",
@@ -98,11 +124,14 @@ export async function validateConfig(
   }
   return config;
 }
-export function providerFactory(allowPrivate = false): ProviderFactory {
+export function providerFactory(
+  allowPrivate = false,
+  imapProxy?: string,
+): ProviderFactory {
   return async (config, save) => {
-    await validateConfig(config, allowPrivate);
+    await validateConfig(config, allowPrivate, !!imapProxy);
     let pinned: string | undefined;
-    if (config.provider === "imap") {
+    if (config.provider === "imap" && !imapProxy) {
       const addresses = await lookup(config.imap.host, { all: true });
       if (
         !addresses.length ||
@@ -116,7 +145,12 @@ export function providerFactory(allowPrivate = false): ProviderFactory {
         ? new GmailAdapter(config, save)
         : config.provider === "graph"
           ? new GraphAdapter(config, save)
-          : new ImapAdapter(config as any, save, pinned);
+          : new ImapAdapter(
+              config as any,
+              save,
+              imapProxy ? undefined : pinned,
+              imapProxy,
+            );
     return {
       async verify() {
         await adapter.connect();

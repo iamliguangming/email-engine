@@ -61,6 +61,7 @@ test(
     let db = new MailDatabase(u.toString(), secret);
     await db.start();
     let calls = 0,
+      contentCalls = 0,
       scanFailure = false,
       imports = 0,
       charges = 0,
@@ -109,6 +110,7 @@ test(
         };
       },
       async content() {
+        contentCalls++;
         return {
           text: "Resume body",
           attachments: [
@@ -405,11 +407,30 @@ test(
             (await req(`/v1/bindings/${binding}/messages`, other)).status,
             404,
           );
+          const contentCallsBeforeDetail = contentCalls;
           const detail = await req(
             `/v1/bindings/${binding}/messages/${items[0].id}`,
             human,
           );
           assert.equal(detail.body.attachments[0].filename, "resume.pdf");
+          assert.equal(contentCalls, contentCallsBeforeDetail + 1);
+          const cachedDetail = await req(
+            `/v1/bindings/${binding}/messages/${items[0].id}`,
+            human,
+          );
+          assert.equal(cachedDetail.status, 200);
+          assert.equal(cachedDetail.body.text, "Resume body");
+          assert.equal(contentCalls, contentCallsBeforeDetail + 1);
+          const attachment = await app.request(
+            `/v1/bindings/${binding}/messages/${items[0].id}/attachments/0`,
+            { headers: { authorization: `Bearer ${human}` } },
+          );
+          assert.equal(attachment.status, 200);
+          assert.equal(
+            Buffer.from(await attachment.arrayBuffer()).toString(),
+            "synthetic resume",
+          );
+          assert.equal(contentCalls, contentCallsBeforeDetail + 1);
         },
       );
       await t.test(

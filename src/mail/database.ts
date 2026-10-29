@@ -58,6 +58,14 @@ CREATE INDEX IF NOT EXISTS mail_operations_binding_live_created ON mail_operatio
 CREATE INDEX IF NOT EXISTS mail_operations_active_job ON mail_operations(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','running','retrying');
 CREATE INDEX IF NOT EXISTS mail_items_active_job ON mail_items(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','pending','running','retrying');
 CREATE INDEX IF NOT EXISTS mail_selections_active_job ON mail_selections(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','pending','running','retrying');
+CREATE TABLE IF NOT EXISTS mail_content_cache (
+ message_id text PRIMARY KEY REFERENCES mail_messages ON DELETE CASCADE, content_hash text NOT NULL,
+ text text NOT NULL, cached_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS mail_content_attachments (
+ message_id text NOT NULL REFERENCES mail_content_cache(message_id) ON DELETE CASCADE,
+ idx integer NOT NULL, filename text NOT NULL, content_type text NOT NULL, content bytea NOT NULL,
+ PRIMARY KEY(message_id,idx));
+CREATE INDEX IF NOT EXISTS mail_content_cache_cached_at ON mail_content_cache(cached_at);
 `;
 export type Tx = PoolClient;
 export const QUEUES = {

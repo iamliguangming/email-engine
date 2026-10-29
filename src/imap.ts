@@ -147,7 +147,12 @@ export class ImapAdapter implements Adapter {
 
   private oauth: OAuthClient | null;
 
-  constructor(private cfg: ImapAccountConfig, onConfigChanged?: () => void | Promise<void>, private connectionHost?: string) {
+  constructor(
+    private cfg: ImapAccountConfig,
+    onConfigChanged?: () => void | Promise<void>,
+    private connectionHost?: string,
+    private proxy?: string,
+  ) {
     this.oauth = cfg.imap.oauth ? new OAuthClient(cfg.imap.oauth, () => onConfigChanged?.()) : null;
   }
 
@@ -177,6 +182,7 @@ export class ImapAdapter implements Adapter {
       qresync: true,
       autoIdleDelay: 1000, // enter IDLE a second after the last command, so pushes arrive fast
       logger: false,
+      ...(this.proxy ? { proxy: this.proxy } : {}),
       connectionTimeout: 20000, greetingTimeout: 15000, socketTimeout: 30000,
       tls: { servername: c.host, ...(c.insecure_tls ? { rejectUnauthorized: false } : {}) },
       clientInfo: { name: "email-engine", version: "0.1.0-beta.0" },

@@ -13,6 +13,7 @@ import {
   continuousDue,
   DEFAULT_CONTINUOUS_INTERVAL_SECONDS,
 } from "./continuous.js";
+import { errorFields, logEvent } from "./log.js";
 import type { Gateway } from "./gateway.js";
 const one = (r: any) => r.rows[0];
 type Job = JobWithMetadata<{
@@ -42,6 +43,7 @@ export class MailWorker {
       DEFAULT_CONTINUOUS_INTERVAL_SECONDS
     );
   }
+  private contentCacheCleanedAt = 0;
   async start() {
     await this.db.boss.work(
       QUEUES.operation,
@@ -360,6 +362,15 @@ export class MailWorker {
       j.retryCount >= j.retryLimit || (e instanceof MailError && !e.retryable);
     await this.db.tx(async (c) => {
       if (!(await this.liveAttempt(c, queue, j))) return;
+      logEvent("error", "job_failed", {
+        queue,
+        job_id: j.id,
+        attempt: j.retryCount,
+        retry_limit: j.retryLimit,
+        table,
+        error: safeError(e),
+        ...errorFields(e),
+      });
       await c.query(
         `UPDATE ${table} SET status=$${params.length + 1},error=$${params.length + 2} WHERE ${where} AND job_id=$${params.length + 3} AND status NOT IN ('cancelled','succeeded','delivered')`,
         [...params, terminal ? "failed" : "retrying", safeError(e), j.id],
@@ -549,6 +560,12 @@ export class MailWorker {
   }
   async tick() {
     await this.db.tx(async (c) => {
+      if (Date.now() - this.contentCacheCleanedAt > 5 * 60_000) {
+        this.contentCacheCleanedAt = Date.now();
+        await c.query(
+          "DELETE FROM mail_content_cache WHERE cached_at < now() - interval '24 hours'",
+        );
+      }
       // A process killed before its catch block must still reach a visible terminal state.
       for (const [table, queue] of [
         ["mail_operations", QUEUES.operation],
