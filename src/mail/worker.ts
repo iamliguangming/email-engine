@@ -9,6 +9,10 @@ import {
   requireProject,
 } from "./contracts.js";
 import { QUEUES, type Tx } from "./database.js";
+import {
+  continuousDue,
+  DEFAULT_CONTINUOUS_INTERVAL_SECONDS,
+} from "./continuous.js";
 import type { Gateway } from "./gateway.js";
 const one = (r: any) => r.rows[0];
 type Job = JobWithMetadata<{
@@ -31,6 +35,12 @@ export class MailWorker {
   ) {}
   get db() {
     return this.service.db;
+  }
+  get continuousIntervalSeconds() {
+    return (
+      this.service.options.continuousIntervalSeconds ??
+      DEFAULT_CONTINUOUS_INTERVAL_SECONDS
+    );
   }
   async start() {
     await this.db.boss.work(
@@ -57,7 +67,7 @@ export class MailWorker {
     await this.db.boss.work(QUEUES.tick, async () => {
       await this.tick();
     });
-    await this.db.boss.schedule(QUEUES.tick, "* * * * *");
+    await this.db.boss.schedule(QUEUES.tick, "*/30 * * * * *");
   }
   async authorized(c: Tx, b: any) {
     const p = await this.service.principal(c, b.tenant, b.owner_id);
@@ -551,7 +561,11 @@ export class MailWorker {
         );
       }
       const bindings = (
-        await c.query(`SELECT b.* FROM mail_bindings b JOIN mail_principals p ON p.tenant=b.tenant AND p.user_id=b.owner_id
+        await c.query(`SELECT b.*, (
+          SELECT max(o.created_at) FROM mail_operations o
+          WHERE o.binding_id=b.id AND o.input->>'origin'='live'
+        ) AS last_live_at
+        FROM mail_bindings b JOIN mail_principals p ON p.tenant=b.tenant AND p.user_id=b.owner_id
         WHERE b.enabled AND b.continuous AND p.enabled AND p.projects->>b.project_id='write'
         AND NOT EXISTS(
           SELECT 1 FROM mail_operations o
@@ -567,7 +581,16 @@ export class MailWorker {
         )
         FOR UPDATE OF b SKIP LOCKED`)
       ).rows;
+      const now = Date.now();
       for (const b of bindings) {
+        if (
+          !continuousDue(
+            b.last_live_at,
+            now,
+            this.continuousIntervalSeconds,
+          )
+        )
+          continue;
         const to = new Date().toISOString();
         const from = new Date(
           new Date(b.watermark).getTime() - 600000,

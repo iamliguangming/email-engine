@@ -53,6 +53,11 @@ INSERT INTO mail_event_sequence VALUES(1,0) ON CONFLICT DO NOTHING;
 CREATE TABLE IF NOT EXISTS mail_connection_sessions (
  state_hash text PRIMARY KEY, tenant text NOT NULL, owner_id text NOT NULL, provider text NOT NULL,
  expected_email text NOT NULL, verifier text NOT NULL, expires_at timestamptz NOT NULL, used_at timestamptz);
+CREATE INDEX IF NOT EXISTS mail_bindings_continuous ON mail_bindings(tenant,owner_id) WHERE enabled AND continuous;
+CREATE INDEX IF NOT EXISTS mail_operations_binding_live_created ON mail_operations(binding_id,created_at DESC) WHERE input->>'origin'='live';
+CREATE INDEX IF NOT EXISTS mail_operations_active_job ON mail_operations(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','running','retrying');
+CREATE INDEX IF NOT EXISTS mail_items_active_job ON mail_items(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','pending','running','retrying');
+CREATE INDEX IF NOT EXISTS mail_selections_active_job ON mail_selections(job_id) WHERE job_id IS NOT NULL AND status IN ('queued','pending','running','retrying');
 `;
 export type Tx = PoolClient;
 export const QUEUES = {
@@ -80,6 +85,7 @@ export class MailDatabase {
       connectionString: url,
       schema: "mail_jobs",
       monitorIntervalSeconds: 10,
+      cronMonitorIntervalSeconds: 10,
     });
     this.boss.on("error", () =>
       console.error(

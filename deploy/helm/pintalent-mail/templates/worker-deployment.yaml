@@ -52,6 +52,8 @@ spec:
             {{- include "pintalent-mail.runtimeEnv" . | nindent 12 }}
             - name: MAIL_ROLE
               value: "worker"
+            - name: MAIL_CONTINUOUS_INTERVAL_SECONDS
+              value: {{ .Values.worker.continuousIntervalSeconds | quote }}
           resources:
             {{- toYaml .Values.worker.resources | nindent 12 }}
           securityContext:

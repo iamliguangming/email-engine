@@ -46,6 +46,10 @@ api:
 
 worker:
   replicas: 1
+  # Minimum seconds between automatic continuous scans for one binding.
+  # Defaults to 180; 0 disables the cooldown. The scheduler runs every 30 seconds,
+  # so values are aligned to 30 seconds.
+  continuousIntervalSeconds: 180
   resources:
     requests:
       cpu: 100m

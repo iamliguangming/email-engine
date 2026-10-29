@@ -40,6 +40,7 @@ export class MailService {
       deliveryEnabled: boolean;
       allowPrivate?: boolean;
       gmailAuthMode?: GmailAuthMode;
+      continuousIntervalSeconds?: number;
     },
   ) {}
   async identity(token: string): Promise<Identity> {
