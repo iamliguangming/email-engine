@@ -145,9 +145,9 @@ HTTP 头：
 - 同一邮箱协议调用使用 PG advisory lock 串行，刷新令牌以密文 compare-and-swap 保存。
 - 事件日志用事务内计数器串行分配，避免普通序列号的提交乱序导致消费跳项。cursor 返回字符串；接收方落库后再推进。
 - 用户取消不删除已经发现的审核项，也不会撤销已交付的项目入库。任务执行期间修改绑定，旧任务会失败并提示使用当前设置新建拉取，不静默改变用户原请求。
-- `continuous=true` 使用每分钟后台调度，按上次完成的接收时间水位回看 10 分钟并去重，不需要 Agent 轮询。失败任务阻止该版本继续堆叠新任务，可恢复后重试。
+- `continuous=true` 每 30 秒检查一次调度，但每个绑定默认每 180 秒最多触发一次增量扫描（`MAIL_CONTINUOUS_INTERVAL_SECONDS`，设为 0 可关闭节流，最小 30 秒），按上次完成的接收时间水位回看 10 分钟并去重，不需要 Agent 轮询。失败任务阻止该版本继续堆叠新任务，可恢复后重试。
 
-**持续发现当前是有界时间窗口轮询，不是 Gmail history/Graph delta 的完整增量镜像。** 旧接收时间邮件的后来复制/迁入、远端删除与全量对账不在当前首版保证内；需要用户再次指定历史范围拉取。未实现 provider 原生推送、SSE、通用 Webhook 路由、正文对象缓存和数据保留期自动清理。此前研究文档中列出的全部邮件引擎能力并未因此全部实现。
+**持续发现当前是有界时间窗口轮询，不是 Gmail history/Graph delta 的完整增量镜像。** 旧接收时间邮件的后来复制/迁入、远端删除与全量对账不在当前首版保证内；需要用户再次指定历史范围拉取。未实现 provider 原生推送、SSE、通用 Webhook 路由；正文和附件按需缓存到 PostgreSQL 的 `mail_content_cache`/`mail_content_attachments`（24 小时清理），不是对象存储或长期归档。此前研究文档中列出的全部邮件引擎能力并未因此全部实现。
 
 ## 本地运行与部署
 
@@ -165,6 +165,10 @@ curl http://localhost:8095/health
 Compose 将 API、worker、PostgreSQL 分开，API 仅映射本机 8095。公开部署需配置 HTTPS 反向代理、可信出口策略及正确 MAIL_PUBLIC_URL；OAuth 回调地址固定为 `{MAIL_PUBLIC_URL}/v1/oauth/callback`。Google 申请 Gmail readonly，Microsoft 申请 Mail.Read/User.Read/offline_access。真实供应商 app 审批不包含在本轮开发中。
 
 `.env.mail` 不入 Git；数据卷独立，配置 MAIL_SECRET 后不可随意更换，否则旧凭证不能解密。备份 PostgreSQL 与密钥需分开保护。服务不把凭证写入普通日志。生产禁用 `MAIL_ALLOW_PRIVATE_HOSTS=true`，私网自建邮箱接入需要先增加运维允许列表；开发测试可用该开关连接本地邮件服务器。
+
+IMAP 账号可配置 `MAIL_IMAP_PROXY`（HTTP/HTTPS/SOCKS），例如 `http://host.docker.internal:7890`。设置后 ImapFlow 走代理并由代理解析目标域名，不再在本地 DNS 解析后固定 IP；代理必须能从 API/worker 容器访问。该开关只影响 IMAP 账号，Gmail/Graph HTTPS API 不走它。
+
+详情接口先读 `mail_content_cache`；首次读取未命中时才连接邮箱并下载整封邮件，解析结果（正文和附件字节）落库，后续详情和附件下载直接命中缓存。缓存随 `mail_messages.content_hash` 失效，24 小时后由 worker 清理。
 
 非 Docker 运行使用 `DATABASE_URL,MAIL_SECRET,MAIL_ADMIN_TOKEN`，可设 `MAIL_ROLE=api|worker|all`；默认 all。不配置网关/OAuth 时可以启动健康检查与已有 API，但对应能力明确返回 unavailable。
 

@@ -67,7 +67,7 @@
 
 ### 增量事件的真实边界
 
-当前后台每分钟调度，按接收时间水位回看 10 分钟并去重。`GET /v1/events` 返回 `events` 和 `next_cursor`，事件包含 `event_id`、`sequence`、`type`、身份范围、payload 和记录时间。`mail.discovered.payload` 可关联 `binding_id`、`message_id`、`operation_id` 和 `origin`，区分历史拉取 `backfill` 与持续发现 `live`。
+当前后台每 30 秒检查一次调度，但每个绑定默认每 180 秒最多触发一次扫描（`MAIL_CONTINUOUS_INTERVAL_SECONDS`，0 表示不限制，最小 30 秒），按接收时间水位回看 10 分钟并去重。`GET /v1/events` 返回 `events` 和 `next_cursor`，事件包含 `event_id`、`sequence`、`type`、身份范围、payload 和记录时间。`mail.discovered.payload` 可关联 `binding_id`、`message_id`、`operation_id` 和 `origin`，区分历史拉取 `backfill` 与持续发现 `live`。
 
 这条链路已经实测，但 **事件补读接口不是 webhook 推送**。新服务没有订阅、投递队列和送达记录；旧入口中的 webhook 不参与新服务。后续要以 pg-boss 承载至少一次投递，事件和投递意图同事务落库，接收端按 event_id 幂等。事件生成、HTTP 送达、业务处理成功必须分别记录。
 

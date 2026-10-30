@@ -1,3 +1,4 @@
+import { microsoftCloud } from "./microsoft-cloud.js";
 import { serve } from "@hono/node-server";
 import { MailDatabase } from "./database.js";
 import { MailService } from "./service.js";
@@ -5,7 +6,11 @@ import { providerFactory } from "./provider.js";
 import { MailWorker } from "./worker.js";
 import { mailApi } from "./api.js";
 import { ConnectionSessions } from "./oauth.js";
+import { parseGmailAuthMode } from "./gmail-mode.js";
+import { parseContinuousIntervalSeconds } from "./continuous.js";
+import { parseImapProxy } from "./imap-proxy.js";
 import { httpGateway } from "./gateway.js";
+import { startWebhookDelivery } from "./webhook.js";
 const required = (name: string) => {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is required`);
@@ -19,13 +24,21 @@ if (admin.length < 32)
 const allowPrivate = process.env.MAIL_ALLOW_PRIVATE_HOSTS === "true";
 if (allowPrivate && process.env.NODE_ENV === "production")
   throw new Error("Private host overrides are disabled in production");
+const gmailAuthMode = parseGmailAuthMode(process.env.MAIL_GMAIL_AUTH_MODE);
+const continuousIntervalSeconds = parseContinuousIntervalSeconds(
+  process.env.MAIL_CONTINUOUS_INTERVAL_SECONDS,
+);
+const imapProxy = parseImapProxy(process.env.MAIL_IMAP_PROXY);
 const base = process.env.MAIL_HOST_GATEWAY_URL;
 const db = new MailDatabase(database, secret);
 await db.start();
-const service = new MailService(db, providerFactory(allowPrivate), {
+const service = new MailService(db, providerFactory(allowPrivate, imapProxy), {
   allowPrivate,
   aiEnabled: !!base,
   deliveryEnabled: !!base,
+  gmailAuthMode,
+  continuousIntervalSeconds,
+  imapProxy,
 });
 const gateway = base
   ? httpGateway(base, required("MAIL_HOST_GATEWAY_SECRET"))
@@ -41,7 +54,7 @@ if (role !== "worker") {
   const publicUrl = process.env.MAIL_PUBLIC_URL ?? "http://localhost:8095";
   const sessions = new ConnectionSessions(service, {
     publicUrl,
-    ...(process.env.MAIL_GOOGLE_CLIENT_ID
+    ...(gmailAuthMode === "oauth" && process.env.MAIL_GOOGLE_CLIENT_ID
       ? {
           google: {
             clientId: required("MAIL_GOOGLE_CLIENT_ID"),
@@ -55,6 +68,7 @@ if (role !== "worker") {
             clientId: required("MAIL_MICROSOFT_CLIENT_ID"),
             clientSecret: required("MAIL_MICROSOFT_CLIENT_SECRET"),
             tenant: process.env.MAIL_MICROSOFT_TENANT ?? "common",
+            cloud: microsoftCloud(process.env.MAIL_MICROSOFT_CLOUD),
           },
         }
       : {}),
@@ -66,6 +80,7 @@ if (role !== "worker") {
   });
 }
 if (role !== "api") await worker.start();
+if (role !== "api" && base) await startWebhookDelivery(db, gateway);
 console.log(JSON.stringify({ service: "mail-intake", role, status: "ready" }));
 let stopping = false;
 const stop = async () => {

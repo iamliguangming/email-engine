@@ -9,6 +9,11 @@ import {
   requireProject,
 } from "./contracts.js";
 import { QUEUES, type Tx } from "./database.js";
+import {
+  continuousDue,
+  DEFAULT_CONTINUOUS_INTERVAL_SECONDS,
+} from "./continuous.js";
+import { errorFields, logEvent } from "./log.js";
 import type { Gateway } from "./gateway.js";
 const one = (r: any) => r.rows[0];
 type Job = JobWithMetadata<{
@@ -32,6 +37,13 @@ export class MailWorker {
   get db() {
     return this.service.db;
   }
+  get continuousIntervalSeconds() {
+    return (
+      this.service.options.continuousIntervalSeconds ??
+      DEFAULT_CONTINUOUS_INTERVAL_SECONDS
+    );
+  }
+  private contentCacheCleanedAt = 0;
   async start() {
     await this.db.boss.work(
       QUEUES.operation,
@@ -57,7 +69,7 @@ export class MailWorker {
     await this.db.boss.work(QUEUES.tick, async () => {
       await this.tick();
     });
-    await this.db.boss.schedule(QUEUES.tick, "* * * * *");
+    await this.db.boss.schedule(QUEUES.tick, "*/30 * * * * *");
   }
   async authorized(c: Tx, b: any) {
     const p = await this.service.principal(c, b.tenant, b.owner_id);
@@ -302,6 +314,12 @@ export class MailWorker {
             binding_id: b.id,
             indexed: current.indexed + added,
           });
+          // A later successful import proves the provider is healthy again;
+          // do not keep an old failure string on a ready account.
+          await c.query(
+            "UPDATE mail_accounts SET error=NULL WHERE id=$1 AND error IS NOT NULL",
+            [account.id],
+          );
         }
       });
     } catch (e) {
@@ -344,6 +362,15 @@ export class MailWorker {
       j.retryCount >= j.retryLimit || (e instanceof MailError && !e.retryable);
     await this.db.tx(async (c) => {
       if (!(await this.liveAttempt(c, queue, j))) return;
+      logEvent("error", "job_failed", {
+        queue,
+        job_id: j.id,
+        attempt: j.retryCount,
+        retry_limit: j.retryLimit,
+        table,
+        error: safeError(e),
+        ...errorFields(e),
+      });
       await c.query(
         `UPDATE ${table} SET status=$${params.length + 1},error=$${params.length + 2} WHERE ${where} AND job_id=$${params.length + 3} AND status NOT IN ('cancelled','succeeded','delivered')`,
         [...params, terminal ? "failed" : "retrying", safeError(e), j.id],
@@ -533,6 +560,12 @@ export class MailWorker {
   }
   async tick() {
     await this.db.tx(async (c) => {
+      if (Date.now() - this.contentCacheCleanedAt > 5 * 60_000) {
+        this.contentCacheCleanedAt = Date.now();
+        await c.query(
+          "DELETE FROM mail_content_cache WHERE cached_at < now() - interval '24 hours'",
+        );
+      }
       // A process killed before its catch block must still reach a visible terminal state.
       for (const [table, queue] of [
         ["mail_operations", QUEUES.operation],
@@ -545,12 +578,36 @@ export class MailWorker {
         );
       }
       const bindings = (
-        await c.query(`SELECT b.* FROM mail_bindings b JOIN mail_principals p ON p.tenant=b.tenant AND p.user_id=b.owner_id
+        await c.query(`SELECT b.*, (
+          SELECT max(o.created_at) FROM mail_operations o
+          WHERE o.binding_id=b.id AND o.input->>'origin'='live'
+        ) AS last_live_at
+        FROM mail_bindings b JOIN mail_principals p ON p.tenant=b.tenant AND p.user_id=b.owner_id
         WHERE b.enabled AND b.continuous AND p.enabled AND p.projects->>b.project_id='write'
-        AND NOT EXISTS(SELECT 1 FROM mail_operations o WHERE o.binding_id=b.id AND o.input->>'origin'='live' AND o.status IN ('queued','running','retrying','failed') AND (o.status<>'failed' OR (o.input->>'version')::integer=b.version))
+        AND NOT EXISTS(
+          SELECT 1 FROM mail_operations o
+          WHERE o.binding_id=b.id AND o.input->>'origin'='live'
+            AND (
+              o.status IN ('queued','running','retrying')
+              OR (
+                o.status='failed'
+                AND (o.input->>'version')::integer=b.version
+                AND o.updated_at > now() - interval '10 minutes'
+              )
+            )
+        )
         FOR UPDATE OF b SKIP LOCKED`)
       ).rows;
+      const now = Date.now();
       for (const b of bindings) {
+        if (
+          !continuousDue(
+            b.last_live_at,
+            now,
+            this.continuousIntervalSeconds,
+          )
+        )
+          continue;
         const to = new Date().toISOString();
         const from = new Date(
           new Date(b.watermark).getTime() - 600000,
